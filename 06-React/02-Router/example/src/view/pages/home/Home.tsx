@@ -5,12 +5,12 @@ import styles from './Home.module.scss'
 const Home = () => {
     return (
         <div className={styles.home}>
-            <div>
+            <div className={styles.nav}>
                 <h1>Home</h1>
                 <NavLink to="/about">About</NavLink>
                 <br />
                 <NavLink to="profile">Profile</NavLink>{" "}
-                <NavLink to="">Posts</NavLink>
+                <NavLink to="">Home</NavLink>
             </div>
             <div className={styles.content}>
             <Outlet />
