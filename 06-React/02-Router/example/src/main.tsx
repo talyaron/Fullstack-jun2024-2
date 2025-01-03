@@ -8,7 +8,6 @@ import Home from './view/pages/home/Home.tsx'
 import Posts from './view/pages/home/posts/Posts.tsx'
 import Profile from './view/pages/home/profile/Profile.tsx'
 
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
