@@ -1,0 +1,14 @@
+.posts{
+    background-color: teal;
+    height: 100%;
+    color:white;
+
+    a{
+        color: white;
+        text-decoration: none;
+    }
+    .postsList{
+        display:flex;
+        flex-direction: column;
+    }
+}

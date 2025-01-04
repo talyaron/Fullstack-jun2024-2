@@ -1,7 +1,8 @@
+
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router'
 
-const Post = () => {
+const Dog = () => {
 
     const { id } = useParams();
     const [imageUrl, setImageUrl] = useState<string>('')
@@ -18,10 +19,9 @@ const Post = () => {
 
     return (
         <div>
-            <h1>Some post: {id}</h1>
             <img src={imageUrl} alt={id} />
         </div>
     )
 }
 
-export default Post
+export default Dog

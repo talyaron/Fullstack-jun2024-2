@@ -1,12 +1,11 @@
-import  { useState } from 'react'
-import styles from './Posts.module.scss'
-import { Link } from 'react-router'
+import styles from './posts.module.scss'
+import { Link } from 'react-router';
 
 const Posts = () => {
   const posts= [
-    { id: "Germanshepherd", title: 'German Shephered' },
-    { id: "Malinois", title: 'Belgian Malinoa' },
-    { id: "Husky", title: 'Husky' }
+    { id: "germanshepherd", title: 'German Shephered' },
+    { id: "malinois", title: 'Belgian Malinoa' },
+    { id: "husky", title: 'Husky' }
   ];
 
   return (
