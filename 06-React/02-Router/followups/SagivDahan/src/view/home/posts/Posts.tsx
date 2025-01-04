@@ -1,6 +1,5 @@
-import  { useState } from 'react'
-import styles from './Posts.module.scss'
-import { Link } from 'react-router'
+import styles from './posts.module.scss'
+import { Link } from 'react-router';
 
 const Posts = () => {
   const posts= [
