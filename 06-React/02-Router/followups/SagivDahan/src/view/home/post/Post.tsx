@@ -18,8 +18,8 @@ const Post = () => {
 
     return (
         <div>
-            <h1>Post Id: {id}</h1>
-            <img src={imageUrl} alt={id} />
+            <h1>Dog Breed: {id}</h1>
+            <img src={imageUrl} alt={id}/>
         </div>
     )
 }
