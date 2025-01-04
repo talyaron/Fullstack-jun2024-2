@@ -40,3 +40,45 @@
 .read-the-docs {
   color: #888;
 }
+
+.links
+{
+  font-size: 3rem;
+  color: yellow;
+}
+
+.about-link {
+  display: inline-block;
+  color: #ff6347; /* צבע בסיסי */
+  text-decoration: none;
+  font-size: 55px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s ease;
+}
+
+.about-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6347, #1e90ff, #32cd32, #ff6347); /* קשת צבעים */
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.about-link:hover {
+  color: #1e90ff; /* משנה את צבע הטקסט */
+}
+
+.about-link:hover::before {
+  transform: translateX(0); /* קו צבעוני מופיע */
+}
+
+.about-link:hover {
+  transform: rotate(7deg) scale(1.1); /* הטקסט גדל ומסתובב מעט */
+  transition: transform 0.2s ease;
+}
+

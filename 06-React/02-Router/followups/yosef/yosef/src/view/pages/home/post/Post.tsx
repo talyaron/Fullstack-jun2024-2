@@ -15,7 +15,7 @@ const Post = () => {
   }, [id])
   return (
     <div>
-      <h1>Here your post</h1>
+      <h1>My Dog Picture</h1>
       <img src={imageUrl} alt="dog"/>
     </div>
   )

@@ -7,7 +7,8 @@ function Posts() {
   const posts= [
     { id: "akita", title: 'Akita' },
     { id: "boxer", title: 'Boxer' },
-    { id: "chow", title: 'Chow' }
+    { id: "chow", title: 'Chow' },
+    { id: "beagle", title: 'Beagle' }
   ];
 
   return (

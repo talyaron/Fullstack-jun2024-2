@@ -14,9 +14,9 @@ const Home = () => {
        <NavLink to="">Posts</NavLink>
     </div>
         <div className={styles.content}>
-            <br />
             <Outlet />
         </div>
+        
     </div>
   )
 }
