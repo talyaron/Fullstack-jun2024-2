@@ -9,7 +9,6 @@ import Posts from './view/pages/home/posts/Posts.tsx'
 import Profile from './view/pages/home/profile/Profile.tsx'
 import Post from './view/pages/home/post/Post.tsx';
 
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
