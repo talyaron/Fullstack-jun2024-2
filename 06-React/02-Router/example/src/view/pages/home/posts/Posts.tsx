@@ -4,9 +4,9 @@ import { Link } from 'react-router'
 
 const Posts = () => {
   const posts= [
-    { id: "akita", title: 'Akita' },
-    { id: "boxer", title: 'Boxer' },
-    { id: "chow", title: 'Chow' }
+    { id: "Germanshepherd", title: 'German Shephered' },
+    { id: "Malinois", title: 'Belgian Malinoa' },
+    { id: "Husky", title: 'Husky' }
   ];
 
   return (

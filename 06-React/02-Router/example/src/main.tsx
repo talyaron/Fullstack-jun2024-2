@@ -9,11 +9,11 @@ import Posts from './view/pages/home/posts/Posts.tsx'
 import Profile from './view/pages/home/profile/Profile.tsx'
 import Post from './view/pages/home/post/Post.tsx';
 
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route index element={<App />} />
         <Route path="about" element={<About />} />
         <Route path="home" element={<Home />}>
           <Route index element={<Posts />} />      
