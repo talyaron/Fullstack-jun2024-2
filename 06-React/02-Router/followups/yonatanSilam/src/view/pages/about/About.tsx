@@ -1,15 +1,13 @@
 
-import { NavLink, Outlet } from 'react-router'
+import { NavLink } from 'react-router'
 
 const About = () => {
   return (
     <div>
-      <h1>About</h1>
-      <NavLink to="/home">home</NavLink>
-      <br />
-      <NavLink to="">yonatan</NavLink><div></div>
-      <NavLink to="project">about the project</NavLink>
-      <Outlet/>
+        <div style={{ textAlign: 'center', height:"100%" }}>
+            <h1>About</h1>
+            <NavLink to="/home">Home</NavLink>
+        </div>
     </div>
   )
 }
