@@ -1,0 +1,25 @@
+.petsList {
+    padding: 20px;
+}
+
+.petsList ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.petsList li {
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.petImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
