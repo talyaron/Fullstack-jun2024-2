@@ -1,0 +1,40 @@
+.navBar {
+  position: absolute;
+  top: 10vh;
+  display: flex;
+  left: 0;
+  flex-direction: column;
+  text-align: left;
+  background-color: rgb(227, 189, 139);
+  width: fit-content;
+  z-index: 999;
+  padding: 2vw;
+  height: 70vh;
+  border-radius: 2px;
+  a {
+    font-size: 2em;
+    color: black;
+    margin: 1vh;
+  }
+}
+.page {
+  position: relative;
+  margin-top: 0;
+  background-color: antiquewhite;
+  height: 80vh;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+.wlcome
+{
+  margin: 0;
+  height: 10vh;
+  h1{
+    margin: 0%;
+    padding: 0;
+    font-size: 2em;
+  }
+ // background-color: rgb(54, 115, 115);
+}

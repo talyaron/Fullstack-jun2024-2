@@ -1,0 +1,24 @@
+.imageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  img {
+    width: 10vw;
+    height: 10vw;
+    margin: 1vw;
+    &:hover {
+      scale: 1.1;
+      cursor: pointer;
+      &:not(:hover) {
+        scale: 0.9;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.bigCat{
+    width: 30vw;
+    height: 20vw;
+  
+}
