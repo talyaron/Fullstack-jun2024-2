@@ -1,0 +1,32 @@
+.cats {
+    margin-top: -10rem;
+  }
+  
+  .catList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    justify-items: start;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4rem;
+    max-width: 120rem;
+    padding: 2rem;
+  }
+  
+  .catImage {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+  }
+  
+  .catImage:hover {
+    transform: scale(1.05);
+  }
+  
+  h1 {
+    text-align: left;
+    grid-column: span 3; 
+    margin-bottom: 1rem;
+  }
+  

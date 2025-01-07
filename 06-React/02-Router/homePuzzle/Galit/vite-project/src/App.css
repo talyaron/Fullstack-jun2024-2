@@ -1,0 +1,54 @@
+:root {
+  --primary-color: #cbf4f9;
+  --secondary-color: #fffbc4;
+  --text-color: #606060;
+  --link-hover-color: #feaaec;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url('https://images.squarespace-cdn.com/content/v1/5e950775bee93b4c91e3d327/5752df7c-0739-4192-abb1-8a18da95a64d/Website+Background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  color: #feaaec;
+}
+
+Nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+  background: var(--secondary-color);
+  border-radius: 30px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+Nav a:hover {
+  color: var(--secondary-color);
+  background: var(--link-hover-color);
+  transform: scale(1.05);
+}
+
+.container {
+  padding: 2rem;
+  font-size: 2rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4rem;
+
+}
+
