@@ -1,15 +1,20 @@
 import { NavLink, Outlet } from 'react-router'
+import styles from './Home.module.scss'
+
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-      <NavLink to="/About">about</NavLink>
-      <br />
-      <NavLink to="profile">Post</NavLink> <div> </div>
-      <NavLink to="">Profile</NavLink>
-      <Outlet/>
+    <div className={styles.home}>
+    <div className={styles.nav}>
+        <h1>Home</h1>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="profile">Profile</NavLink>
+        <NavLink to="">Home</NavLink>
     </div>
+    <div className={styles.content}>
+    <Outlet />
+    </div>
+</div>
   )
 }
 
