@@ -11,7 +11,9 @@ const Home = () => {
           <br />
        <NavLink to="profile">Profile</NavLink>
        <br />
-       <NavLink to="">Dogs</NavLink>
+       <NavLink to="">Cats</NavLink>
+       <br />
+       <NavLink to="dogs">Dogs</NavLink>
     </div>
         <div className={styles.content}>
             <Outlet />
