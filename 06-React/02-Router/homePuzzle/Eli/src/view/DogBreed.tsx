@@ -8,20 +8,24 @@ function DogBreed() {
 
   useEffect(() => {
     if (!dogBreed) return;
-  
+    let isCancelled= false;
     const fetchDogImage = async () => {
       try {
         const data = await dogFetcher(img,dogBreed);
         console.log("Returned data:", data);
-       (!img)
+       if(!isCancelled){
         setImage(data.message);
-        console.log(img)
+        console.log(img)}
       } catch (error) {
         console.error("Error fetching dog image:", error);
       }
     };
   
    fetchDogImage();  
+   
+   return ()=>{
+    isCancelled=true;
+   }
   }, [dogBreed]); 
   return (
     <div>
