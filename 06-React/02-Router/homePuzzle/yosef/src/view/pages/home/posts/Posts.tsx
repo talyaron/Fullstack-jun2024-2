@@ -8,24 +8,24 @@ function Posts() {
   let counter = 0;
 
   const posts = [
-    { id: "akita", title: 'Akita' },
-    { id: "boxer", title: 'Boxer' },
-    { id: "chow", title: 'Chow' },
-    { id: "beagle", title: 'Beagle' }
+    { id: "0XYvRd7oD", title: 'Akita' },
   ];
 
   // הפונקציה שמבצעת את הבקשה
   const fetchImage = async () => {
     for (const post of posts) {
-      if (counter >= 10) break; // show me only 10 pics
+      if (counter >=12) break; // show me only 10 pics
   
-      const response = await fetch(`https://dog.ceo/api/breed/${post.id}/images/random`);
+      // const response = await fetch(`https://dog.ceo/api/ breed/${post.id}/images/random`);
+      const response = await fetch(`https://api.thecatapi.com/v1/images/${post.id}`);
       const data = await response.json();
       counter++;
-      console.log(data);
-      setImageUrl(data.message);
-      setAllPosts(prevPosts => [...prevPosts, data.message]);
+      console.log(data.breeds[0].origin);
+      setImageUrl(data.url);
+      setAllPosts(prevPosts => [...prevPosts, data.url, data.breeds[0].origin]);
+
     }
+    console.log("all the post is: " + allPosts)
   };
 
   // שימוש ב-useEffect כדי להפעיל את fetchImage כל 5 שניות
@@ -42,11 +42,11 @@ function Posts() {
   return (
     <div>
       <h3>Timer: {count} seconds</h3>
-      <h1>Dogs pictures:</h1>
+      <h1>Cats pictures:</h1>
       {/* שימוש ב-map להציג את התמונות */}
       <div>
         {allPosts.map((post, index) => (
-          <img key={index} src={post} alt={`dog-${index}`} className={styles.pics}/>
+          <img key={index} src={post} alt={`cat-${index}`} className={styles.pics}/>
         ))}
       </div>
     </div>
