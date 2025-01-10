@@ -15,7 +15,8 @@ const Post = () => {
   }, [id])
   return (
     <div>
-      <h1>My Dog Picture</h1>
+      <h1>My Dog 22 Picture </h1>
+      <h1>the id is {id}</h1>
       <img src={imageUrl} alt="dog"/>
     </div>
   )

@@ -1,54 +1,75 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Posts.module.scss';
+import { NavLink, Outlet } from 'react-router-dom';
+
+interface Cat {
+  imgUrl: string;
+  origin: string;
+  life: string;
+}
 
 function Posts() {
-  const [imageUrl, setImageUrl] = useState<string>('');
   const [count, setCount] = useState(0);
-  const [allPosts, setAllPosts] = useState<string[]>([]); // שינוי כאן למערך סטייט
+  const [allPosts, setAllPosts] = useState<Cat[]>([]);
   let counter = 0;
 
   const posts = [
     { id: "0XYvRd7oD", title: 'Akita' },
   ];
 
-  // הפונקציה שמבצעת את הבקשה
   const fetchImage = async () => {
     for (const post of posts) {
-      if (counter >=12) break; // show me only 10 pics
+      if (counter >= 4) break;
   
-      // const response = await fetch(`https://dog.ceo/api/ breed/${post.id}/images/random`);
       const response = await fetch(`https://api.thecatapi.com/v1/images/${post.id}`);
       const data = await response.json();
       counter++;
-      console.log(data.breeds[0].origin);
-      setImageUrl(data.url);
-      setAllPosts(prevPosts => [...prevPosts, data.url, data.breeds[0].origin]);
-
+      const newCat: Cat = {
+        imgUrl: data.url,
+        origin: data.breeds[0].origin,
+        life: data.breeds[0].life_span
+      };     
+      setAllPosts(prevPosts => [...prevPosts, newCat]);
     }
-    console.log("all the post is: " + allPosts)
   };
 
-  // שימוש ב-useEffect כדי להפעיל את fetchImage כל 5 שניות
+  const pictureClicked = (index: number) => {
+    // ניתן להשתמש ב-navigate במקום NavLink לניווט פרוגרמטי
+    // navigate(`/home/post/${index}`);
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       fetchImage();
       setCount(prevCount => prevCount + 1); 
-    },1000); // fetch pics in 1 second
+    }, 1000);
 
-    // ניקוי ה-interval כשהקומפוננטה מתפרקת
     return () => clearInterval(interval);
-  }, []); // הרצה פעם אחת אחרי הרינדור הראשון
+  }, []);
 
   return (
-    <div>
+    <div className={styles.postsContainer}>
       <h3>Timer: {count} seconds</h3>
       <h1>Cats pictures:</h1>
-      {/* שימוש ב-map להציג את התמונות */}
-      <div>
+      
+      <div className={styles.catsGrid}>
         {allPosts.map((post, index) => (
-          <img key={index} src={post} alt={`cat-${index}`} className={styles.pics}/>
+          <div key={index} className={styles.catCard}>
+            <NavLink to={`/home/post/${post.origin}`}>
+              <img 
+                src={post.imgUrl} 
+                alt={`cat-${index}`} 
+                className={styles.pics} 
+                onClick={() => pictureClicked(index)}
+              />
+            </NavLink>
+            <p>Origin: {post.origin}</p>
+            <p>Life Span: {post.life}</p>
+          </div>
         ))}
       </div>
+      
+      <Outlet />
     </div>
   );
 }
