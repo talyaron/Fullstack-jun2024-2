@@ -5,8 +5,9 @@ const Post = () => {
   const {id} = useParams();
   const [imageUrl, setImageUrl] = useState<string>('');
 
+
   useEffect(() => {
-    fetch(`https://dog.ceo/api/breed/${id}/images/random`)
+    fetch(`https://dog.ceo/api/breed/hound/images`)
     .then(res => res.json())
     .then(data => {
       console.log(data)

@@ -9,6 +9,7 @@ import Profile from './view/pages/home/profile/Profile.tsx'
 import Posts from './view/pages/home/posts/Posts.tsx'
 import Post from './view/pages/home/post/Post.tsx'
 import Dogs from './view/pages/home/dogsList/DogsList.tsx'
+import DogInformation from './view/pages/home/dogInformation/DogInformation.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')!).render(
          <Route path="profile" element={<Profile />} />
          <Route path="post/:id" element={<Post />} />
          <Route path="dogs" element={<Dogs />} />
+         <Route path="dog/:id" element={<DogInformation />} />
        </Route>
      </Routes>
 </BrowserRouter>
