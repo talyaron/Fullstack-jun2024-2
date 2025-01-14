@@ -18,13 +18,13 @@ function App() {
 
   function deleteTask(index: any) {
     setTask((prevTasks) => prevTasks.filter((_, i) => i !== index));
-    setMarkedTasks((prevMarked) => prevMarked.filter((_, i) => i !== index)); 
+    setMarkedTasks((prevMarked) => prevMarked.filter((_, i) => i !== index));
   }
 
   function handleCheck(index: number) {
     setMarkedTasks((prev) => {
       const updated = [...prev];
-      updated[index] = !updated[index]; // Toggle the marked state for the task
+      updated[index] = !updated[index];
       return updated;
     });
   }
