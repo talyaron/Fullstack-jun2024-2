@@ -1,0 +1,79 @@
+@keyframes flyUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-100vh);
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f7f7f7;
+}
+
+h1 {
+  color: #d05182;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+.balloon-container {
+  position: relative;
+  width: 80vw;
+  height: 70vh;
+  overflow: hidden;
+  background-color: #f0f8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.balloon {
+  font-size: 5rem;
+  color: #f06299;
+  cursor: pointer;
+  animation: flyUp 10s linear infinite; 
+  position: absolute;
+  bottom: 0;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.message-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  z-index: 200;
+}
+
+.restart-button {
+  margin-top: -10rem;
+  padding: 15px 30px;
+  background-color: #f06299;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 80%;
+  max-width: 300px;
+  margin: 10px auto;
+
+  &:hover {
+    background-color: #d05182;
+  }
+}
