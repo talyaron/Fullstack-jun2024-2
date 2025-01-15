@@ -2,5 +2,45 @@
     img{
         width: 10rem;
         height: 10rem;
+        top: 14rem;
     }
 }
+
+.score{
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    font-size: 2rem;
+}
+
+.timer{
+    position: fixed;
+    top: 4rem;
+    left: 1rem;
+    font-size: 2rem;
+}
+
+.play {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.play:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
