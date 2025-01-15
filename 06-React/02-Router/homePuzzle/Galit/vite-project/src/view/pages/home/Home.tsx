@@ -8,6 +8,7 @@ const Home = () => {
                 <h1>Home</h1>
                 <NavLink to="/cats" style={{ textDecoration: 'none', color: '#333', fontWeight:'bold' }}>Cats Catalog</NavLink>
                 <br />
+                <br />
                 <NavLink to="/dogs" style={{ textDecoration: 'none', color: '#333' , fontWeight:'bold' }}>Dogs Catalog</NavLink>
             <div className={styles.content}>
             <Outlet />
