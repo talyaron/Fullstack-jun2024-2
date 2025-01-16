@@ -1,0 +1,26 @@
+.balloon {
+  position: absolute;
+  background-image: url('../../../assets/images/balloon.jpeg');
+  width: 200px;
+  height: 220px;
+  animation: flyUp 5s linear forwards; /* 5s controls the duration */
+  animation-delay: calc(1s * var(--index)); /* Add a delay based on the index */
+}
+.pop{
+  position: absolute;
+  background-image: url();
+  width: 240px;
+  height: 185px;
+  animation: flyUp 5s linear forwards; /* 5s controls the duration */
+}
+@keyframes flyUp {
+  from {
+    bottom: 0;
+  }
+  to {
+    bottom: 100%;
+  }
+}
+h1{
+  margin: 0;
+}
