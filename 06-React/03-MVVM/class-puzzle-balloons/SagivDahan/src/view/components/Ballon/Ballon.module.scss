@@ -1,0 +1,25 @@
+.header{
+    position: relative;
+    top: -350px;
+}
+.btn{
+    position: relative;
+    top: 300px;
+}
+
+.ballonContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .ballon {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .ballon:hover {
+    transform: scale(1.2);
+  }
