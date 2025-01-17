@@ -12,6 +12,6 @@ and get a list of images of dogs, with the next model schema:
 }
 
 ```
-And render all the images to the screen.
+Render all images to the screen.
 
-Use a button to ge a new list of images.
+Use a button to get a new list of images.
