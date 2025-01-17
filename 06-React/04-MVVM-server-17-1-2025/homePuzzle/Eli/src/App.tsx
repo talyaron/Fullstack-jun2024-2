@@ -1,21 +1,32 @@
-import React, { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import React, { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+interface Btn {
+  color: string;
+  active: boolean;
+}
 function App() {
-  const [count, setCount] = useState(false)
+  const [buttons, setButtons] = useState<boolean[]>([true, false]);
 
-  function change(e:React.MouseEvent){
-console.log("clicked")
+  function change(i: number) {
+    setButtons(buttons.map((btn, idx) => (i === idx ? !btn : false)));
   }
   return (
     <>
- <div className='btnContainer' onClick={(e)=>change(e)}><div className='btnInner'></div></div>
- <div className='btnContainer' onClick={(e)=>change(e)}><div className='btnInner'></div></div>
-
+      {buttons.map((btn, i) =>
+        btn ? (
+          <div key={i} className="btnContainer btn" onClick={() => change(i)}>
+            <div className="btnInner selected btn"></div>
+          </div>
+        ) : (
+          <div key={i} className="btnContainer" onClick={() => change(i)}>
+            <div className="btnInner unSelected"></div>
+          </div>
+        )
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
