@@ -20,39 +20,34 @@ export function useBalloonMV() {
     balloon_6,
   ];
 
-  // add new balloons
   useEffect(() => {
     const interval = setInterval(() => {
       const newBalloon: BalloonModel = {
         id: crypto.randomUUID(),
-        x: Math.random() * 90, // random position from 0 to 90 %
-        y: 100, // start from bottom
+        x: Math.random() * 90 + 5,
+        y: 0,
         img: balloonImages[Math.floor(Math.random() * balloonImages.length)],
         isPopped: false,
       };
       setBalloons((prev) => [...prev, newBalloon]);
-    }, 2000); // new balloon every 2 second
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  // fly balloons
   useEffect(() => {
     const flyInterval = setInterval(() => {
       setBalloons(
         (prev) =>
           prev
             .map((balloon) =>
-              balloon.y > 0
-                ? { ...balloon, y: balloon.y - 3 } 
-                : null
+              balloon.y < 100 ? { ...balloon, y: balloon.y + 1 } : null
             )
             .filter((balloon) => balloon !== null) as BalloonModel[]
       );
-    }, 20); 
+    }, 50);
     return () => clearInterval(flyInterval);
   }, []);
 
-  // pop balloon
   const popBalloon = (id: string) => {
     setBalloons((prev) =>
       prev.map((balloon) =>
@@ -63,7 +58,7 @@ export function useBalloonMV() {
     );
     setTimeout(() => {
       setBalloons((prev) => prev.filter((balloon) => balloon.id !== id));
-    }, 500); // delay 0.5 second before remove balloon
+    }, 500);
   };
 
   return {

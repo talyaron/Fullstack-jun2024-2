@@ -1,24 +1,23 @@
 .balloonContainer {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background: #f0f8ff;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .balloon {
     position: absolute;
-    width: 40px; 
-    height: 40px; 
-    cursor: pointer;
-    transition: transform 0.2s, bottom 0.05s;
+    width: 50px;
+    height: auto;
+    transition: transform 0.3s, bottom 0.1s linear;
 
     &:hover {
         transform: scale(1.1);
     }
 
     &.popped {
-        animation: pop 0.5s forwards;
+        animation: pop 0.7s forwards;
     }
 }
 
