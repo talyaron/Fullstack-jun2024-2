@@ -1,4 +1,4 @@
-export interface ThreeDogs{
-    massage:string[],
+export interface DogsModel{
+    message:string[],
     status:string
 }
