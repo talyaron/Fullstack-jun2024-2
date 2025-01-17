@@ -1,4 +1,4 @@
 export interface DogModel {
-    message: string[],
+    message: string[];
     status: string; 
 }
