@@ -27,7 +27,7 @@ const Catalog: React.FC = () => {
 
       {/* Main content */}
       <div className={styles.content}>
-        <Outlet /> {/* Здесь рендерятся вложенные маршруты */}
+        <Outlet /> 
       </div>
     </div>
   );
