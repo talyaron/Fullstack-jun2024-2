@@ -1,27 +1,64 @@
 import { ballonGameMV } from "./BallonGameMV";
 import { Ballon } from "../../../model/ballon/ballon";
 import style from "./BallonGame.module.scss"
+import ballonPic from '../../../pics/ballon.png'
+import ballonExplode from '../../../pics/explode.png'
+import { useEffect } from "react";
+
+
 
 const StartPlay = () => {
 
-    const { ballons , setBallons} = ballonGameMV();
+    const { ballons , setBallons, score, setScore, timer, setTimer} = ballonGameMV();
 
     function createBallon(){
+        const leftMove = Math.floor(Math.random() *1000);
+        const topMove = Math.floor(Math.random() *1000);
         const newBallon: Ballon = {
-            id: "123",
-            imageUrl: "https://partysocial.ae/cdn/shop/files/premium-balloon-5in-13cm-15-per-pack-party-social-1_grande.webp?v=1720101498"
+            id: Math.floor(Math.random() *1000).toString(),
+            imageUrl: ballonPic,
+            left: leftMove,
+            top: topMove
             };
             setBallons([...ballons, newBallon]);
-    
+            
     }
+
+    function popTheBallon(currentBallon: string) {
+        setBallons(ballons.map(b => 
+            b.id === currentBallon 
+            ? { ...b, imageUrl: ballonExplode } 
+            : b
+        ));
+    }
+    
+function start(){
+    useEffect(() => {   
+        const timerInterval = setInterval(() => {
+            setTimer(prevTimer => prevTimer+0.5);
+        }, 1000);
+        const interval = setInterval(createBallon, 1500);
+        return () => clearInterval(interval);
+    }, [setBallons]);
+    // setInterval(createBallon, 3000);
+}
             
 
     return (<div>
-        <h1>hey, you create {ballons.length} ballons </h1>
-        <button onClick={createBallon}>lets play</button>
+        <p className={style.timer}>Timer: {timer}</p>
+        <p className={style.score}>Score: {score}</p>
+        <button className={style.play} onClick={start()}>Lets Play</button>
         {ballons.map(ballon => 
         <div className={style.ballons} key={ballon.id}>
-            <img src={ballon.imageUrl} alt={ballon.id} />
+            <img 
+            src={ballon.imageUrl}
+            alt={ballon.id}
+            style={{position:"absolute", left:ballon.left, top:ballon.top}}
+            onClick={() => {
+                popTheBallon(ballon.id)
+                setScore(score + 1);
+            }}
+            />
         </div>)}
         </div>
     );
