@@ -1,11 +1,7 @@
-import React, { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState } from "react";
+
 import "./App.css";
-interface Btn {
-  color: string;
-  active: boolean;
-}
+
 /*1.make an array of objects to represent the button with (i went with active and color) 
 
   2.iterate through the array of objects and give css styling of an active button if its active
@@ -20,17 +16,29 @@ interface Btn {
   if its not change it back to white
 */
 
+interface Btn {
+  color: string;
+  active: boolean;
+}
+const allButtons: Btn[] = [
+  { color: "blue", active: false },
+  { color: "yellow", active: false },
+  //{ color: "brown", active: false },
+  // { color: "black", active: false },
+  // { color: "green", active: false },
+
+  // uncomment for more buttons
+];
+
+const defaultColor = "white";
 
 function App() {
-  const [buttons, setButtons] = useState<Btn[]>([
-    { color: "blue", active: false },
-    { color: "yellow", active: false },
-  ]);
+  const [buttons, setButtons] = useState<Btn[]>(allButtons);
 
-  const [backgroundColor ,setColor]=useState("white");
+  const [backgroundColor, setColor] = useState(defaultColor);
 
   function change(i: number) {
-    setColor(!buttons[i].active? buttons[i].color:"white");
+    setColor(buttons[i].active ?defaultColor : buttons[i].color );
     setButtons(
       buttons.map((btn, idx) => ({
         ...btn,
@@ -41,18 +49,18 @@ function App() {
 
   return (
     <>
-        <div style={{ backgroundColor }}>
-      {buttons.map((btn, i) =>
-        btn.active ? (
-          <div key={i} className="btnContainer btn" onClick={() => change(i)}>
-            <div className="btnInner selected btn"></div>
-          </div>
-        ) : (
-          <div key={i} className="btnContainer" onClick={() => change(i)}>
-            <div className="btnInner unSelected"></div>
-          </div>
-        )
-      )}
+      <div className="page" style={{ backgroundColor }}>
+        {buttons.map((btn, i) =>
+          btn.active ? (
+            <div key={i} className="btnContainer btn" onClick={() => change(i)}>
+              <div className="btnInner selected btn"></div>
+            </div>
+          ) : (
+            <div key={i} className="btnContainer" onClick={() => change(i)}>
+              <div className="btnInner unSelected"></div>
+            </div>
+          )
+        )}
       </div>
     </>
   );
