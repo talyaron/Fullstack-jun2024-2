@@ -8,9 +8,11 @@ import "./App.css";
 2. when we drop the cube setting drag off
 
 3.calculate the offset of the area clicked so when it is being dragged it will be dragged from 
-the point we are holding and not the top left
+the point we are holding and not the top left (mouse position - the box position = offset )
 
-4.setting the box to move when we are dragging according to the mouse position minus the offset */
+4.setting the box to move when we are dragging according to the mouse position minus the offset
+(box position = mouse position - offset)
+*/
 
 function App() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
