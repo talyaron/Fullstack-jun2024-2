@@ -14,7 +14,7 @@ Implement the interactive behavior demonstrated in [this video](https://somup.co
 Resolve the dragging behavior issue shown in [this video](https://somup.com/cTVb6Pd9N1).
 
 ### Requirements
-* Write pseudocode including mathematical calculations to ensure the rectangle remains in its dropped position (20 points)
+* Write pseudocode including mathematical calculations to ensure the rectangle remains in its dropped position (20 points)  
 
 ## Submission Guidelines
 * All pseudocode must be clearly commented
