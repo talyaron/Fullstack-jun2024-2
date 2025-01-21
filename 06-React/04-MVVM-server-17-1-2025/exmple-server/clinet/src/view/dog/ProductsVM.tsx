@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { ProductModel } from "./ProductModel";
 
 export function useProductVM() {
-    const [products, setProducts] = useState<ProductModel[] | null>(null);
+    const [products, setProducts] = useState<ProductModel[] >([]);
 
     useEffect(() => {
-        fetchProducts();
+        // fetchProducts();
 
     }, []);
 
