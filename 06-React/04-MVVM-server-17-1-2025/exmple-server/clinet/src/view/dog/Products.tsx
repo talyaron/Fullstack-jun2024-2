@@ -10,7 +10,7 @@ const Products = () => {
   return (
     <div>
       <h1>Products</h1>
-      {products && products.map((product:ProductModel) => (<ProductCard key={product._id} product={product} />))}
+      {products.map((product:ProductModel) => (<ProductCard key={product._id} product={product} />))}
       <button onClick={getAllProducts}>Get All Products</button>
     </div>
   )
