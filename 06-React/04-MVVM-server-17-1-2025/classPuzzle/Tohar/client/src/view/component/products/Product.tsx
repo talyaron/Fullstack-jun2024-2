@@ -1,7 +1,6 @@
-import ProductCard from "../productCard/ProductCard";
-import { useProductsVM } from "./ProductVM"
 
-
+import ProductCard from '../productCard/ProductCard';
+import { useProductsVM } from './ProductsVM'
 
 const Product = () => {
     const { products } = useProductsVM();
@@ -14,4 +13,5 @@ const Product = () => {
         </div>
     )
 }
+
 export default Product
