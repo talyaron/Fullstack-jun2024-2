@@ -4,7 +4,7 @@ import styles from "./balloon.module.scss";
 const BalloonView = () => {
   const { balloons, popBalloon } = useBalloonMV();
 
-  console.log("Balloons array:", balloons); // Отладка массива
+  console.log("Balloons array:", balloons); // check the array of balloons
 
   return (
     <div className={styles.balloonContainer}>
@@ -17,8 +17,8 @@ const BalloonView = () => {
             balloon.isPopped ? styles.popped : ""
           }`}
           style={{
-            bottom: `${balloon.y}%`, // Вертикальная позиция
-            left: `${balloon.x}%`, // Горизонтальная позиция
+            bottom: `${balloon.y}%`, // vertical position
+            left: `${balloon.x}%`, // horizontal position 
           }}
           onClick={() => popBalloon(balloon.id)}
         />
