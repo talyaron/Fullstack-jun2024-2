@@ -4,8 +4,6 @@ import styles from "./balloon.module.scss";
 const BalloonView = () => {
   const { balloons, popBalloon } = useBalloonMV();
 
-  console.log("Balloons array:", balloons); // check the array of balloons
-
   return (
     <div className={styles.balloonContainer}>
       {balloons.map((balloon) => (
