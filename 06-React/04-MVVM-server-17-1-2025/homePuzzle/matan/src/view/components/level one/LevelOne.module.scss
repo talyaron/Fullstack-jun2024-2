@@ -1,0 +1,19 @@
+.btn {
+    padding: 10px 20px;
+    border: 2px solid #3498db;
+    background-color: #f1f1f1;
+    color: #3498db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn.active {
+    background-color: #3498db;
+    color: white;
+}
