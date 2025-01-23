@@ -15,9 +15,4 @@
     cursor: grab;
     transition: transform 0.1s ease;  // אנימציה חלקה
   
-    
-    &.dragging {
-      cursor: grabbing;
-      z-index: 1000;  // always on top
-    }
   }
