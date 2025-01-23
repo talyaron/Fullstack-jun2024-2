@@ -4,18 +4,21 @@ import styles from './Todo.module.scss';
 
 type TodoViewProps = {
   todos: Todo[];
-  addTodo: (title: string) => void;
-  removeTodo: (id: number) => void;
-  toggleTodo: (id: number) => void;
+  addTodo: (userId: string, title: string, description: string) => void;
+  removeTodo: (id: string) => void;
+  toggleTodo: (id: string) => void;
 };
 
 const TodoView: React.FC<TodoViewProps> = ({ todos, addTodo, removeTodo, toggleTodo }) => {
-  const [newTodo, setNewTodo] = useState('');
+  const [newTitle, setNewTitle] = useState('');
+  const [newDescription, setNewDescription] = useState('');
 
   const handleAddTodo = () => {
-    if (newTodo.trim()) {
-      addTodo(newTodo);
-      setNewTodo('');
+    const userId = ' '; 
+    if (newTitle.trim() && newDescription.trim()) {
+      addTodo(userId, newTitle, newDescription);
+      setNewTitle('');
+      setNewDescription('');
     }
   };
 
@@ -25,29 +28,38 @@ const TodoView: React.FC<TodoViewProps> = ({ todos, addTodo, removeTodo, toggleT
       <div className={styles['todo-input-container']}>
         <input
           type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add a new todo"
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
+          placeholder="Todo Title"
+        />
+        <input
+          type="text"
+          value={newDescription}
+          onChange={(e) => setNewDescription(e.target.value)}
+          placeholder="Todo Description"
         />
         <button onClick={handleAddTodo}>Add</button>
       </div>
       <ul className={styles['todo-list']}>
         {todos.map((todo) => (
           <li
-            key={todo.id}
+            key={todo._id}
             className={`${styles['todo-item']} ${todo.isDone ? styles['done'] : ''}`}
           >
-            <span>{todo.title}</span>
+            <div>
+              <span className={todo.isDone ? styles['done'] : ''}>{todo.title}</span>
+              <p>{todo.description}</p>
+            </div>
             <div className={styles['todo-actions']}>
               <button
                 className={styles['done-btn']}
-                onClick={() => toggleTodo(todo.id)}
+                onClick={() => toggleTodo(todo._id)}
               >
                 {todo.isDone ? 'Undo' : 'Done'}
               </button>
               <button
                 className={styles['remove-btn']}
-                onClick={() => removeTodo(todo.id)}
+                onClick={() => removeTodo(todo._id)}
               >
                 Remove
               </button>
@@ -56,7 +68,6 @@ const TodoView: React.FC<TodoViewProps> = ({ todos, addTodo, removeTodo, toggleT
         ))}
       </ul>
     </div>
-  
   );
 };
 

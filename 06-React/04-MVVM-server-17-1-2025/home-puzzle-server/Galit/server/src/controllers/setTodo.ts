@@ -1,11 +1,19 @@
-import { Request, Response } from "express";
 import Todo from "../models/TodoModel";
 
-export const setTodo = async (req: Request, res: Response) => {
+export const setTodo = async (req: any, res: any) => {
   try {
     const { title, description, isDone } = req.body;
+    const userId = req.cookies?.userId;
 
-    const newTodo = await Todo.create({ title, description, isDone });
+    if (!userId) {
+      return res.status(400).json({ error: "User ID is required." });
+    }
+
+    if (!title || !description) {
+      return res.status(400).json({ error: "Title and description are required." });
+    }
+
+    const newTodo = await Todo.create({ userId, title, description, isDone });
     res.status(201).json(newTodo);
   } catch (err) {
     console.error(err);

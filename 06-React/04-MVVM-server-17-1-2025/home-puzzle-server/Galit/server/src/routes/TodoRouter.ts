@@ -1,11 +1,10 @@
 import express from "express";
 import { setTodo } from "../controllers/setTodo";
-import { getTodos } from "../controllers/getTodos";
+import { getTodos, removeTodo } from "../controllers/getTodos";
 
 const router = express.Router();
 
-router.post("/set-todo", setTodo);
-router.get("/get-todos", getTodos);
-
-
+router.post("/set", setTodo);
+router.get("/", getTodos);
+router.delete("/remove", removeTodo);
 export default router;
