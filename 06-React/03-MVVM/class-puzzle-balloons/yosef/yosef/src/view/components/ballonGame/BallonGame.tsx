@@ -39,24 +39,25 @@ const StartPlay = () => {
             imageUrl: ballonPic,
             left: leftMove,
             top: topMove}
-        setBallons([...ballons, newBallon]);
+        setBallons((prevBalloons) => [...prevBalloons, newBallon]);
     }
     if (isPlaying2){
         const leftMove = Math.floor(Math.random() * 900);
-        const topMove = -800;
+        const topMove = 0;
         const newBallon: Ballon = {
             id: Math.floor(Math.random() * 1000).toString(),
             imageUrl: ballonPic,
             left: leftMove,
             top: topMove}
-        setBallons([...ballons, newBallon]);
-    }
+            //setBallons([...prevBalloons, newBallon] לא עובד כי הוא לא מוסיף את הבלון לאריי 
+            setBallons((prevBalloons) => [...prevBalloons, newBallon]);
+        }
 }
 
     function popTheBallon(currentBallon: string) {
         setBallons(ballons.map(b =>
             b.id === currentBallon
-                ? { ...b, imageUrl: ballonExplode }
+                ? { ...b, imageUrl: ballonExplode}
                 : b
         ));
     }
