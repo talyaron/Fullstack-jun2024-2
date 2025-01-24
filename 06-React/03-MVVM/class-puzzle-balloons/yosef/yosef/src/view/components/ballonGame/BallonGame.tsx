@@ -75,9 +75,7 @@ const StartPlay = () => {
         <div>
             <p className={style.timer}>Timer: {timer}</p>
             <p className={style.score}>Score: {score}</p>
-            <button className={style.play} onClick={level_2_start}>Level 2
-
-            </button>
+            <button className={style.play} onClick={level_2_start}>Level 2</button>
             <button className={style.play} style={{left:"399px"}} onClick={level_1_start}>Level 1</button>
             {ballons.map(ballon =>
                 <div className={style.ballons} key={ballon.id}>

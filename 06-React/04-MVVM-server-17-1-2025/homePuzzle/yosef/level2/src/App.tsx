@@ -1,52 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import malben from './pics/malben.jpg'
-import style from './style/App.module.scss'
+import { useState } from 'react';
+import styles from './style/App.module.scss';
+import malben from './pics/malben.jpg';
 
-function App() {
-  const [isVisible, setIsVisible] = useState(true); // משתנה לניהול visibility של התמונה
-  const [right, setRight] = useState(455);
-  const [left, setLeft] = useState(110);
-  const [top, setTop] = useState(110);
+const DraggableImage = () => {
+  const [position, setPosition] = useState({ x: 600, y: 500 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(true);
 
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    console.log(e)
+    const rect = e.target.getBoundingClientRect();
+    console.log(rect)
+    setDragOffset({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
 
-  function move() {
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      const newX = e.clientX - dragOffset.x;
+      const newY = e.clientY - dragOffset.y;
+      
+      setPosition({
+        x: newX,
+        y: newY,
+      });
 
-    console.log(window.innerWidth)
-    if (right < window.innerWidth - 200) {
-      setRight(right + 2);
-      setLeft(left + 2);
-      setTop(top + 2);
-    } else {
-      setIsVisible(false);
-      alert('bye!');
+      if (e.clientX > window.innerWidth - 200) {
+        setIsVisible(false);
+        alert('איפה אתה הולך??? התמונה עכשיו תעלם לך! ביי ביי');
+      }
     }
-  }
+  };
 
-  function mouseUp(){
-   alert('mouse up!');
-  }
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
   return (
-    <div style={{backgroundColor:"yellow"}} onMouseUp={move}>
+    <div 
+      className={styles.main}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
+      <p className={styles.mousePosition}>
+        Mouse Position - X: {Math.round(position.x)}, Y: {Math.round(position.y)}
+      </p>
+      
       {isVisible && (
         <img
-          onClick={move}
-          // onMouseUp={mouseUp}
+          src={malben}
+          alt="Draggable"
+          className={styles.draggableImage}
           style={{
-            position: 'absolute',
-            width: '20%',
-            height: '20%',
-            right: `${right}px`,
-            left: `${left}px`,
-            top: `${top}px`,
+            position: 'absolute',  // חשוב להוסיף את זה
+            left: `${position.x}px`,
+            top: `${position.y}px`,
           }}
-          src={malben} alt="Malben" />
+          onMouseDown={handleMouseDown}
+          draggable="false"  /* כדי שיראה יפה שגוררים את התמונה */
+        />
       )}
     </div>
   );
-}
+};
 
-export default App;
+export default DraggableImage;
