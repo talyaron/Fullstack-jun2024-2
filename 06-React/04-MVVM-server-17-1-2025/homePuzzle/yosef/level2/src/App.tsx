@@ -10,6 +10,7 @@ const DraggableImage = () => {
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
+    console.log(e)
     const rect = e.target.getBoundingClientRect();
     console.log(rect)
     setDragOffset({
@@ -30,7 +31,7 @@ const DraggableImage = () => {
 
       if (e.clientX > window.innerWidth - 200) {
         setIsVisible(false);
-        alert('bye!');
+        alert('איפה אתה הולך??? התמונה עכשיו תעלם לך! ביי ביי');
       }
     }
   };
@@ -54,14 +55,14 @@ const DraggableImage = () => {
         <img
           src={malben}
           alt="Draggable"
-          className={`${styles.draggableImage} ${isDragging ? styles.dragging : ''}`}
+          className={styles.draggableImage}
           style={{
             position: 'absolute',  // חשוב להוסיף את זה
             left: `${position.x}px`,
             top: `${position.y}px`,
           }}
           onMouseDown={handleMouseDown}
-          draggable="false"
+          draggable="false"  /* כדי שיראה יפה שגוררים את התמונה */
         />
       )}
     </div>
