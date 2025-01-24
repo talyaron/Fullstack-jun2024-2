@@ -11,6 +11,7 @@ export class infoValidator {
       this.regP =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     }
+ 
     isNameValid(name: string) {
       if (this.regN.test(name) == false) return "invalid name";
       return "";
