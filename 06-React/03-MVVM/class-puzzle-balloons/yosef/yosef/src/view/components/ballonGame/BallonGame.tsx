@@ -39,7 +39,7 @@ console.log(ballons)
             imageUrl: ballonPic,
             left: leftMove,
             top: topMove}
-        setBallons([...ballons, newBallon]);
+        setBallons((prevBalloons) => [...prevBalloons, newBallon]);
     }
     if (isPlaying2){
         const leftMove = Math.floor(Math.random() * 900);
@@ -59,7 +59,7 @@ console.log(ballons)
     function popTheBallon(currentBallon: string) {
         setBallons(ballons.map(b =>
             b.id === currentBallon
-                ? { ...b, imageUrl: ballonExplode }
+                ? { ...b, imageUrl: ballonExplode}
                 : b
         ));
     }
