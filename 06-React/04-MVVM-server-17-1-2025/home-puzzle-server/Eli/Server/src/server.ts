@@ -12,6 +12,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
+export const secretKey = process.env.SECRET_JWT || "1234";
+export const saltRounds = Number(process.env.SALT_BCRYPT) || 3;
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
