@@ -3,21 +3,26 @@ import { Todo } from '../model/TodoModel';
 
 export const useTodoViewModel = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchTodos = async () => {
     try {
-      const response = await fetch('/api/todos'); 
-      if (response.ok) {
-        const data = await response.json();
-        setTodos(data);
-      } else {
-        console.error('Failed to fetch todos');
+      const response = await fetch('/api/todos');
+      const text = await response.text(); 
+  
+      if (!response.ok) {
+        throw new Error(`Failed to fetch todos: ${text}`);
       }
+  
+      const data = JSON.parse(text); 
+      setTodos(data);
     } catch (error) {
       console.error('Error fetching todos:', error);
+      setError('Failed to load todos. Please try again later.');
     }
   };
-
+  
+  
   useEffect(() => {
     fetchTodos();
   }, []); 
@@ -33,20 +38,23 @@ export const useTodoViewModel = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: userId,
-          title: title,
-          description: description,
-          isDone: isDone,
+          userId,
+          title,
+          description,
+          isDone,
         }),
       });
 
-      if (response.ok) {
-        setTodos((prevTodos) => [...prevTodos, newTodo]);
-      } else {
-        console.error('Failed to add todo');
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to add todo: ${errorText}`);
       }
+
+      const data = await response.json();
+      setTodos((prevTodos) => [...prevTodos, data]);
     } catch (error) {
       console.error('Error adding todo:', error);
+      setError('Failed to add the todo. Please try again later.');
     }
   };
 
@@ -60,13 +68,15 @@ export const useTodoViewModel = () => {
         body: JSON.stringify({ id }),
       });
 
-      if (response.ok) {
-        setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
-      } else {
-        console.error('Failed to remove todo');
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to remove todo: ${errorText}`);
       }
+
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
     } catch (error) {
       console.error('Error removing todo:', error);
+      setError('Failed to remove the todo. Please try again later.');
     }
   };
 
@@ -82,8 +92,10 @@ export const useTodoViewModel = () => {
 
   return {
     todos,
+    error, // Return error state to display in UI
     addTodo,
     removeTodo,
     toggleTodo,
+    fetchTodos, // Optional: You can manually trigger a refetch if needed
   };
 };
