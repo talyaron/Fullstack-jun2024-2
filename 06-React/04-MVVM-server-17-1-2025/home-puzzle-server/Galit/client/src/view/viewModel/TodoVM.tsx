@@ -1,101 +1,79 @@
-import { useState, useEffect } from 'react';
-import { Todo } from '../model/TodoModel';
+import { useState, useEffect } from "react";
+import { TodoModel } from "../model/TodoModel";
 
-export const useTodoViewModel = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [error, setError] = useState<string | null>(null);
+export const useTodoVM = () => {
+  const [todos, setTodos] = useState<TodoModel[]>([]);
+  const [newTodo, setNewTodo] = useState({ title: "", description: "" });
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
 
   const fetchTodos = async () => {
     try {
-      const response = await fetch('/api/todos');
-      const text = await response.text(); 
-  
-      if (!response.ok) {
-        throw new Error(`Failed to fetch todos: ${text}`);
-      }
-  
-      const data = JSON.parse(text); 
-      setTodos(data);
+      const response = await fetch("http://localhost:3000/api/todos/get-todos");
+      const data: TodoModel[] = await response.json();
+      setTodos(Array.isArray(data) ? data : []);  
     } catch (error) {
-      console.error('Error fetching todos:', error);
-      setError('Failed to load todos. Please try again later.');
+      console.error("Error fetching todos:", error);
+      setTodos([]); 
     }
   };
-  
-  
-  useEffect(() => {
-    fetchTodos();
-  }, []); 
 
-
-  const addTodo = async (userId: string, title: string, description: string, isDone: boolean = false) => {
-    const newTodo = new Todo(Date.now().toString(), userId, title, description, isDone);
-
+  const addTodo = async () => {
     try {
-      const response = await fetch('/api/todos/set', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/api/todos/add-todo", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId,
-          title,
-          description,
-          isDone,
+          title: newTodo.title,
+          description: newTodo.description,
         }),
       });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Failed to add todo: ${errorText}`);
+      if (response.ok) {
+        fetchTodos(); 
+        setNewTodo({ title: "", description: "" }); 
       }
-
-      const data = await response.json();
-      setTodos((prevTodos) => [...prevTodos, data]);
     } catch (error) {
-      console.error('Error adding todo:', error);
-      setError('Failed to add the todo. Please try again later.');
+      console.error("Error adding todo:", error);
     }
   };
 
-  const removeTodo = async (id: string) => {
+  const toggleTodo = async (id: string, isDone: boolean) => {
     try {
-      const response = await fetch('/api/todos/remove', {
-        method: 'DELETE',
+      await fetch(`http://localhost:3000/api/todos/toggle-todo/${id}`, {
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ isDone: !isDone }),  
       });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Failed to remove todo: ${errorText}`);
-      }
-
-      setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
+      fetchTodos(); 
     } catch (error) {
-      console.error('Error removing todo:', error);
-      setError('Failed to remove the todo. Please try again later.');
+      console.error("Error toggling todo:", error);
     }
   };
 
-  const toggleTodo = (id: string) => {
-    setTodos(
-      todos.map((todo) =>
-        todo._id === id
-          ? new Todo(todo._id, todo.userId, todo.title, todo.description, !todo.isDone)
-          : todo
-      )
-    );
+  const deleteTodo = async (id: string) => {
+    try {
+      await fetch(`http://localhost:3000/api/todos/delete-todo/${id}`, {
+        method: "DELETE", 
+      });
+      fetchTodos();  
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
   };
 
   return {
     todos,
-    error, // Return error state to display in UI
+    newTodo,
+    setNewTodo,
     addTodo,
-    removeTodo,
     toggleTodo,
-    fetchTodos, // Optional: You can manually trigger a refetch if needed
+    deleteTodo,
   };
 };
