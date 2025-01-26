@@ -1,0 +1,38 @@
+.todoItem {
+   display: flex; /* יישור אופקי בין תיבת הסימון לטקסט */
+   align-items: center; /* יישור אנכי לאמצע */
+   margin-bottom: 10px; /* רווח בין פריטים ברשימה */
+}
+
+.remove{
+   text-decoration: line-through;
+   font-size: 24px;
+}
+
+.title{
+}
+
+.titleDisable{
+   display: none;
+}
+
+.title:hover {
+      color: rgb(6, 96, 230); 
+      cursor: pointer; 
+      font-weight: bold;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+
+
+  }
+
+.done
+{
+   font-size: 2rem;
+   background-color: burlywood;
+}
+
+.removed{
+   font-size: 2rem;
+   background-color:darkkhaki
+}
+
