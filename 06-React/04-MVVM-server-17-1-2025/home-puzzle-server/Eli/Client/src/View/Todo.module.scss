@@ -32,10 +32,15 @@ h4 {
   background-color: rgb(171, 173, 65);
   border: 1px black solid;
 }
-
-#delete {
+.rotate {
+  animation: rotate 2s linear;
+  animation-iteration-count: infinite;
+}
+.delete {
   background-color: transparent;
+  margin: 0;
   margin-right: 1vw;
+  margin-left: 1vw;
   padding: 0;
   border: none;
 }
@@ -48,4 +53,12 @@ h4 {
   width: 40vw;
   overflow: auto;
   background-color: rgb(211, 211, 125);
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
