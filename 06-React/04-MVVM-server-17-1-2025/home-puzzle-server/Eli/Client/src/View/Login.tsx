@@ -9,23 +9,30 @@ const textToUser = {
 };
 
 function Login() {
+
   const [userText, setUserText] = useState(textToUser);
   const navigate = useNavigate();
+
+
     async function loginUser(email: string, password: string) {
-    const response = await fetch("http://localhost:3000/api/users/login-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+      const response = await fetch("http://localhost:3000/api/users/login-user", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: 'include', 
+    body: JSON.stringify({ email, password }),
+  });
     const data = await response.json();
     console.log(data);
     if (!response.ok) {
       setUserText({ ...userText, emailInv: data.message });
       return;
     }
+    console.log("success")
+  setTimeout(() => {
     navigate('/todo'); 
+  }, 1000); 
   }
 
   function checkForm(e: React.FormEvent<HTMLFormElement>) {

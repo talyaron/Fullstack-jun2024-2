@@ -1,24 +1,29 @@
 import express from 'express'
 import userRoutes from "./Routes/userRoutes";
+import todoRoutes from "./Routes/todoRoutes";
+import cookieParser from 'cookie-parser';
 import cors from"cors"
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
 const app = express()
 const port = 3000;
-
-app.use(cors());
-
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.static('public'));
+app.use(cors({
+  origin: 'http://localhost:5173', // Exact origin, not wildcard
+  credentials: true
+}));
+
 
 export const secretKey = process.env.SECRET_JWT || "1234";
 export const saltRounds = Number(process.env.SALT_BCRYPT) || 3;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+
 app.use("/api/users", userRoutes);
+app.use("/api/todo", todoRoutes);
+
 const dbUrl = process.env.DB_URL;
 const database = 'fs-jun24';
 
