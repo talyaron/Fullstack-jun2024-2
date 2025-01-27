@@ -1,6 +1,6 @@
 import express from "express";
-import { getTodos, createTodo, deleteTodo, toggleTodo } from "../../controllers/TodoController";
 import asyncHandler from "../../utils/asyncHandler";
+import { createTodo, deleteTodo, getTodos, toggleTodo } from "../controllers/TodoControllers";
 
 const router = express.Router();
 

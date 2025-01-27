@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
-import todoRoutes from "./src/routes/TodoRoute";
+import todoRoutes from "./routes/TodoRoute";
 
 const app = express();
 const PORT = 5000;
