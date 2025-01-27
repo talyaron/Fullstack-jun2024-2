@@ -4,23 +4,12 @@ import { useNavigate } from "react-router";
 import TodoFunc from "./TodoFunc";
 
 function Todo() {
-  const { filter,loading, tasks, fetchData,setFilter, handleCheck, deleteTask, handleClick } =
-    TodoFunc();
+  const { filter,loading,tasks, 
+    handleFilterClick,
+     handleCheck, deleteTask,
+      handleClick } = TodoFunc();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  function handleFilterClick(e: React.MouseEvent) {
-    const id = (e.target as HTMLElement).id as string;
-    if(!id) return;
-    if (id === "all" || id === "done" || id === "undone") {
-      setFilter(id); 
-    } 
-  }
-
-
-
+ 
   return (
     <>
       <h1 className={style.title}> TODO app</h1>
