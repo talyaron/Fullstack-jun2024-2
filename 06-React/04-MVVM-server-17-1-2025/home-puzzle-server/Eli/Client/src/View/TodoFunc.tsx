@@ -7,8 +7,13 @@ interface Task {
     text: string;
     creatorId: string;
   }
+  interface Filter {
+    selected: "all" | "done" | "undone";
+  }
 function TodoFunc() {
 const [tasks, setTask] = useState<Task[]>([]);
+const [filter, setFilter] = useState<Filter["selected"]>("all");
+
 const [loading, setLoading] = useState<boolean>(true);
   
 
@@ -107,7 +112,7 @@ const [loading, setLoading] = useState<boolean>(true);
       }
 
   return (
-      {loading,tasks,fetchData,handleCheck,deleteTask,handleClick}
+      {filter,loading,tasks,setFilter,fetchData,handleCheck,deleteTask,handleClick}
   )
 }
 
