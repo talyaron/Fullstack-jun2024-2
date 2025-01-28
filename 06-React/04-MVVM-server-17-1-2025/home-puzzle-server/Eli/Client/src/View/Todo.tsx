@@ -4,18 +4,30 @@ import { useNavigate } from "react-router";
 import TodoFunc from "./TodoFunc";
 
 function Todo() {
-  const {loading, tasks,fetchData, handleCheck, deleteTask, handleClick } = TodoFunc();
+  const { filter,loading,tasks, 
+    handleFilterClick,
+     handleCheck, deleteTask,
+      handleClick } = TodoFunc();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+ 
   return (
     <>
       <h1 className={style.title}> TODO app</h1>
       <div className={style.content}>
-        {loading?  <h1>Loading <div className={style.rotate}>↻</div></h1>:"" }
+        <div className={style.sortBy} onClick={handleFilterClick}>
+          <h4>Filter:</h4> <h4  id="all" className={style.optionText}>All</h4>
+          <h4  id="done" className={style.optionText}>Done</h4>
+          <h4  id="undone" className={style.optionText}>Undone</h4>
+        </div>
+        {loading ? (
+          <h1>
+            Loading <div className={style.rotate}>↻</div>
+          </h1>
+        ) : (
+          ""
+        )}
         {tasks.map((task, index) => {
+          if(task.isDone && filter==="undone"||!task.isDone && filter==="done") return;
           return (
             <div className={style.task} key={index}>
               <h4 className={task.isDone ? style.marked : ""}>{task.text}</h4>
@@ -35,6 +47,7 @@ function Todo() {
           );
         })}
       </div>
+
       <form className={style.inputHolder} onSubmit={handleClick}>
         <input type="text" name="text" className={style.textInput} />
         <input type="submit" value="add task" className={style.btnInput} />

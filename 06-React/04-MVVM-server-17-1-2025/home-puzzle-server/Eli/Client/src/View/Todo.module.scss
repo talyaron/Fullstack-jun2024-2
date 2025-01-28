@@ -13,6 +13,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 270px;
+
   background-color: rgb(167, 167, 91);
   input {
     margin: 1vh;
@@ -36,6 +38,16 @@ h4 {
   animation: rotate 2s linear;
   animation-iteration-count: infinite;
 }
+.sortBy{
+  display: flex;
+  flex-direction: row;
+}
+.optionText{
+ &:hover
+ {text-decoration: underline;
+  cursor: pointer;
+}
+}
 .delete {
   background-color: transparent;
   margin: 0;
@@ -53,6 +65,7 @@ h4 {
   width: 40vw;
   overflow: auto;
   background-color: rgb(211, 211, 125);
+  min-width: 270px;
 }
 @keyframes rotate {
   from {
