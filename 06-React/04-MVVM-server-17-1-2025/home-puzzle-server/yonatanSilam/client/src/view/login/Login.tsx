@@ -15,7 +15,6 @@ function Login() {
     const password = form.password.value;
     login(username, password);
     form.reset();
-    navigate('/home')
   }
 
   return (

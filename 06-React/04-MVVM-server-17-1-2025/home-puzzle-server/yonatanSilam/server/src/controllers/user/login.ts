@@ -27,7 +27,6 @@ export async function login(req: any, res: any) {
     }
     //encode user id and role in token
     const token = jwt.encode({ id: user._id, role: "user" }, secret);
-console.log(token)
     //send cookie to client
     res.cookie("user", token, {
       httpOnly: true,
