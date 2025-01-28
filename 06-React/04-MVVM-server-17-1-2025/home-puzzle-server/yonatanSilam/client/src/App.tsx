@@ -7,15 +7,15 @@ function App() {
 
   return (
     <>
-      {/* <div className={styles.container}>
+      <div className={styles.container}>
         <Link className={styles.btnSecondary} to="/login">
         login
         </Link>
         <Link className={styles.btnSecondary} to="/register">
          register
         </Link>
-      </div> */}
-      <Todo/>
+      </div>
+      {/* <Todo/> */}
     </>
   );
 }

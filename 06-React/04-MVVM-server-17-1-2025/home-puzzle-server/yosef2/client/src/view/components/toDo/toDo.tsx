@@ -7,13 +7,13 @@ const TodoList = () => {
     const [removedToDos, setRemovedToDos] = useState<string[]>([]); // deleted todo list
     const [doneToDos, setDoneToDos] = useState<string[]>([]); // done todo list
 
-    console.log("remove array" + removedToDos)
-    console.log("done array" + doneToDos)
+    // console.log("remove array" + removedToDos)
+    // console.log("done array" + doneToDos)
 
     function ToDoClicked(id: string) {
         if (removedToDos.includes(id)) {
             // אם המזהה כבר ברשימה, נסיר אותו
-            setRemovedToDos(removedToDos.filter((todoId) => todoId !== id));      
+            setRemovedToDos(removedToDos.filter((todoId) => todoId !== id));
         } else {
             // אם המזהה לא ברשימה, נוסיף אותו
             setRemovedToDos([...removedToDos, id]);
@@ -30,6 +30,10 @@ const TodoList = () => {
         }
     }
         
+
+    // function checkedClicked(id: string) {
+    //     fetch()
+    // }   
 
     return (
         <>
@@ -49,10 +53,11 @@ const TodoList = () => {
                 ))}
             </ul>
 
-            <h1>Removed To-Do List</h1>
+             <h1>Removed To-Do List</h1>
             <ul>
                 {todos.map((todo) => (
                         <p
+                            key={todo._id}
                             className={removedToDos.includes(todo._id) ? style.title : style.titleDisable }
                             onClick={() => ToDoClicked(todo._id)}
                         >
@@ -65,13 +70,14 @@ const TodoList = () => {
             <ul>
                 {todos.map((todo) => (
                         <p
+                             key={todo._id}
                             className={doneToDos.includes(todo._id) ?  style.title : style.titleDisable}
                         >
                             <span className={style.done}>✔ {todo.title}</span>
                             
                         </p>
                 ))}
-            </ul>
+            </ul> 
         </>
     );
 };
