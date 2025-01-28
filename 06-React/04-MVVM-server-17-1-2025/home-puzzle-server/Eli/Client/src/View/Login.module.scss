@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   background-color: #1e3a8a;
-  width: 40vw;
-  height: 60vh;
+  width: 50vw;
+  height: fit-content;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
@@ -13,10 +13,17 @@
     color: white;
   }
 }
-
+.redText{
+  margin: 0;
+  padding: 0;
+font-size: 1;
+text-wrap:wrap;
+color: rgb(250, 25, 25);
+background-color: rgba(0, 0, 0, 0.415);
+}
 .input {
   margin-top: 1.5vh;
-  width: 80%;
+  width: 30vw;
   height: 40px;
   padding: 5px 10px;
   border: 1px solid #ccc;

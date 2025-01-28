@@ -1,4 +1,4 @@
-export class Todo {
+export class TodoModel {
   _id: string;
   userId: string;
   title: string;

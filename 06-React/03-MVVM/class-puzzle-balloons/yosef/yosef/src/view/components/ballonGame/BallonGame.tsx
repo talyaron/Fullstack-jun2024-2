@@ -30,7 +30,7 @@ const StartPlay = () => {
     }, [isPlaying1, isPlaying2, setTimer, setBallons]);
 
     function createBallon() {
-
+console.log(ballons)
         if (isPlaying1){
         const leftMove = Math.floor(Math.random() * 1000);
         const topMove = Math.floor(Math.random() * 1000);
@@ -39,24 +39,27 @@ const StartPlay = () => {
             imageUrl: ballonPic,
             left: leftMove,
             top: topMove}
-        setBallons([...ballons, newBallon]);
+        setBallons((prevBalloons) => [...prevBalloons, newBallon]);
     }
     if (isPlaying2){
         const leftMove = Math.floor(Math.random() * 900);
-        const topMove = -800;
+        const topMove = -800
         const newBallon: Ballon = {
             id: Math.floor(Math.random() * 1000).toString(),
             imageUrl: ballonPic,
             left: leftMove,
             top: topMove}
-        setBallons([...ballons, newBallon]);
+        // setBallons([...ballons, newBallon]);
+        // setBallons((ballons => ({...ballons, newBallon})));
+        setBallons((prevBallons) => [...prevBallons, newBallon]);
+
     }
 }
 
     function popTheBallon(currentBallon: string) {
         setBallons(ballons.map(b =>
             b.id === currentBallon
-                ? { ...b, imageUrl: ballonExplode }
+                ? { ...b, imageUrl: ballonExplode}
                 : b
         ));
     }
