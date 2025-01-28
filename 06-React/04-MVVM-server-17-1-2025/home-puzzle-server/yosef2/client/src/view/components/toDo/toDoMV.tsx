@@ -3,7 +3,7 @@ import { toDo } from "./toDoModel";
 
 
 export function useTodosVM() {
-    const [todos, getTodos] = useState<toDo[]>([]);
+    const [todos, setToDos] = useState<toDo[]>([]);
     const [newTodo, setNewTodo] = useState<string>("");
 
     useEffect(() => {
@@ -13,8 +13,19 @@ export function useTodosVM() {
     function fetchToDo() {
         fetch("http://localhost:3000/api/toDo/get-title")
         .then(response => response.json())
-        .then(data => getTodos(data))
+        .then(data => setToDos(data))
     }
 
-    return {todos, newTodo, setNewTodo, fetchToDo};
+    function setToDo(newTodo: toDo){
+        fetch("http://localhost:3000/api/toDo/set-title", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newTodo),
+        })
+       .then(response => response.json())
+    }
+
+    return {todos, newTodo, setNewTodo, fetchToDo, setToDo};
 }
