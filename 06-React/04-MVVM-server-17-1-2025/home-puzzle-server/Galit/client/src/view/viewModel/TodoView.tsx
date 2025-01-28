@@ -1,68 +1,40 @@
-import React, { useState } from 'react';
-import { Todo } from '../model/TodoModel';
-import styles from './Todo.module.scss';
+import React from "react";
+import { useTodoVM } from "./TodoVM";
+import styles from "./Todo.module.scss";
 
-type TodoViewProps = {
-  todos: Todo[];
-  addTodo: (userId: string, title: string, description: string) => void;
-  removeTodo: (id: string) => void;
-  toggleTodo: (id: string) => void;
-};
-
-const TodoView: React.FC<TodoViewProps> = ({ todos, addTodo, removeTodo, toggleTodo }) => {
-  const [newTitle, setNewTitle] = useState('');
-  const [newDescription, setNewDescription] = useState('');
-
-  const handleAddTodo = () => {
-    const userId = ' '; 
-    if (newTitle.trim() && newDescription.trim()) {
-      addTodo(userId, newTitle, newDescription);
-      setNewTitle('');
-      setNewDescription('');
-    }
-  };
+const TodoView: React.FC = () => {
+  const { todos, newTodo, setNewTodo, addTodo, toggleTodo, deleteTodo } = useTodoVM();
 
   return (
-    <div className={styles['todo-container']}>
-      <h1 className={styles['todo-header']}>Todo List</h1>
-      <div className={styles['todo-input-container']}>
+    <div className={styles.todoContainer}>
+      <h1 className={styles.todoHeader}>Todo List</h1>
+      <div className={styles.todoInputContainer}>
         <input
           type="text"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-          placeholder="Todo Title"
+          placeholder="Title"
+          value={newTodo.title}
+          onChange={(e) => setNewTodo({ ...newTodo, title: e.target.value })}
         />
         <input
           type="text"
-          value={newDescription}
-          onChange={(e) => setNewDescription(e.target.value)}
-          placeholder="Todo Description"
+          placeholder="Description"
+          value={newTodo.description}
+          onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
         />
-        <button onClick={handleAddTodo}>Add</button>
+        <button onClick={addTodo}>Add Todo</button>
       </div>
-      <ul className={styles['todo-list']}>
+
+      <ul className={styles.todoList}>
         {todos.map((todo) => (
-          <li
-            key={todo._id}
-            className={`${styles['todo-item']} ${todo.isDone ? styles['done'] : ''}`}
-          >
-            <div>
-              <span className={todo.isDone ? styles['done'] : ''}>{todo.title}</span>
-              <p>{todo.description}</p>
-            </div>
-            <div className={styles['todo-actions']}>
-              <button
-                className={styles['done-btn']}
-                onClick={() => toggleTodo(todo._id)}
-              >
-                {todo.isDone ? 'Undo' : 'Done'}
+          <li key={todo._id} className={todo.isDone ? "done" : ""}>
+            <span style={{ textDecoration: todo.isDone ? "line-through" : "none" }}>
+              {todo.title}: {todo.description}
+            </span>
+            <div className={styles.todoActions}>
+              <button className={styles.doneBtn} onClick={() => toggleTodo(todo._id, todo.isDone)}>
+                {todo.isDone ? "Undo" : "Done"}
               </button>
-              <button
-                className={styles['remove-btn']}
-                onClick={() => removeTodo(todo._id)}
-              >
-                Remove
-              </button>
+              <button className={styles.removeBtn} onClick={() => deleteTodo(todo._id)}>Delete</button>
             </div>
           </li>
         ))}

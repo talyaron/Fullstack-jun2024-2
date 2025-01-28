@@ -1,18 +1,11 @@
-import { error } from "console";
 import { infoValidation } from "../../Model/validatorModel";
+import { UserModel } from "../../Model/userModel";
+import bcrypt from "bcrypt";
+import { saltRounds } from "../../server";
 
 export async function registerUser(req: any, res: any) {
   try {
     const { userName, email, password, rePassword } = req.body;
-
-    if (
-        !userName ||
-        !email ||
-        !password ||
-        !rePassword
-      ) {
-        throw new Error("wtf")
-      }
 
     const invalidUsername = infoValidation.isNameValid(userName);
     const invalidEmail = await infoValidation.isEmailValid(email);
@@ -21,35 +14,37 @@ export async function registerUser(req: any, res: any) {
       rePassword,
       password
     );
-    console.log(
-        invalidUsername,
-        invalidEmail,
-        invalidPassword,
-        invalidRePassword
-      );
-    
+
     if (
-      !invalidUsername &&
-      !invalidEmail &&
-      !invalidPassword &&
-      !invalidRePassword
-    ) {
-      console.log("OK!");
-
-      return res.json({ message: "works !" });
-    }else
-    throw new Error("not valid")
-    res.json({ message: "nothing for you" });
-
-    console.log(
-      invalidUsername,
-      invalidEmail,
-      invalidPassword,
+      invalidUsername ||
+      invalidEmail ||
+      invalidPassword ||
       invalidRePassword
-    );
-  } 
-    catch (error: any) {
-        console.error(error);
-        return res.status(500).send({ error: error.message });
+    ) {
+      throw new Error(
+        "not valid" +
+          invalidUsername +
+          invalidEmail +
+          invalidPassword +
+          invalidRePassword
+      );
+    }
+
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const user = new UserModel({
+      userName: userName,
+      email: email,
+      password: hashedPassword,
+    });
+    await user.validate();
+
+    user.save();
+
+    console.log("OK!");
+    return res.json({ message: "works !" });
+  } catch (error: any) {
+    console.error(error);
+    return res.status(500).send({ error: error.message });
   }
 }
