@@ -17,7 +17,7 @@ export function useTodoVM() {
       .then((response) => response.json())
       .then((data) => setTasks(data.tasks))
       .catch((error) => console.error(error));
-      console.log()
+
   }
 
   function addNewTask(text: string) {
