@@ -52,6 +52,7 @@ export function useTicTacToeVM() {
 
   function play(cellId: number) {
     try {
+<<<<<<< Updated upstream
       console.log("played");
       console.log(cellId);
       
@@ -66,6 +67,28 @@ export function useTicTacToeVM() {
     } catch (error) {
       console.error(error);
     }
+=======
+      //   console.log("played");
+      //   console.log(cellId);
+      //   const _cells=[...cells]
+      //   const cell = _cells.find((cell) => cell._id === cellId);
+      //   if (!cell) throw new Error("cell not find");
+      //   cell.XorY='y'
+      //   setCells(_cells)
+      //   setCells(
+      //     cells.map((cell) =>
+      //       cell._id == cellId ? { ...cell, XorY: "o", played: true } : cell
+      //     )
+      //   );
+      setCells((prevCells) =>
+        prevCells.map((cell) =>
+          cell._id === cellId ? { ...cell, XorY: "x" } : cell
+        )
+      );
+
+      console.log(cells);
+    } catch (error) {}
+>>>>>>> Stashed changes
   }
 
   return {
