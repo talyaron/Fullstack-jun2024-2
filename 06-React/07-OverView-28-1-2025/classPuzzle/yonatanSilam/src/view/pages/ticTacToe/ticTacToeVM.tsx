@@ -54,18 +54,18 @@ export function useTicTacToeVM() {
     try {
       console.log("played");
       console.log(cellId);
-      const _cells=[...cells]
-      const cell = _cells.find((cell) => cell._id === cellId);
-      if (!cell) throw new Error("cell not find");
-      cell.XorY='y'
-      setCells(_cells)
-    //   setCells(
-    //     cells.map((cell) =>
-    //       cell._id == cellId ? { ...cell, XorY: "o", played: true } : cell
-    //     )
-    //   );
-      console.log(cells);
-    } catch (error) {}
+      
+     
+      const updatedCells = cells.map(cell =>
+        cell._id === cellId
+          ? { ...cell, XorY: 'y', played: true }
+          : cell
+      );
+      setCells(updatedCells);
+      console.log(updatedCells);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return {
