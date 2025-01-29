@@ -8,9 +8,15 @@ export function useHomeVM() {
   }, []);
   async function fetchUserDetails() {
     try {
-       fetch("http://localhost:3000/api/users/details")
+       fetch("http://localhost:3000/api/users/details",{
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+       })
         .then((response) => response.json())
-        .then((user) => setUser(user))
+        .then((data) => setUser(data.user))
         .catch((error) => console.error(error));
 
     } catch (error) {
