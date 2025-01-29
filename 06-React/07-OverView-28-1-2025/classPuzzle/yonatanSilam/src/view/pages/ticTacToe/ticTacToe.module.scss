@@ -1,0 +1,8 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px); /* 3 columns of 100px each */
+    grid-template-rows: repeat(3, 100px);   /* 3 rows of 100px each */
+    gap: 5px; /* Gap between cells */    margin: 20px auto; /* Center the board */
+    background-color: #333;
+    
+  }
