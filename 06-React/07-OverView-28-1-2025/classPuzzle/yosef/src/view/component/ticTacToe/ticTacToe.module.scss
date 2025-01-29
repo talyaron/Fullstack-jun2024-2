@@ -1,0 +1,23 @@
+$primary-color: #3b82f6;
+$cell-size: 4rem;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 1rem;
+
+  .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $cell-size;
+    height: $cell-size;
+    background-color: $primary-color;
+    color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
