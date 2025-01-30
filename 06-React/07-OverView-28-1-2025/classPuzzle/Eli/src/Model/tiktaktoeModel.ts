@@ -2,7 +2,7 @@ export const tiktakBoard = [
     ["","",""],
     ["","",""],
     ["","",""],
-    //2d array 3 rows of arrays that have 3 columns
+    //2d array 3 rows of arrays that have 3 columns(3 elements in each array)
 ]
 
 export interface Player{

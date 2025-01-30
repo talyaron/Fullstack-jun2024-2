@@ -15,17 +15,22 @@ function TiktTakToe() {
       ) : (
         ""
       )}
- {typeof winner== "string" ? (
+      {typeof winner == "string" ? (
         <h4 className={style.winner}>{winner} </h4>
       ) : (
         ""
       )}
-      {winner&&typeof winner!= "string"  ? (
+      {winner && typeof winner != "string" ? (
         <h4 className={style.winner}>Winner is: {winner.symbol} </h4>
       ) : (
         ""
       )}
-      <div className={style.boardContainer}>
+      <div
+        className={style.boardContainer}
+        style={{
+          gridTemplateColumns: `repeat(${tikBoard.length}, auto)`,
+        }}
+      >
         {tikBoard.map((box, i) =>
           box.map((_, j) => (
             <button
