@@ -44,6 +44,12 @@ h2 {
   margin: 10px 0 20px;
   color: black;
 }
+h3 {
+  color: black;
+}
+.task-status{
+  color: black;
+}
 .btn {
   padding: 12px 20px;
   font-size: 16px;
@@ -75,4 +81,7 @@ h2 {
 }
 .task{
   border: black solid 1px;
+}
+.deleteBtn{
+  background-color: #e74c3c;
 }

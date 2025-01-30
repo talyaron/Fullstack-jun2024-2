@@ -6,12 +6,9 @@ import "dotenv/config";
 
 const secret = process.env.JWT_SECRET as string;
 export async function getUserDetails(req: any, res: any) {
-  console.log(1)
   try {
     const { user: token } = req.cookies;
-    console.log(token)
     if (!token) {
-      console.log(2)
       return res.status(401).send({ error: "User not authenticated" });
     }
 

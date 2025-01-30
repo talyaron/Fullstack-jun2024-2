@@ -1,19 +1,23 @@
-import React from 'react'
-import { Task } from '../../model/taskModel';
+import React from "react";
+import { Task } from "../../model/taskModel";
 import styles from "./TaskCard.module.scss";
 
-
 interface Props {
-    task: Task;
-  }
-
-const TaskCard:React.FC<Props> = ({task}) => {
-  return (
-    <div className={styles.task}>
-      <h2 className={`${styles.h2} ${task.done ? styles.done : styles.unDone}`}>{task.text}</h2>
-      <div>{task.done ? "Done" : "to Compleat" }</div>
-    </div>
-  )
+  task: Task;
+  deleteTask: (taskId: string) => void;
+  markTaskAsDone:(taskID:string)=> void;
 }
 
-export default TaskCard
+const TaskCard: React.FC<Props> = ({ task, deleteTask,markTaskAsDone }) => {
+  return (
+    <div className={styles.task}>
+      <h2 className={`${styles.h2} ${task.done ? styles.done : styles.unDone}`}>
+        {task.text}
+      </h2>
+      <button onClick={() => markTaskAsDone(task._id)} className={styles.status}>{task.done ? "Done" : "to Compleat"}</button>
+      <button className={styles.deleteBtn} onClick={() => deleteTask(task._id)}>delete</button>
+    </div>
+  );
+};
+
+export default TaskCard;
