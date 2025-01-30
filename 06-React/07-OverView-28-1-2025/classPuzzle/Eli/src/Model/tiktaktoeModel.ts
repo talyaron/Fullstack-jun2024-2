@@ -1,5 +1,19 @@
 export const tiktakBoard = [
-    [0,0,0],
-    [0,0,0],
-    [0,0,0],
+    ["","",""],
+    ["","",""],
+    ["","",""],
+    //2d array 3 rows of arrays that have 3 columns
 ]
+
+export interface Player{
+  symbol:string
+}
+export const allPlayers:Player[]=[
+  {symbol:"❌"},
+  {symbol:"⭕"},
+//   {symbol:"🎈"},
+//   {symbol:"🟥"},
+
+  //can add more players by uncommenting but also make the "tiktakBoard" bigger
+]
+export const stalemate = "stalemate";
