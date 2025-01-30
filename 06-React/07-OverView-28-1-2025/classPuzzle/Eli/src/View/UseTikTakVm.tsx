@@ -28,17 +28,19 @@ function UseTikTakVm() {
 
       return newBoard;
     });
-
     const playerId = players.findIndex((player) => player === playersTurn);
+
     if (players[playerId + 1] !== undefined) {
       setPlayersTurn(players[playerId + 1]);
     } else setPlayersTurn(players[0]);
+    
   }
 
   function winnerFound(mySymbol: string) {
     setWinner(playersTurn);
     console.log("the winner is :", mySymbol);
   }
+
   function checkStalemate(board: string[][]){
     for (const row of board) { 
       for (const cell of row) { 
@@ -49,6 +51,7 @@ function UseTikTakVm() {
     }
     setWinner(stalemate);
   }
+
   function checkWinCondition(board: string[][], i: number, j: number) {
     
     const mySymbol = board[i][j];
@@ -61,6 +64,8 @@ function UseTikTakVm() {
       if (idx === board.length - 1) {
         console.log("winner!");
         winnerFound(mySymbol);
+        return;
+
       }
     }
     for (let jdx = 0; jdx < board.length; jdx++) {
@@ -69,6 +74,8 @@ function UseTikTakVm() {
       if (jdx === board.length - 1) {
         console.log("winner!");
         winnerFound(mySymbol);
+        return;
+
       }
     }
 
@@ -81,6 +88,8 @@ function UseTikTakVm() {
       if (idx === board.length - 1) {
         console.log("winner!");
         winnerFound(mySymbol);
+        return;
+
       }
     }
 
@@ -89,6 +98,7 @@ function UseTikTakVm() {
       if (idx === board.length - 1) {
         console.log("winner!");
         winnerFound(mySymbol);
+        return;
       }
     }
     checkStalemate(board);
