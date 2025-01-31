@@ -6,12 +6,13 @@ const TodoList = () => {
   const { todos, setIsDone, fetchToDo, deleteTodo } = useTodosVM();
   const [removedToDos, setRemovedToDos] = useState<string[]>([]); // deleted todo list
   const [doneToDos, setDoneToDos] = useState<string[]>([]); // done todo list
+  const [selectedToDos, setSelectedToDos] = useState<string>("allToDo"); // selected todo list
 
   // console.log("remove array" + removedToDos)
   // console.log("done array" + doneToDos)
-
+  console.log(selectedToDos);
   function deleteToDo(id: string) {
-    deleteTodo(id)
+    deleteTodo(id);
     window.location.reload();
     if (removedToDos.includes(id)) {
       // אם המזהה כבר ברשימה, נסיר אותו
@@ -35,46 +36,104 @@ const TodoList = () => {
     }
   }
 
-  function test(id: string) {
-    deleteTodo(id)
-    window.location.reload();
+  function filterToDo(e: React.ChangeEvent<HTMLSelectElement>) {
+    console.log(e.target.value); // כאן תופסים את הערך
+    setSelectedToDos(e.target.value);
   }
-
 
   return (
     <>
-      <h1>All To-Do List</h1>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo._id} className={style.todoItem}>
-            <input
-              type="checkbox"
-              checked={todo.isDone} // אם הפריט כבר "מוסר", תיבת הסימון תסומ
-              onChange={() => checkedClicked(todo._id as string)} // שינוי מצב תיבת הסימון
-            />
-            <p
-              className={
-                removedToDos.includes(todo._id as string) ? style.remove : style.title
-              }
-              onClick={() => deleteToDo(todo._id)}
-            >
-              <span>{todo.title}</span><span onClick={()=>deleteToDo(todo._id as string)}>   ❌</span>
-            </p>
-          </li>
-        ))}
-      </ul>
+      <br />
+      <select onChange={filterToDo} className={style.select}>
+        <option value="allToDo">All to do📋</option>
+        <option value="allDone">Done✅</option>
+        <option value="allNotDone">Not Done⏳</option>
+      </select>
+
+      <div className={selectedToDos == "allToDo" ? style.show : style.displayOff}>
+        
+        <h2>All To-Do List</h2>
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo._id} className={style.todoItem}>
+              <input
+                type="checkbox"
+                checked={todo.isDone} // אם הפריט כבר "מוסר", תיבת הסימון תסומ
+                onChange={() => checkedClicked(todo._id as string)} // שינוי מצב תיבת הסימון
+              />
+              <p
+                className={
+                  removedToDos.includes(todo._id as string)
+                    ? style.remove
+                    : style.title
+                }
+                onClick={() => deleteToDo(todo._id)}
+              >
+                <span>{todo.title}</span>
+                <span onClick={() => deleteToDo(todo._id as string)}> ❌</span>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
 
 
-      <h1>Done</h1>
-      <ul>
-        {todos
+      <div className={selectedToDos == "allDone" ? style.show : style.displayOff}>
+        <h2>Done</h2>
+        <ul>
+          {todos
           .filter((todo) => todo.isDone)
           .map((todo) => (
-            <p key={todo._id}>
-              <span className={style.done}>✔ {todo.title}</span>
-            </p>
+            <li key={todo._id} className={style.todoItem}>
+              <input
+                type="checkbox"
+                checked={todo.isDone} // אם הפריט כבר "מוסר", תיבת הסימון תסומ
+                onChange={() => checkedClicked(todo._id as string)} // שינוי מצב תיבת הסימון
+              />
+              <p
+                className={
+                  removedToDos.includes(todo._id as string)
+                    ? style.remove
+                    : style.title
+                }
+                onClick={() => deleteToDo(todo._id)}
+              >
+                <span>{todo.title}</span>
+                <span onClick={() => deleteToDo(todo._id as string)}> ❌</span>
+              </p>
+            </li>
           ))}
-      </ul>
+        </ul>
+      </div>
+
+      <div className={selectedToDos == "allNotDone" ? style.show : style.displayOff}>
+        <h2>Not Done</h2>
+        <ul>
+          {todos
+          .filter((todo) => !todo.isDone)
+          .map((todo) => (
+            <li key={todo._id} className={style.todoItem}>
+              <input
+                type="checkbox"
+                checked={todo.isDone} // אם הפריט כבר "מוסר", תיבת הסימון תסומ
+                onChange={() => checkedClicked(todo._id as string)} // שינוי מצב תיבת הסימון
+              />
+              <p
+                className={
+                  removedToDos.includes(todo._id as string)
+                    ? style.remove
+                    : style.title
+                }
+                onClick={() => deleteToDo(todo._id)}
+              >
+                <span>{todo.title}</span>
+                <span onClick={() => deleteToDo(todo._id as string)}> ❌</span>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
     </>
   );
 };
