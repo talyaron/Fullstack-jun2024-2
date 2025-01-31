@@ -27,5 +27,27 @@ export function useTodosVM() {
        .then(response => response.json())
     }
 
-    return {todos, newTodo, setNewTodo, fetchToDo, setToDo};
+    function setIsDone(id: string){
+        fetch(`http://localhost:3000/api/toDo/is-done/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id }),
+        })
+       .then(response => response.json())
+    }
+
+    function deleteTodo(id: string){
+        fetch(`http://localhost:3000/api/toDo/delete-title`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id }),
+        })
+       .then(response => response.json())
+
+}
+return {todos, newTodo, setNewTodo, fetchToDo, setToDo, setIsDone, deleteTodo};
 }

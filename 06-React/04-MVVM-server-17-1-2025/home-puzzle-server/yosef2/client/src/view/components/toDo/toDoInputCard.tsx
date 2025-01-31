@@ -25,13 +25,15 @@ const ToDoAddItem: React.FC<Props> = ({ }) => {
     return (
         <div>
             <form onSubmit={insertToDo}>
+            <button style={{background:"yellow"}} type="submit">תוסיף משימה</button>
+            <br /> <br />
                 <input 
                     type="text" 
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Add a new todo..."
                 />
-                <button type="submit">Add</button>
+                
             </form>
         </div>
     );
