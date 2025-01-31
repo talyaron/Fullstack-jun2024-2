@@ -3,7 +3,7 @@ import { useTodoListMV } from "./TodoListVM";
 import styles from "./ToDoList.module.scss";
 
 const ToDoList: React.FC = () => {
-  const { tasks, addTask, deleteTask, toggleTaskCompletion, applyFilter } =
+  const { tasks, addTask, deleteTask, toggleTaskCompletion, toggleEditMode, applyFilter, updateTask, filter } =
     useTodoListMV();
 
   const handleAddTask = (event: React.FormEvent<HTMLFormElement>) => {
@@ -23,19 +23,25 @@ const ToDoList: React.FC = () => {
       <div className={styles.filters}>
         <button
           onClick={() => applyFilter("all")}
-          className={styles.filterButton}
+          className={`${styles.filterButton} ${
+            filter === "all" ? styles.active : ""
+          }`}
         >
           All
         </button>
         <button
           onClick={() => applyFilter("done")}
-          className={styles.filterButton}
+          className={`${styles.filterButton} ${
+            filter === "done" ? styles.active : ""
+          }`}
         >
           Done
         </button>
         <button
           onClick={() => applyFilter("undone")}
-          className={styles.filterButton}
+          className={`${styles.filterButton} ${
+            filter === "undone" ? styles.active : ""
+          }`}
         >
           Undone
         </button>
@@ -60,34 +66,46 @@ const ToDoList: React.FC = () => {
         {tasks.map((task) => (
           <li key={task._id} className={styles.taskItem}>
             <div className={styles.taskContent}>
+              {/* Checkbox */}
               <input
                 type="checkbox"
                 checked={task.isCompleted}
                 onChange={() => toggleTaskCompletion(task._id)}
                 className={styles.checkbox}
               />
-              <span
-                className={styles.taskText}
-                style={{
-                  textDecoration: task.isCompleted ? "line-through" : "none",
-                }}
-              >
-                {task.text}
-              </span>
-            </div>
 
-            <div className={styles.controls}>
-              <div className={styles.toggleSwitch}>
+              {/* Editable Task Text */}
+              {task.isEditing ? (
                 <input
-                  type="checkbox"
-                  checked={task.isCompleted}
-                  onChange={() => toggleTaskCompletion(task._id)}
-                  className={styles.slider}
+                  type="text"
+                  defaultValue={task.text}
+                  onBlur={(e) => updateTask(task._id, e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      updateTask(
+                        task._id,
+                        (e.target as HTMLInputElement).value
+                      );
+                    }
+                  }}
+                  className={styles.taskInput}
                 />
-              </div>
+              ) : (
+                <span className={styles.taskText}>{task.text}</span>
+              )}
+
+              {/* Update Button */}
               <button
-                onClick={() => deleteTask(task._id)}
+                className={styles.updateButton}
+                onClick={() => toggleEditMode(task._id)}
+              >
+                Update
+              </button>
+
+              {/* Delete Button */}
+              <button
                 className={styles.deleteButton}
+                onClick={() => deleteTask(task._id)}
               >
                 Delete
               </button>

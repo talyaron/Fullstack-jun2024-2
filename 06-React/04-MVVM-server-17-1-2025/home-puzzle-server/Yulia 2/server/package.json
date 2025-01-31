@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.10",
     "nodemon": "^3.1.9",
@@ -18,6 +19,9 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@types/cors": "^2.8.17",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "mongoose": "^8.9.5"
   }

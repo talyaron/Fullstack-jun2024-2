@@ -20,6 +20,6 @@ const TaskSchema: Schema = new Schema({
 });
 
 // Create and export the Task model
-const Task = mongoose.model<ITask>("Task", TaskSchema);
+const TaskModel = mongoose.model<ITask>("Task", TaskSchema);
 
-export default Task;
+export default TaskModel;
