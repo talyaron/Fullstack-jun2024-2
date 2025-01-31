@@ -1,4 +1,3 @@
-import { Link, useNavigate } from "react-router";
 import styles from "./Todo.module.scss";
 import { FormEvent } from "react";
 import { useTodoVM } from "./TodoVM";
@@ -6,7 +5,15 @@ import { Task } from "../../model/taskModel";
 import TaskCard from "../taskCard/TaskCard";
 
 const Todo = () => {
-  const { getAllTasks, tasks, addNewTask } = useTodoVM();
+  const {
+    getAllTasks,
+    tasks,
+    addNewTask,
+    deleteTask,
+    markTaskAsDone,
+    getDoneTasks,
+    getUnDoneTasks,
+  } = useTodoVM();
   function handleAddTask(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
@@ -31,10 +38,18 @@ const Todo = () => {
 
       <div className={styles.container}>
         <h1> Tasks</h1>
-        <button onClick={getAllTasks}>Get All Tasks</button>
+        <button onClick={getAllTasks}>All</button>
+        <button onClick={getDoneTasks}>done</button>
+        <button onClick={getUnDoneTasks}>unDone</button>
+
         {tasks.map((task: Task) => (
-        <TaskCard key={task._id} task={task} />
-      ))}
+          <TaskCard
+            key={task._id}
+            task={task}
+            deleteTask={deleteTask}
+            markTaskAsDone={markTaskAsDone}
+          />
+        ))}
       </div>
     </div>
   );

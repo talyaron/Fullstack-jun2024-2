@@ -2,9 +2,10 @@ import { Schema, model } from "mongoose";
 export interface Task {
   done: boolean;
   text: string;
+  userId:string
 }
 
-export const PlayerSchema = new Schema({
+export const TaskSchema = new Schema({
   done: {
     type: Boolean,
     default: false,
@@ -12,10 +13,10 @@ export const PlayerSchema = new Schema({
   text: {
     type: String,
   },
-  // userId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "User",
-  // },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
-export const tasksModel = model("Task", PlayerSchema);
+export const tasksModel = model("Task", TaskSchema);

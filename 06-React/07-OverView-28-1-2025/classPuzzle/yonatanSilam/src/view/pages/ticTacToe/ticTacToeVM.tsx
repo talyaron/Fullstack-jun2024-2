@@ -52,6 +52,7 @@ export function useTicTacToeVM() {
 
   function play(cellId: number) {
     try {
+
       console.log("played");
       console.log(cellId);
       
@@ -66,6 +67,7 @@ export function useTicTacToeVM() {
     } catch (error) {
       console.error(error);
     }
+
   }
 
   return {
