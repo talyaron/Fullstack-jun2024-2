@@ -3,25 +3,26 @@ import TaskModel from "../Models/ToDoListModel";
 export const updateTask = async (req: any, res: any) => {
   try {
     const { _id } = req.params;
-    const { isCompleted } = req.body;
+    const { text, isCompleted } = req.body;
 
-    if (typeof isCompleted !== "boolean") {
-      return res.status(400).json({ message: "Invalid data format" });
+    if (!text && isCompleted === undefined) {
+      return res.status(400).json({ error: "No valid fields to update" });
     }
 
     const updatedTask = await TaskModel.findByIdAndUpdate(
       _id,
-      { isCompleted },
-      { new: true }
+      { $set: { text, isCompleted } },
+      { new: true } // Return the updated document
     );
 
     if (!updatedTask) {
-      return res.status(404).json({ message: "Task not found" });
+      return res.status(404).json({ error: "Task not found" });
     }
 
     res.status(200).json(updatedTask);
-  } catch (error) {
-    console.error("Error updating task:", error);
-    res.status(500).json({ message: "Failed to update task." });
+  } catch (error: any) {
+    res
+      .status(500)
+      .json({ error: "Failed to update task", details: error.message });
   }
 };

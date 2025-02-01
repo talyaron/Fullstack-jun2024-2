@@ -1,10 +1,18 @@
 import React from "react";
-import { useTodoListMV } from "./TodoListVM"; 
+import { useTodoListMV } from "./TodoListVM";
 import styles from "./ToDoList.module.scss";
 
 const ToDoList: React.FC = () => {
-  const { tasks, addTask, deleteTask, toggleTaskCompletion, toggleEditMode, applyFilter, updateTask, filter } =
-    useTodoListMV();
+  const {
+    tasks,
+    addTask,
+    deleteTask,
+    toggleTaskCompletion,
+    toggleEditMode,
+    applyFilter,
+    updateTask,
+    filter,
+  } = useTodoListMV();
 
   const handleAddTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,12 +27,12 @@ const ToDoList: React.FC = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>To-Do List</h1>
 
-      {/* Task Filter */}
-      <div className={styles.filters}>
+      {/* Filter Buttons */}
+      <div className={styles.filterContainer}>
         <button
           onClick={() => applyFilter("all")}
           className={`${styles.filterButton} ${
-            filter === "all" ? styles.active : ""
+            filter === "all" ? styles.activeFilter : ""
           }`}
         >
           All
@@ -32,7 +40,7 @@ const ToDoList: React.FC = () => {
         <button
           onClick={() => applyFilter("done")}
           className={`${styles.filterButton} ${
-            filter === "done" ? styles.active : ""
+            filter === "done" ? styles.activeFilter : ""
           }`}
         >
           Done
@@ -40,7 +48,7 @@ const ToDoList: React.FC = () => {
         <button
           onClick={() => applyFilter("undone")}
           className={`${styles.filterButton} ${
-            filter === "undone" ? styles.active : ""
+            filter === "undone" ? styles.activeFilter : ""
           }`}
         >
           Undone
@@ -94,21 +102,22 @@ const ToDoList: React.FC = () => {
                 <span className={styles.taskText}>{task.text}</span>
               )}
 
-              {/* Update Button */}
-              <button
-                className={styles.updateButton}
-                onClick={() => toggleEditMode(task._id)}
-              >
-                Update
-              </button>
+              {/* Update & Delete Buttons */}
+              <div className={styles.actionButtons}>
+                <button
+                  className={styles.updateButton}
+                  onClick={() => toggleEditMode(task._id)}
+                >
+                  Update
+                </button>
 
-              {/* Delete Button */}
-              <button
-                className={styles.deleteButton}
-                onClick={() => deleteTask(task._id)}
-              >
-                Delete
-              </button>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => deleteTask(task._id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </li>
         ))}

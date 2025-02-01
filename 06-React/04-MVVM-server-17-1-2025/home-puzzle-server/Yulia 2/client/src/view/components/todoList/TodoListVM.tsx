@@ -5,19 +5,41 @@ export const useTodoListMV = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<"all" | "done" | "undone">("all");
 
-  // Fetch tasks from the server when the component is mounted
   useEffect(() => {
-    fetchTasks();
+    loadTasks();
   }, []);
 
-  // Fetch tasks from the server and update the model
-  const fetchTasks = async () => {
+  // universal fetch tasks function (can be used to fetch all tasks or a single task by ID)
+  const fetchTasks = async (taskId?: string): Promise<Task | Task[]> => {
     try {
-      const response = await fetch("http://localhost:3000/api/tasks");
-      const data: Task[] = await response.json();
-      setTasks(data); // Directly update React state with fetched tasks
+      let url: string;
+
+      if (taskId) {
+        url = `http://localhost:3000/api/tasks/${taskId}`;
+      } else {
+        url = "http://localhost:3000/api/tasks";
+      }
+      const response = await fetch(url);
+      return await response.json();
     } catch (error) {
       console.error("Failed to fetch tasks:", error);
+      return taskId ? ({} as Task) : [];
+    }
+  };
+
+  // universal load tasks function (can be used to load all tasks or a single task by ID)
+  const loadTasks = async (taskId?: string) => {
+    try {
+      const data = await fetchTasks(taskId);
+      setTasks((prevTasks) =>
+        taskId
+          ? prevTasks.map((task) =>
+              task._id === taskId ? (data as Task) : task
+            )
+          : (data as Task[])
+      );
+    } catch (error) {
+      console.error("Failed to load tasks:", error);
     }
   };
 
@@ -26,26 +48,15 @@ export const useTodoListMV = () => {
       const response = await fetch("http://localhost:3000/api/tasks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }), // isCompleted defaults to false on the server
+        body: JSON.stringify({ text }),
       });
 
-      const newTask: Task = await response.json();
-      setTasks((prevTasks) => [...prevTasks, newTask]); // add new task to the array
+      if (!response.ok) throw new Error("Failed to add task");
+
+      // Load updated tasks after adding a new task
+      await loadTasks();
     } catch (error) {
       console.error("Failed to add task:", error);
-    }
-  };
-
-  const deleteTask = async (taskId: string) => {
-    try {
-      await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
-        method: "DELETE",
-      });
-
-      // Update React state by filtering out the deleted task
-      setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
-    } catch (error) {
-      console.error("Failed to delete task:", error);
     }
   };
 
@@ -54,39 +65,47 @@ export const useTodoListMV = () => {
       const task = tasks.find((t) => t._id === taskId);
       if (!task) return;
 
-      const updatedTask = await fetch(
-        `http://localhost:3000/api/tasks/${taskId}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ isCompleted: !task.isCompleted }),
-        }
-      ).then((res) => res.json());
+      await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isCompleted: !task.isCompleted }),
+      });
 
-      // Update state by mapping over tasks and replacing the updated task
-      setTasks((prevTasks) =>
-        prevTasks.map((task) => (task._id === taskId ? updatedTask : task))
-      );
+      // Load only the updated task
+      await loadTasks(taskId);
     } catch (error) {
       console.error("Failed to toggle task completion:", error);
     }
   };
 
+  const deleteTask = async (taskId: string) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+  method: "DELETE",
+});
+
+if (!response.ok) {
+  console.error(`Failed to delete task: ${response.statusText}`);
+  return;
+}
+
+// Reload tasks to reflect deletion
+await loadTasks();
+    } catch (error) {
+      console.error("Failed to delete task:", error);
+    }
+  };
+
   const updateTask = async (taskId: string, newText: string) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/tasks/${taskId}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: newText }),
-        }
-      );
+      await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: newText }),
+      });
 
-      if (!response.ok) throw new Error("Failed to update task");
-
-      // update the tasks state with the updated task
-      fetchTasks();
+      // Load only the updated task
+      await loadTasks(taskId);
     } catch (error) {
       console.error("Failed to update task:", error);
     }
@@ -104,17 +123,17 @@ export const useTodoListMV = () => {
   const applyFilter = async (status: "all" | "done" | "undone") => {
     try {
       setFilter(status);
-      // fetch tasks based on the filter status
+
+      // Fetch tasks from server with applied filter
       const response = await fetch(
         `http://localhost:3000/api/tasks?filter=${status}`
       );
+      if (!response.ok) throw new Error("Failed to apply filter");
+
       const filteredTasks: Task[] = await response.json();
 
-      // update the tasks state with the filtered tasks
+      // Update tasks state with filtered tasks
       setTasks(filteredTasks);
-
-      // update the filter state
-      setFilter(status);
     } catch (error) {
       console.error("Failed to apply filter:", error);
     }

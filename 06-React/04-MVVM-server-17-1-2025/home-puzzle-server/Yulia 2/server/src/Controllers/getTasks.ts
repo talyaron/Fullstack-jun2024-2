@@ -2,10 +2,10 @@ import TaskModel from "../Models/ToDoListModel";
 
 export const getTasks = async (req: any, res: any) => {
   try {
-    // get the filter parameter from the query string
-    const filter = req.query.filter as string;
+    // Get filter from query params, default to "all"
+    const filter = (req.query.filter as string) || "all";
 
-    // Define the query object based on the filter value
+    // Define query object
     let query = {};
 
     if (filter === "done") {
@@ -14,10 +14,9 @@ export const getTasks = async (req: any, res: any) => {
       query = { isCompleted: false };
     }
 
-    // Fetch tasks based on the query object
-    const tasks = await TaskModel.find(query);
+    // Fetch tasks based on query (if "all", return everything)
+    const tasks = await TaskModel.find(query || {});
 
-    // Return the tasks to the client
     res.status(200).json(tasks);
   } catch (error) {
     console.error("Failed to get tasks:", error);
