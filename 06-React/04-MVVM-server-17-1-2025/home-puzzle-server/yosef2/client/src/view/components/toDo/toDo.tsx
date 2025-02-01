@@ -51,8 +51,6 @@ const TodoList = () => {
       </select>
 
       <div className={selectedToDos == "allToDo" ? style.show : style.displayOff}>
-        
-        <h2>All To-Do List</h2>
         <ul>
           {todos.map((todo) => (
             <li key={todo._id} className={style.todoItem}>
@@ -79,7 +77,6 @@ const TodoList = () => {
 
 
       <div className={selectedToDos == "allDone" ? style.show : style.displayOff}>
-        <h2>Done</h2>
         <ul>
           {todos
           .filter((todo) => todo.isDone)
@@ -107,7 +104,6 @@ const TodoList = () => {
       </div>
 
       <div className={selectedToDos == "allNotDone" ? style.show : style.displayOff}>
-        <h2>Not Done</h2>
         <ul>
           {todos
           .filter((todo) => !todo.isDone)
