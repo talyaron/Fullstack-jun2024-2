@@ -1,14 +1,18 @@
 import './App.css'
 import TodoList from './view/components/toDo/toDo'
 import ToDoAddItem from './view/components/toDo/toDoInputCard'
-import { toDo } from "./view/components/toDo/toDoModel";
+import LoginRegisterForm from './view/components/loginRegisterForm/LoginRegisterForm'
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router'
 
 function App() {
 
   return (
-    <>
-    <ToDoAddItem />
-     <TodoList />
+    <>  {/* עטוף את הרכיב שלך בתוך ה- Router */}
+      <LoginRegisterForm />
+      {/* <ToDoAddItem />
+      <TodoList /> */}
+
     </>
   )
 }
