@@ -32,9 +32,12 @@ export const useTodoListMV = () => {
   };
 
   // universal load tasks function (can be used to load all tasks or a single task by ID)
-  const loadTasks = async (taskId?: string) => {
+  const loadTasks = async (
+    taskId?: string,
+    filter: "all" | "done" | "undone" = "all"
+  ) => {
     try {
-      const data = await fetchTasks(taskId);
+      const data = await fetchTasks(taskId, filter);
       setTasks((prevTasks) =>
         taskId
           ? prevTasks.map((task) =>
@@ -160,17 +163,7 @@ export const useTodoListMV = () => {
   const applyFilter = async (status: "all" | "done" | "undone") => {
     try {
       setFilter(status);
-
-      // Fetch tasks from server with applied filter
-      const response = await fetch(
-        `http://localhost:3000/api/tasks?filter=${status}`
-      );
-      if (!response.ok) throw new Error("Failed to apply filter");
-
-      const filteredTasks: Task[] = await response.json();
-
-      // Update tasks state with filtered tasks
-      setTasks(filteredTasks);
+      await loadTasks(undefined, status); // Use loadTasks to fetch filtered tasks
     } catch (error) {
       console.error("Failed to apply filter:", error);
     }
