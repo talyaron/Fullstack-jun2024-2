@@ -120,31 +120,34 @@ export const useTodoListMV = () => {
     }
   };
 
-const updateTask = async (taskId: string, newText: string) => {
-  if (!newText.trim()) {
-    console.warn("Task text cannot be empty");
-    return;
-  }
-
-  try {
-    const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: newText }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to update task: ${response.statusText}`);
+  const updateTask = async (taskId: string, newText: string) => {
+    if (!newText.trim()) {
+      console.warn("Task text cannot be empty");
+      return;
     }
 
-    // Update task locally after successful response
-    setTasks((prevTasks) =>
-      prevTasks.map((t) => (t._id === taskId ? { ...t, text: newText } : t))
-    );
-  } catch (error) {
-    console.error("Failed to update task:", error);
-  }
-};
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/tasks/${taskId}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: newText }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to update task: ${response.statusText}`);
+      }
+
+      // Update task locally after successful response
+      setTasks((prevTasks) =>
+        prevTasks.map((t) => (t._id === taskId ? { ...t, text: newText } : t))
+      );
+    } catch (error) {
+      console.error("Failed to update task:", error);
+    }
+  };
 
   const toggleEditMode = (taskId: string) => {
     setTasks((prevTasks) =>
