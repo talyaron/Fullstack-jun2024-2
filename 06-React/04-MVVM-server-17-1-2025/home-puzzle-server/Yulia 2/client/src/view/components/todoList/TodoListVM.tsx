@@ -10,15 +10,19 @@ export const useTodoListMV = () => {
   }, []);
 
   // universal fetch tasks function (can be used to fetch all tasks or a single task by ID)
-  const fetchTasks = async (taskId?: string): Promise<Task | Task[]> => {
+  const fetchTasks = async (
+    taskId?: string,
+    filter: "all" | "done" | "undone" = "all"
+  ): Promise<Task | Task[]> => {
     try {
       let url: string;
 
       if (taskId) {
         url = `http://localhost:3000/api/tasks/${taskId}`;
       } else {
-        url = "http://localhost:3000/api/tasks";
+        url = `http://localhost:3000/api/tasks?filter=${filter}`;
       }
+
       const response = await fetch(url);
       return await response.json();
     } catch (error) {
@@ -60,57 +64,87 @@ export const useTodoListMV = () => {
     }
   };
 
-  const toggleTaskCompletion = async (taskId: string) => {
-    try {
-      const task = tasks.find((t) => t._id === taskId);
-      if (!task) return;
-
-      await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ isCompleted: !task.isCompleted }),
-      });
-
-      // Load only the updated task
-      await loadTasks(taskId);
-    } catch (error) {
-      console.error("Failed to toggle task completion:", error);
-    }
-  };
-
   const deleteTask = async (taskId: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
-  method: "DELETE",
-});
+      const response = await fetch(
+        `http://localhost:3000/api/tasks/${taskId}`,
+        {
+          method: "DELETE",
+        }
+      );
 
-if (!response.ok) {
-  console.error(`Failed to delete task: ${response.statusText}`);
-  return;
-}
+      if (!response.ok) {
+        console.error(`Failed to delete task: ${response.statusText}`);
+        return;
+      }
 
-// Reload tasks to reflect deletion
-await loadTasks();
+      // Reload tasks to reflect deletion
+      await loadTasks();
     } catch (error) {
       console.error("Failed to delete task:", error);
     }
   };
 
-  const updateTask = async (taskId: string, newText: string) => {
+  const toggleTaskCompletion = async (taskId: string) => {
     try {
-      await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: newText }),
-      });
+      const task = tasks.find((t) => t._id === taskId);
+      if (!task) {
+        console.warn(`Task with ID ${taskId} not found`);
+        return;
+      }
 
-      // Load only the updated task
-      await loadTasks(taskId);
+      const updatedTask = { ...task, isCompleted: !task.isCompleted };
+
+      // Send request to update isCompleted status
+      const response = await fetch(
+        `http://localhost:3000/api/tasks/${taskId}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ isCompleted: updatedTask.isCompleted }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `Failed to toggle task completion: ${response.statusText}`
+        );
+      }
+
+      // Update task status locally after successful response
+      setTasks((prevTasks) =>
+        prevTasks.map((t) => (t._id === taskId ? updatedTask : t))
+      );
     } catch (error) {
-      console.error("Failed to update task:", error);
+      console.error("Failed to toggle task completion:", error);
     }
   };
 
+const updateTask = async (taskId: string, newText: string) => {
+  if (!newText.trim()) {
+    console.warn("Task text cannot be empty");
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: newText }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to update task: ${response.statusText}`);
+    }
+
+    // Update task locally after successful response
+    setTasks((prevTasks) =>
+      prevTasks.map((t) => (t._id === taskId ? { ...t, text: newText } : t))
+    );
+  } catch (error) {
+    console.error("Failed to update task:", error);
+  }
+};
 
   const toggleEditMode = (taskId: string) => {
     setTasks((prevTasks) =>

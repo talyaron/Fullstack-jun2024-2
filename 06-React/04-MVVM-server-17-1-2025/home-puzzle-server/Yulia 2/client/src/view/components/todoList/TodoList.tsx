@@ -90,10 +90,12 @@ const ToDoList: React.FC = () => {
                   onBlur={(e) => updateTask(task._id, e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
+                      e.preventDefault(); 
                       updateTask(
                         task._id,
                         (e.target as HTMLInputElement).value
                       );
+                      toggleEditMode(task._id); // Turn off edit mode
                     }
                   }}
                   className={styles.taskInput}
