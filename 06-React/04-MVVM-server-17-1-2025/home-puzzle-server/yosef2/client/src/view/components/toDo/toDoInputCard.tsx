@@ -14,6 +14,11 @@ const ToDoAddItem: React.FC<Props> = ({ }) => {
     function insertToDo(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         console.log(inputValue)
+       if (inputValue === '')
+       {
+           alert('Please enter a task')
+           return;
+       }
         setInputValue('');
         const newTodo: toDo ={
             title: inputValue

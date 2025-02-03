@@ -11,7 +11,7 @@ function LoginRegisterForm() {
     }
 
     function checkRegister(){
-      alert("עובדים על זה")
+      navigate("/register")
     }
 
   return (
