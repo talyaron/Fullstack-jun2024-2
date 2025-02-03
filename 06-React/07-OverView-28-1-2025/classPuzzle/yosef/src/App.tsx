@@ -9,7 +9,7 @@ function App() {
 
   return (
       <div>
-              <h1>Etimad</h1>
+              <h1 style={{backgroundColor:"yellow"}}>X / O Game</h1>
               <TicTacToe />
 
       </div>
