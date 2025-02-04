@@ -10,7 +10,7 @@ Build a full-stack web application where users can manage their favorite heroes.
 - Backend: Express.js
 - Database: MongoDB
 - Authentication: bcrypt for password hashing, and  cookies
-- Use middleware for user authentication
+- Use middleware you will build for for user authentication
 
 ### Features
 
