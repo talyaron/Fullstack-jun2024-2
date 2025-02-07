@@ -4,20 +4,27 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Background from './view/components/background/Background'
 import Modal from './view/components/modal/Modal'
-import Icons from './view/components/icons/Icons'
-
+import Button from "./view/components/button/Button"
+import { KeyRound } from 'lucide-react'
+import { Banana } from 'lucide-react'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <Background>
+          <Button text='Call Us' link="https://www.google.co.il"><KeyRound /></Button>
+          <br />
+          <Button text='Call Us' link="https://www.google.co.il"><KeyRound /></Button>
+          <br />
+          <Button text='Call Us' link="https://www.google.co.il"><Banana /></Button>
+
+    {/* <Background>
         <Icons></Icons>
     </Background>
 
     <Background>
         <Icons></Icons>
-    </Background>
+    </Background> */}
 
     {/* <Background>
      <Modal></Modal>
