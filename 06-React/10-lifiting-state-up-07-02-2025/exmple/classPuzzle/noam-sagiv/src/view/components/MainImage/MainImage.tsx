@@ -1,16 +1,17 @@
-import React, { FC } from 'react'
+import { FC } from 'react';
+import styles from './MainImage.module.scss'
 
-interface MainImage {
-  image: string,
-  alt: string,
+interface MainImageProps {
+  image: string;
+  alt: string;
 }
 
-const MainImage:FC<MainImage> = ({image, alt}) => {
+const MainImage: FC<MainImageProps> = ({ image, alt }) => {
   return (
     <div>
-      <img src={`${image}`} alt={alt}/>
+      <img src={image} alt={alt} className={styles.MainImage} />
     </div>
-  )
-}
+  );
+};
 
-export default MainImage
+export default MainImage;
