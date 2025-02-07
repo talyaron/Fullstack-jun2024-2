@@ -6,14 +6,13 @@ import Box from './view/components/box/Box'
 import Image from './view/components/image/Image'
 
 function App() {
-  const [theme, setTheme] = useState<"dark" | "light">("light")
   const [selectedImage, setSelectedImage] = useState<{ src: string, name: string }>({
     src: reactLogo,
     name: "React Logo"
   });
 
   return (
-    <div className={`${theme} app`}>
+    <div>
       <Box picture={'https://forbes.co.il/wp-content/uploads/2022/10/shutterstock-21952131992.jpg'} 
            name="emppa" 
            width={200} 
@@ -37,8 +36,8 @@ function App() {
       <br />
 
       <div style={{ textAlign: "center" }}>
-        <h2>{selectedImage.name}</h2>
-        <Image src={selectedImage.src} alt={selectedImage.name} width={200} height={200} theme={theme} />
+        <h2>my choice is: {selectedImage.name}</h2>
+        <Image src={selectedImage.src} alt={selectedImage.name} width={200} height={200}/>
       </div>
     </div>
   )
