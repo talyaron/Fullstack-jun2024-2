@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.players{
+ display: flex;
+}
+
 .dark{
   color: rgba(255, 255, 255, 0.87);
   background-color: #3539b4;

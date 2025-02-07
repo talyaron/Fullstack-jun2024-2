@@ -6,17 +6,16 @@ import Box from './view/components/box/Box'
 import Image from './view/components/image/Image'
 
 function App() {
-  const [selectedImage, setSelectedImage] = useState<{ src: string, name: string }>({
-    src: reactLogo,
-    name: "React Logo"
-  });
+  const [selectedImage, setSelectedImage] = useState<{ src: string, name: string }>({});
 
   return (
     <div>
+    <div className='players'>
       <Box picture={'https://forbes.co.il/wp-content/uploads/2022/10/shutterstock-21952131992.jpg'} 
            name="emppa" 
            width={200} 
            height={200} 
+           margin2={9}
            onSelect={setSelectedImage} 
       />
 
@@ -24,6 +23,7 @@ function App() {
            name="Zlatan Ibrahimović" 
            width={200} 
            height={200} 
+           margin2={9}
            onSelect={setSelectedImage} 
       />
 
@@ -31,9 +31,10 @@ function App() {
            name="dont know" 
            width={200} 
            height={200} 
+           margin2={9}
            onSelect={setSelectedImage} 
       />
-      <br />
+     </div>
 
       <div style={{ textAlign: "center" }}>
         <h2>my choice is: {selectedImage.name}</h2>
