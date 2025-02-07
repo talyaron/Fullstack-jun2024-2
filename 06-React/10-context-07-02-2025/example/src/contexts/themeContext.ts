@@ -1,19 +1,16 @@
 import { createContext } from 'react';
 
-interface Theme {
-    color: string;
-    background: string;
+export enum Theme {
+    dark = 'dark',
+    light = 'light'
 }
 
 interface ThemeContextType {
     theme: Theme;
-    setTheme: (theme:Theme)=> void;
+    setTheme: (theme: Theme) => void;
 }
 
-export const theme: Theme = {
-    color: 'blue',
-    background: 'white'
-}
+export const theme: Theme = Theme.light;
 
 const ThemeContext = createContext<ThemeContextType>({
     theme,

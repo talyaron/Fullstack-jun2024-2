@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Button from './view/components/Button'
-import { Dog, Phone } from 'lucide-react'
+import {  Phone } from 'lucide-react'
 
 function App() {
   const [count, setCount] = useState(0)
