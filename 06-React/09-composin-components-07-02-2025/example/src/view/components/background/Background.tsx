@@ -8,7 +8,7 @@ interface BackgroundProps {
 
 const Background:FC<BackgroundProps> = ({children, text}) => {
   return (
-    <div className={styles.background}>{children}</div>
+    <div className={styles.background}>{children} {text}</div>
   )
 }
 
