@@ -38,7 +38,7 @@ function App() {
 
       <div style={{ textAlign: "center" }}>
         <h2>my choice is: {selectedImage.name}</h2>
-        <Image src={selectedImage.src} alt={selectedImage.name} width={200} height={200}/>
+        <Image src={selectedImage.src} alt={selectedImage.name} width={400} height={400}/>
       </div>
     </div>
   )
