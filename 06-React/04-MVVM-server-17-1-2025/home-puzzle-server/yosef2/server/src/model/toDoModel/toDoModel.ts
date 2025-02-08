@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 export const ToDoSchema = new Schema({
     title: {type: String, required: true},
-    // done: {type: Boolean, required: true, default: false},
+    isDone: {type: Boolean, required: true, default: false},
     // user: {type: Schema.Types.ObjectId, ref: "User"}
 });
 

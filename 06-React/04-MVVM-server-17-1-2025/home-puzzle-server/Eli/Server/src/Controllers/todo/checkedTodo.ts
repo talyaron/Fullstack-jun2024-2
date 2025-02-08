@@ -12,7 +12,7 @@ export async function checkedTask(req: any, res: any) {
     if (!taskFound) throw new Error("task not found!");
 
     taskFound.isDone=!taskFound.isDone;
-    taskFound.save();
+    taskFound.save(); //should be done with updateOne
     res.status(200).json({message:"successfully fetched", taskFound});
   } catch (err: any) {
     console.log(err);

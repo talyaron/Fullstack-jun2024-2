@@ -35,7 +35,7 @@ export function useTodosVM() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title }),
-        credentials: 'include', // חשוב!
+        credentials: 'include',
       });
       if (!response.ok) throw new Error("Failed to add todo");
       const newTodo: Todo = await response.json();

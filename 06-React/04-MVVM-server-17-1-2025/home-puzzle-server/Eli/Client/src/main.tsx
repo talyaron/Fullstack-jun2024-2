@@ -19,7 +19,3 @@ createRoot(document.getElementById('root')!).render(
     </Routes>
 </BrowserRouter>
 )
-/*  <Route path="about" element={<About />} />
-  <Route path="home" element={<Home />}>
-          <Route index element={<Posts />} />
-          <Route path="profile" element={<Profile />} /></Route>*/
