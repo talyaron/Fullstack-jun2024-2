@@ -6,14 +6,25 @@ function App() {
   const [years, setYears] = useState<number>(1);
   const [principal, setPrincipal] = useState<number>(0);
   const [interestRate, setInterestRate] = useState<number>(0);
+  
+  const [darkMode, setDarkMode] = useState<boolean>(false); 
+
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
 
   const initialInvestment = principal;
   const finalAmount = principal * Math.pow(1 + interestRate / 100, years);
 
   return (
-    <div className="container">
+    <div className={darkMode ? "container dark-mode" : "container"}>
       <header className="header">
         <h1>Investment Growth Calculator</h1>
+        <div className="theme-toggle-container">
+      <button className="theme-toggle" onClick={toggleTheme}>
+        {darkMode ? "☀ Light Mode" : "🌙 Dark Mode"}
+      </button>
+    </div>
       </header>
 
       <div className="card">
