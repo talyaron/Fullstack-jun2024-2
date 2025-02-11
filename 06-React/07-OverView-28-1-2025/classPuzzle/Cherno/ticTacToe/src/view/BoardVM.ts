@@ -4,7 +4,7 @@ import CellModel from "../models/cellModel";
 
 const useBoardVM = () =>
 {   
-    const [ size, setSize ] = useState(3);
+    const [ size, setSize ] = useState(5);
     const [ gameState, changeState ] = useState<String>("turn");
     const [ ifFirstTurn, switchTurn ] = useState<Boolean>(true);
     const [ board, setBoard ] = useState<Array<Array<CellModel>>>(createBoard(size));
