@@ -11,7 +11,7 @@ const AddPayload = () => {
     }
     return (
         <div>
-            <button onClick={handlePayload}>Add</button>
+            <button onClick={handlePayload}>Add Payload</button>
         </div>
     )
 }
