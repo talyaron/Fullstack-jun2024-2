@@ -1,12 +1,13 @@
-import React from "react";
-import TodoView from "./views/TodoView";
+import { TodoList } from "./view/component/todo/Todo";
 
-const App = () => {
-    return (
-        <div>
-            <TodoView />
-        </div>
-    );
-};
+function App() {
+  
+
+  return (
+    <>
+      <TodoList />
+    </>
+  );
+}
 
 export default App;
