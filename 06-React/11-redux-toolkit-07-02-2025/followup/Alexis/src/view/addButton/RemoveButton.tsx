@@ -1,6 +1,6 @@
 
 import { useDispatch } from 'react-redux'
-import { decrement, increment } from '../../redux/counter/counterSlice'
+import { decrement } from '../../redux/counter/counterSlice'
 
 const RemoveButton = () => {
 
