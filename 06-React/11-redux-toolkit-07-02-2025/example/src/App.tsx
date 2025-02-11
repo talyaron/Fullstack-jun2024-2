@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import './App.css'
 import AddButton from './view/addButton/AddButton'
 import { RootState } from './redux/store'
+import AddAmount from './view/addAmount/AddAmount'
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
   return (
     <div>
       <h1>Hi</h1>
-      <AddButton />
+      <AddButton /><AddAmount />
       <h2>{counter}</h2>
     </div>
   )

@@ -3,6 +3,7 @@ import './App.css'
 import AddButton from './view/AddButton'
 import { RootState } from './redux/store'
 import DecreaseButton from './view/DecreaseButton'
+import IncrementAmount from './view/incrementAmount'
 
 function App() {
   const counter = useSelector((state:RootState)=>state.counter.value)
@@ -11,6 +12,7 @@ function App() {
   <h1>{counter}</h1>
   <AddButton />
   <DecreaseButton />
+  <IncrementAmount />
    </div>
   )
 }
