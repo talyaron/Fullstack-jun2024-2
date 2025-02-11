@@ -1,20 +1,20 @@
-import { increment } from '../../redux/counter/CounterSlice'
+import { decrement, increment } from '../../redux/counter/CounterSlice'
 import { useDispatch } from 'react-redux'
 
-const AddButton = () =>{
+const MenusButton = () =>{
     const dispatch = useDispatch()
 
     function handelAdd(){
-        dispatch(increment())
+        dispatch(decrement())
     }
 
 
   return (
 <button onClick={handelAdd}>
-    Add +
+    Add -
 </button>
   )
 }
 
 
-export default AddButton
+export default MenusButton
