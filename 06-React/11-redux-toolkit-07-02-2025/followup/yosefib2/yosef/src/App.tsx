@@ -4,14 +4,20 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import AddButton from "./view/button/Add";
 import { useSelector } from "react-redux";
+import { RootState } from './redux/store'
+import MenusButton from "./view/button/Menus";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const counter = useSelector((state: RootState) => state.counter.value)
+  const menus = useSelector((state: RootState) => state.counter.value)
 
   return (
     <>
       <h1>hey there</h1>
       <AddButton />
+      <p>Counter: {counter}</p>
+      <MenusButton />
+      <p>Menus: {menus}</p>
     </>
   );
 }
