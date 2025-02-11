@@ -1,4 +1,3 @@
-import React from 'react'
 import { increment } from '../../redux/counter/CounterSlice'
 import { useDispatch } from 'react-redux'
 
