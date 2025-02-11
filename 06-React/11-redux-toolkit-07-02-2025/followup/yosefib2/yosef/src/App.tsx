@@ -6,6 +6,7 @@ import AddButton from "./view/button/Add";
 import { useSelector } from "react-redux";
 import { RootState } from './redux/store'
 import MenusButton from "./view/button/Menus";
+import AddNumber from "./view/button/AddNumber";
 
 function App() {
   const counter = useSelector((state: RootState) => state.counter.value)
@@ -18,6 +19,8 @@ function App() {
       <p>Counter: {counter}</p>
       <MenusButton />
       <p>Menus: {menus}</p>
+      <AddNumber />
+
     </>
   );
 }
