@@ -1,0 +1,1 @@
+Take the app you have created in the previous exercise and add a new button ```<DecreaseButton />``` that will decrease the counter by 1.
