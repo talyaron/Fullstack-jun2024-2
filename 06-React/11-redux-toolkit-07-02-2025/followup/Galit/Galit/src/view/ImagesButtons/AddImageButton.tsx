@@ -12,7 +12,7 @@ const AddImageButton = () => {
   return (
     <div>
     <button onClick={handleAddImage}>❀</button>
-    <img src={ImageUrl} alt="flower" />
+    <img className={'img'} src={ImageUrl}  />
 
   </div>
   )
