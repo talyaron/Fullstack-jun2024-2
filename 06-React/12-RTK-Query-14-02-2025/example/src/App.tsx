@@ -1,7 +1,7 @@
 import './App.css'
+import {Link, Outlet} from "react-router";
 
 
-import PokemonPage from './view/pages/pokemon/PokemonPage'
 
 
 function App() {
@@ -11,7 +11,9 @@ function App() {
   return (
     <div>
       <h1>Hi</h1>
-      <PokemonPage />
+      <Outlet /> 
+      <Link to="charizard">Char</Link>
+      <Link to="bulbasaur">Bulba</Link>
     </div>
   )
 }
