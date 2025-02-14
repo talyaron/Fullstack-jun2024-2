@@ -22,9 +22,7 @@ const Calculator = () => {
     <div>
       <h1>מחשבון ריבית דרבית</h1>
       <p>כל הזכויות שמורות ליוסף איברהים</p>
-      <p>סכום ההפקדה הראשוני: {initialSum} ₪</p>
-      <p>ריבית שנתית: {interestRate}%</p>
-      <p>מספר השנים: {years}</p>
+      
       <h2 style={{ backgroundColor: "yellow" }}>
         סה"כ לאחר {years} שנים: ₪{result.toLocaleString()}
       </h2>
@@ -38,14 +36,13 @@ const Calculator = () => {
 >
   {isRich ? "אתה עשייייר!" : "השגת הכנסה מסויימת"}
 </h2>
-
-
       <p>----------------------------------------</p>
       <InitialSum handleSetState={setIntialSum} />
       <p>----------------------------------------</p>
-      <Years handleSetState={setYears} />
-      <p>----------------------------------------</p>
       <InterestRate handleSetState={setInterestRate} />
+      <p>----------------------------------------</p>
+      <Years handleSetState={setYears} />
+      
     </div>
   );
 };
