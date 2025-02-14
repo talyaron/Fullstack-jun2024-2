@@ -1,6 +1,6 @@
 import {  useParams } from "react-router"
 import { useGetDogByNameQuery } from "../redux/services/dogSrvc"
-
+import styles from "./Dog.module.scss"
 
 const Dog = () => {
     const { dog } = useParams();
@@ -10,7 +10,7 @@ const Dog = () => {
     if (error) return <div>Error: {JSON.stringify(error)}</div>
 
     return (
-        <div>
+        <div className={styles.dogCard}>
             <h1>{dog}</h1>
             <img style={{ height: "50vh" }} src={data?.message[0]} alt={data?.message[0]} />
         </div>
