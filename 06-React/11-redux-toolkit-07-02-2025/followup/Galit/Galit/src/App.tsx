@@ -1,10 +1,10 @@
-import { useState } from 'react'
 import AddButton from './view/addButton/addButton'
 import './App.css'
 import { RootState } from './redux/store'
 import { useSelector } from 'react-redux'
 import RemoveButton from './view/addButton/removebutton'
 import AddAmount from './view/components/AddAmount'
+import AddImageButton from './view/ImagesButtons/AddImageButton'
 
 function App() {
 const counter = useSelector ((state:RootState) => state.counter.value)
@@ -18,6 +18,7 @@ const counter = useSelector ((state:RootState) => state.counter.value)
       <RemoveButton />
       <AddAmount />
       <h2> {counter}</h2>
+      <AddImageButton />
       </button>
       </div>
       </div>
