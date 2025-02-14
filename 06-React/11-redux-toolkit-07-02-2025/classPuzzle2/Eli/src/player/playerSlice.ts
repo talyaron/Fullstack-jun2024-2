@@ -2,19 +2,21 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface PlayerState {
-  value: {name:string,img:string}
+  name: string, 
+  img: string
 }
 
 const initialState: PlayerState = {
-  value: {name:"",img:""}
+  name: "",
+  img: "",
 }
 
 export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    
-    setPlayer: (state, action: PayloadAction<{name:string,img:string}>) => {
+
+    setPlayer: (state, action: PayloadAction<{ name: string, img: string }>) => {
       state.value = action.payload
     },
   },

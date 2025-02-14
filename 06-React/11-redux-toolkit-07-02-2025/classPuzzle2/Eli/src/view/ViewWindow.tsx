@@ -3,7 +3,7 @@ import { RootState } from '../redux/store'
 import styles from "./ViewWindow.module.scss"
 
 const ViewWindow = () => {
-    const player = useSelector((state:RootState)=>state.counter.value)
+    const player = useSelector((state:RootState)=>state.player.value)
     if(player.img)
   return (
     <div className={styles.window}>

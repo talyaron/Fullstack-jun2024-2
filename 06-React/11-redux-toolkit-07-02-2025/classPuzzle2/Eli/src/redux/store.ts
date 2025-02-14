@@ -3,7 +3,7 @@ import  playerReducer  from '../player/playerSlice'
 
 export const store = configureStore({
   reducer: {
-    counter:playerReducer,
+    player:playerReducer,
   },
 })
 
