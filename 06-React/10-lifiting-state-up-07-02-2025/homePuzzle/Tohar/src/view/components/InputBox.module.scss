@@ -1,0 +1,33 @@
+.box {
+    padding: 4rem;
+    background-color: rgb(127, 150, 255);
+    width: 20rem
+}
+
+.header{
+    font-size: 1rem;
+    color: black;
+}
+
+.input {
+    width: 15rem;
+    height: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    padding: 0.5rem;
+}
+
+.value {
+    color: #000000;
+}
+
+.calculator {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+}
+
+.notifications {
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
