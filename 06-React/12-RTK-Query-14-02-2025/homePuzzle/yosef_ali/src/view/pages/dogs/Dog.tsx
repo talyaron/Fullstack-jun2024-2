@@ -19,11 +19,9 @@ console.log(randomNumber); // מספר בין 0 ל-10
 
   return (
     <div>
-      <h2>Dog</h2>  
       <p>here details of {dog} dog: </p>  
       <img style={{width:"30vh"}}src={data?.message[randomNumber]} alt={dog} />
       <br />
-      <Link to="/">Back to main</Link>
     </div>
   )
 }

@@ -22,14 +22,7 @@ function App() {
       <Link to="pikachu">Pikachu</Link>
       <br />
       <Link to="ditto">Mewtwo</Link>
-      <h2>Dogs:</h2>
-      <div>
-      <Link to="dogs/husky">husky</Link>
-      <br />
-      <Link to="dogs/puggle">puggle</Link>
-      <br />
-      <Link to="dogs/appenzeller">appenzeller</Link>
-      </div>
+      <Link to="dogs"><h1>Join Dogs</h1></Link>
     </div>
   )
 }
