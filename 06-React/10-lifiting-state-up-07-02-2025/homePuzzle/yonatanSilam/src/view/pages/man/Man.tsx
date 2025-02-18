@@ -88,8 +88,8 @@ const Man = () => {
           </button>
         </form>
         <h2>אחוז שומן ראשון:  {fatPercent1}</h2>
-        <h2>אחוז שומן שני:  {fatPercent2}</h2>
-        <h2>אחוז שומן שלישי:  {fatPercent3}</h2>
+        <h2>אחוז שומן שני:  {fatPercent3}</h2>
+        <h2>אחוז שומן שלישי:  {fatPercent2}</h2>
       </div>
       <Link className={styles.btnSecondary} to="/">
         back
