@@ -1,9 +1,10 @@
 import { useGetPokemonByNameQuery } from "../../../redux/servicses/pokemonSrvc"
-import { Link, useParams } from "react-router"
+import { useParams } from "react-router"
 
 
 const PokemonPage = () => {
     const { pokemon } = useParams()
+    if (!pokemon) return <div>enter a name of pokemon</div>
     const { data, error, isLoading } = useGetPokemonByNameQuery(pokemon) //pokemon ||
 
     if (isLoading) return <div>Loading...</div>
@@ -11,7 +12,7 @@ const PokemonPage = () => {
 
     return (
         <div>
-            <img style={{ height: "50vh" }} src={data?.sprites.front_default || ""} alt={data?.name} />
+            <img style={{ height: "50vh" }} src={data?.sprites.other.home.front_default || ""} alt={data?.name} />
            
         </div>
 
