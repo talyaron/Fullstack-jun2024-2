@@ -5,6 +5,14 @@
   text-align: center;
 }
 
+.btn{
+  border-radius: 50vh;
+  border:1px solid blue;
+  padding: 0.5em 1em;
+  color: blue;
+  margin: 1rem;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

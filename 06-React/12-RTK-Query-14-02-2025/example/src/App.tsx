@@ -12,8 +12,9 @@ function App() {
     <div>
       <h1>Hi</h1>
       <Outlet /> 
-      <Link to="charizard">Char</Link>
-      <Link to="bulbasaur">Bulba</Link>
+      <Link className="btn" to="charizard">Charizard</Link>
+    
+      <Link className="btn"  to="bulbasaur">Bulbasaur</Link>
     </div>
   )
 }
