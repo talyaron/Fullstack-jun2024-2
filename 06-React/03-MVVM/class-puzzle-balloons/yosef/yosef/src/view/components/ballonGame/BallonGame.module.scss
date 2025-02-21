@@ -44,3 +44,23 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.fly {
+    @keyframes floatUp {
+        0% {
+            top: 100vh; /* הבלון מתחיל בתחתית המסך */
+        }
+        100% {
+            top: -10vh; /* הבלון יעלה עד מעל לקצה העליון של המסך */
+        }
+    }
+
+    position: absolute;
+    bottom: 0; /* שמור את הבלון בתחתית */
+    left: 50%;
+    transform: translateX(-100%);
+    animation: floatUp 5s linear infinite; /* זמן אנימציה ארוך יותר */
+}
+
+  
+  
+

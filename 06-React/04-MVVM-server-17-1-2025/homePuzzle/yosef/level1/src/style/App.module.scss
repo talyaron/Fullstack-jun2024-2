@@ -1,0 +1,22 @@
+.main {
+    border: 3px solid #3498db; /* מסגרת בצבע כחול */
+    border-radius: 15px; /* פינות מעוגלות */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* הצללה עדינה */
+    padding: 20px; /* רווח פנימי */
+    background-color: #eedfdf; /* צבע רקע */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* מעבר חלק */
+  }
+  
+  .main:hover {
+    transform: scale(1.5); /* הגדלה קלה בהצבעה */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* הצללה מוגברת */
+  }
+  
+
+.btn1{
+    background-color: yellow;
+}
+
+.btn2{
+    background-color: rgb(129, 193, 209);
+}

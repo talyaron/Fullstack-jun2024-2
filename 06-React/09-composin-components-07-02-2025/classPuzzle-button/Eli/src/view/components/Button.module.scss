@@ -1,0 +1,23 @@
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(54, 144, 239);
+  color: azure;
+  width: 10vw;
+  height: 8vh;
+  margin: 0 auto;
+
+  &:hover {
+    background-color: rgb(72, 149, 232);
+    scale: 1.1;
+    transition: all 0.3s;
+  }
+
+  &:active {
+    background-color: rgb(58, 123, 192);
+    scale: 0.9;
+    transition: all 0.3s;
+  }
+}

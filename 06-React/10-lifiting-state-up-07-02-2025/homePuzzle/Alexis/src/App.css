@@ -1,0 +1,31 @@
+.app-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.rich {
+  background-color: lightgreen;
+  padding: 10px;
+}
+
+.income {
+  background-color: lightcoral;
+  padding: 10px;
+}
+
+.calculator {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 20px;
+  display: inline-block;
+  background: #f9f9f9;
+}
+
+.input-container {
+  margin: 10px;
+}
+
+input {
+  padding: 5px;
+  margin-left: 10px;
+}

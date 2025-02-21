@@ -1,0 +1,19 @@
+.styledInput {
+    padding: 6px 8px;
+    font-size: 18px;
+    color: blue;
+    background: #ffffff;
+    border: 2px solid #004d40;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    direction: rtl;
+    text-align: center;
+
+    &:focus {
+      border-color: blue;
+      box-shadow: 0 0 10px rgba(0, 0, 255, 0.3);
+    }
+  }

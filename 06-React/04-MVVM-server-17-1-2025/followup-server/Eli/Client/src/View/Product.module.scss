@@ -1,0 +1,19 @@
+.product {
+  width: 50vw;
+  max-height: 80vh;
+  background-color: antiquewhite;
+  border: black 1px solid;
+  display: flex;
+  flex-direction: column;
+}
+body {
+  background-color: bisque;
+}
+.cost{
+   
+   text-align: right;
+   margin: 20px;
+   font-size: 2em;
+    color: green;
+    text-decoration: bold;
+}

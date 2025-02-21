@@ -1,0 +1,48 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: #1e3a8a;
+  width: 50vw;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  h1 {
+    color: white;
+  }
+}
+.redText{
+  margin: 0;
+  padding: 0;
+font-size: 1;
+text-wrap:wrap;
+color: rgb(250, 25, 25);
+background-color: rgba(0, 0, 0, 0.415);
+}
+.input {
+  margin-top: 1.5vh;
+  width: 30vw;
+  height: 40px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.submit {
+  margin-top: 2vh;
+  width: 30%;
+  height: 40px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}

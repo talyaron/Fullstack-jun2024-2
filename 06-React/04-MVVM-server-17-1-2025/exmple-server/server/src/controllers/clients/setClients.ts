@@ -66,6 +66,9 @@ export async function register(req: any, res: any) {
         return res.status(201).send({ message: "User registered successfully" });
 
     } catch (error: any) {
+        if (error.code === "11000") {
+            res.status(400).send({ error: "user already exists" })
+        }
         console.error(error);
         return res.status(500).send({ error: error.message });
     }
@@ -94,8 +97,6 @@ export async function login(req: any, res: any) {
         }
 
 
-
-
         //encode user id and role in token
         const token = jwt.encode({ id: user._id, role: "user" }, secret);
 
@@ -105,9 +106,7 @@ export async function login(req: any, res: any) {
         return res.status(200).send({ message: "Login successful" });
 
     } catch (error: any) {
-        if (error.code = "11000") {
-            res.status(400).send({ error: "user already exists" })
-        }
+       
         console.error(error);
         return res.status(500).send({ error: error.message });
     }

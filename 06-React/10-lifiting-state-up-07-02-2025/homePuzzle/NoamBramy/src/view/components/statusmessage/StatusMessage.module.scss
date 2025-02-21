@@ -1,0 +1,21 @@
+.status {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
+.high { 
+  background-color: #ccffcc !important;
+  color: #009900 !important;
+  border: 2px solid #009900 !important;
+}
+
+.low { 
+  background-color: #ffcccc !important;
+  color: #cc0000 !important;
+  border: 2px solid #cc0000 !important;
+}

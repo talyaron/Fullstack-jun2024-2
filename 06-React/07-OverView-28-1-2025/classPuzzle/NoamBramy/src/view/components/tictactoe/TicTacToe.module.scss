@@ -1,0 +1,120 @@
+.tictactoe {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  padding: 40px;
+  background: #222222;
+  border-radius: 15px;
+  width: 450px;
+  margin: 0 auto;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  color: #fff;
+
+  h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #f2f2f2;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .status {
+    font-size: 22px;
+    margin-bottom: 30px;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    &.winner {
+      background-color: #44d700;
+      color: #fff;
+      animation: neon 1.5s ease-in-out infinite alternate;
+    }
+
+    &.draw {
+      background-color: #ffab00;
+      color: #fff;
+    }
+
+    &.current-player {
+      background-color: #2979ff; 
+      color: #fff;
+    }
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #444;
+    padding: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .cell {
+    width: 120px;
+    height: 120px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #555;
+    border: 3px solid #777;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background-color: #666;
+      transform: scale(1.05);
+    }
+
+    &.X {
+      color: #f44336;
+    }
+
+    &.O {
+      color: #4caf50; 
+    }
+  }
+
+  .resetbutton {
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 22px;
+    cursor: pointer;
+    background-color: #f44336;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      background-color: #d32f2f;
+      transform: scale(1.05);
+    }
+
+    &:active {
+      background-color: #c62828;
+      transform: scale(0.98);
+    }
+  }
+
+  @keyframes neon {
+    0% {
+      text-shadow: 0 0 10px #44d700, 0 0 20px #44d700, 0 0 30px #44d700, 0 0 40px #44d700;
+    }
+    100% {
+      text-shadow: 0 0 5px #44d700, 0 0 10px #44d700, 0 0 15px #44d700, 0 0 20px #44d700;
+    }
+  }
+}
