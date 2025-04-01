@@ -15,6 +15,26 @@ CREATE TABLE users (
     user_password VARCHAR(100) NOT NULL,
     user_create_date date not null
 );
+CREATE TABLE users_foods_join (
+users_foods_join_id INT AUTO_INCREMENT PRIMARY KEY,
+	user_id int not null,
+	food_id int not null,
+    food_rank float,
+    foreign key (user_id) REFERENCES users (user_id),
+	foreign key (user_id) REFERENCES users (user_id)
+    ON DELETE CASCADE,
+	UNIQUE KEY (food_id, user_id)
+);
+INSERT INTO users_foods_join (user_id, food_id, food_rank) VALUES
+(1, 1, -1), 
+(1, 2, 0), 
+(1, 3, 1), 
+(12, 1, 0), 
+(12, 2, -1), 
+(12, 3, 1), 
+(13, 1, -0.5), 
+(13, 2, 1), 
+(13, 3, 0);
 INSERT INTO foods (food_name,food_descriptions,food_group)values(
 "banana","yellow peel","fruits"),
 (
@@ -30,4 +50,6 @@ INSERT INTO users (
     ("keren", "korn@walla.co.il", "kronot", "1979-12-06"),
     ("doron", "doron@gmail.com", "dorondoron", "2002-05-02");
 
-select * from foods
+select * from users;
+select * from foods;
+select * from users_foods_join;
