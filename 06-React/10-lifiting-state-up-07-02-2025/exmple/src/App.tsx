@@ -17,6 +17,7 @@ function App() {
     <div className={`${theme} app`}>
       <Box width={200} height={200} theme={theme} setTheme={setTheme} handleSetState={handleSetState} />
       <Box width={200} height={200} theme={theme} setTheme={setTheme} handleSetState={handleSetState} />
+      
      
       <Image src={reactLogo} alt="React logo" width={200} height={200} theme={theme} />
     </div>
