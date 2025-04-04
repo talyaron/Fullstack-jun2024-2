@@ -32,5 +32,36 @@ select * from users;
 
 
 -- add food table, with the follwing fields: food_name, type (fruit or vegtable, meat, etc.(ENUM('active', 'inactive', 'pending') NOT NULL)), kosher type (meat, diart, Parve, not-kosher), color
+CREATE TABLE foods (
+    food_id INT NOT NULL AUTO_INCREMENT primary key,
+    food_name VARCHAR(30) NOT NULL,
+    food_type ENUM('fruit', 'vegetable', 'meat', 'halavi'),
+    status ENUM('kosher', 'no-kosher')    
+);
+
+alter table foods
+drop column status;
+
+alter table foods
+add column kosher boolean not null;
+
+insert into foods (food_name, food_type, kosher) values
+("Sour Tomato", "vegetable", true),
+("Kalamari","meat", false);
+
+select * from foods;
+
+create table users_foods (
+	user_food_id int not null auto_increment primary key,
+    user_id int not null,
+    food_id int not null,
+    love_level float not null,
+	FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (food_id) REFERENCES foods(food_id) ON DELETE CASCADE,
+    check (love_level >= -1 and love_level <= 1)
+);
+
+
+
 
 
