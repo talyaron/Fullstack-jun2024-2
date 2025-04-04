@@ -17,6 +17,6 @@ apartment_number smallint not null
 
 INSERT INTO living (user_id ,city, street, house_number, floor_number,apartment_number ) VALUES
 (1, 'Haifa', 'St sade', 4, 2, 1),
-(1, 'Haifa', 'St sun', 8, 3, 5);
+(2, 'Haifa', 'St sun', 8, 3, 5);
 
 
