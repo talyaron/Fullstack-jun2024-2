@@ -14,5 +14,18 @@ CREATE TABLE Living (
 SELECT * FROM best_foods.users;
 
 insert into Living (user_id,city,street,house_number,floor_number,apartment_number)VALUES
-(1,'NETANIA','BAN_NATAN',27,8,34)ף
+(1,'tel_aviv','dizingof',12,1,3);
 
+SELECT * FROM best_foods.living;
+
+DELETE FROM Living
+WHERE living_id IN (4);
+
+SELECT 
+    u.first_name, u.last_name, l.city, l.street, l.house_number
+FROM
+    users u
+        JOIN
+    living l
+WHERE
+    l.user_id = u.user_id
