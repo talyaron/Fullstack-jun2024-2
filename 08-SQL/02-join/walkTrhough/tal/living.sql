@@ -9,5 +9,10 @@ CREATE TABLE living (
     PRIMARY KEY (living_id),
     FOREIGN KEY (user_id)
         REFERENCES users (user_id)
-)
+);
+
+insert into living (user_id, city, street, house_number, floor_number, apprtment_number) values
+(2, "Sede Boker", "main-road", 0, 0, 0),
+(3, "Kedumim", "Hanevel", 16,0,1);
+
 
