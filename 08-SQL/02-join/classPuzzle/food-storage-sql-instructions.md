@@ -25,7 +25,11 @@ We'll work with your existing foods table. Assume it has at least:
 Modify the existing foods table to add a foreign key to the storage locations table:
 - Add a location_id column to the foods table
 - Set up the foreign key constraint to reference the storage_locations table
-- Consider whether to use CASCADE, SET NULL, or other options for ON DELETE behavior
+- Consider which ON DELETE behavior to use:
+  - CASCADE: If a storage location is deleted, all foods in that location will also be deleted
+  - SET NULL: If a storage location is deleted, the location_id for all foods in that location will be set to NULL
+  - RESTRICT/NO ACTION: Prevents deletion of a storage location if any foods reference it
+  - SET DEFAULT: Sets the location_id to a default value if the referenced storage location is deleted
 - Optionally add a date_stored field
 
 ## Sample Data Requirements
