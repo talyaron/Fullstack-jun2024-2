@@ -1,4 +1,4 @@
-# Walk through
+    # Walk through
 
 create a table for Living of the user, which explain in which apartment the user lives in. The table should contain the following columns:
  - living_id (int, primary key)
