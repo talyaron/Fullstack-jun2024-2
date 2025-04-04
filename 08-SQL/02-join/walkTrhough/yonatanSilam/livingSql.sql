@@ -13,3 +13,6 @@ CREATE TABLE Living (
 
 SELECT * FROM best_foods.users;
 
+insert into Living (user_id,city,street,house_number,floor_number,apartment_number)VALUES
+(1,'NETANIA','BAN_NATAN',27,8,34)ף
+
