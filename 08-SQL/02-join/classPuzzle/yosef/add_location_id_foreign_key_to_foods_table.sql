@@ -51,7 +51,7 @@ add column location_id int;
 
 alter table foods
 add constraint fk_location
-foreign key (location_id)
+foreign key (location_id)	
 references storage_locations(location_id)
 on delete cascade;
 
