@@ -60,6 +60,8 @@ insert into foods (food_name, food_type, kosher,location_id) values
 
 select * from foods;
 
+select * from foods where food_type = "sugar";
+
 insert into foods (food_name, food_type, kosher) values
 ("kashyo","vegtable",true);
 
