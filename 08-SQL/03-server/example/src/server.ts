@@ -3,8 +3,6 @@
 import express, { Request, Response } from 'express';
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
-const jwt = require('jwt-simple');
-const secret = 'xxx';
 
 // Create the Express application
 const app = express();
@@ -45,11 +43,9 @@ const registerUser: RequestHandler = async (req, res) => {
 
         // Insert user into database
         const [result] = await pool.execute(
-            'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-            [username, email, hashedPassword]
+            'INSERT INTO users (user_name, user_password, user_email) VALUES (?, ?, ?)',
+            [username, hashedPassword, email]
         );
-
-        console.log("results", result);
 
         const insertResult = result as mysql.ResultSetHeader;
 
@@ -79,10 +75,8 @@ const loginUser: RequestHandler = async (req, res) => {
         }
 
         // Find user by email
-        const [rows] = await pool.execute('SELECT * FROM users WHERE email = ?', [email]);
+        const [rows] = await pool.execute('SELECT * FROM users WHERE user_email = ?', [email]);
         const users = rows as any[];
-
-        console.log(users);
 
         if (users.length === 0) {
             res.status(401).json({ message: 'Invalid credentials' });
@@ -92,21 +86,29 @@ const loginUser: RequestHandler = async (req, res) => {
         const user = users[0];
 
         // Compare passwords
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.user_password);
         if (!isMatch) {
             res.status(401).json({ message: 'Invalid credentials' });
             return;
         }
 
-        //create cookie
-        const token = jwt.encode({ id: user.id }, secret, 'HS256', 'none');
-
-        res.cookie('token', token, { httpOnly: true, secure: false });
+        res.cookie('userToken', 'abc123', {
+            httpOnly: true,     // רק בצד שרת, לא נגיש ב-JavaScript בדפדפן
+            maxAge: 24 * 60 * 60 * 1000, // תוקף: יום אחד
+            secure: false,       // true אם אתה עובד ב-HTTPS
+            sameSite: 'lax'      // כדי למנוע CSRF
+          });
 
         res.status(200).json({
             success: true,
             message: 'Login successful',
+            user: {
+                id: user.userId,
+                username: user.username,
+                email: user.email
+            }
         });
+
     } catch (error) {
         console.error('Login error:', error);
         res.status(500).json({
@@ -125,7 +127,7 @@ app.post('/api/users/login', loginUser);
 const initializeDatabase = async () => {
     try {
         await pool.execute(`
-        CREATE TABLE IF NOT EXISTS users (
+      CREATE TABLE IF NOT EXISTS users1 (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(50) NOT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
