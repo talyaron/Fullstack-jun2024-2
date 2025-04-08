@@ -5,10 +5,18 @@ import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
 const jwt = require('jwt-simple');
 const secret = 'xxx';
+import cors from 'cors';
+
+
 
 // Create the Express application
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176'], // Array of allowed origins
+    credentials: true,
+}));
 
 // Configure middleware
 app.use(express.json());
