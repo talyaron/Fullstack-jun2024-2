@@ -3,6 +3,8 @@
 import express, { Request, Response } from 'express';
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
+const jwt = require('jwt-simple');
+const secret = 'xxx';
 
 // Create the Express application
 const app = express();
@@ -47,6 +49,8 @@ const registerUser: RequestHandler = async (req, res) => {
             [username, email, hashedPassword]
         );
 
+        console.log("results", result);
+
         const insertResult = result as mysql.ResultSetHeader;
 
         res.status(201).json({
@@ -78,6 +82,8 @@ const loginUser: RequestHandler = async (req, res) => {
         const [rows] = await pool.execute('SELECT * FROM users WHERE email = ?', [email]);
         const users = rows as any[];
 
+        console.log(users);
+
         if (users.length === 0) {
             res.status(401).json({ message: 'Invalid credentials' });
             return;
@@ -92,14 +98,14 @@ const loginUser: RequestHandler = async (req, res) => {
             return;
         }
 
+        //create cookie
+        const token = jwt.encode({ id: user.id }, secret, 'HS256', 'none');
+
+        res.cookie('token', token, { httpOnly: true, secure: false });
+
         res.status(200).json({
             success: true,
             message: 'Login successful',
-            user: {
-                id: user.id,
-                username: user.username,
-                email: user.email
-            }
         });
     } catch (error) {
         console.error('Login error:', error);
@@ -119,7 +125,7 @@ app.post('/api/users/login', loginUser);
 const initializeDatabase = async () => {
     try {
         await pool.execute(`
-      CREATE TABLE IF NOT EXISTS users (
+        CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(50) NOT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
