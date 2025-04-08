@@ -28,4 +28,45 @@ FROM
         JOIN
     living l
 WHERE
-    l.user_id = u.user_id
+    l.user_id = u.user_id;
+    
+    CREATE TABLE StorgeLocation (
+    location_id INT AUTO_INCREMENT PRIMARY KEY,
+    Location_name varchar(20) not null,
+    tamp tinyint not null
+);
+SELECT * FROM best_foods.storgelocation;
+insert into StorgeLocation(Location_name,tamp)VALUES
+('Refrigerator', 4),
+('Freezer',-4),
+('Pantry', 14),
+('Basement storage', 20)
+;
+
+SELECT foods.food_name, StorgeLocation.Location_name
+FROM foods
+JOIN StorgeLocation ON Foods.location_id = StorgeLocation.location_id
+WHERE StorgeLocation.location_name = 'Refrigerator';
+
+SELECT foods.food_name, StorgeLocation.Location_name, foods.food_type
+FROM foods
+JOIN StorgeLocation ON Foods.location_id = StorgeLocation.location_id
+WHERE foods.food_type = 'parve';
+
+
+SELECT 
+    f.food_id,
+    avg(uf.love_level) AS love
+FROM
+    users u
+        INNER JOIN
+    users_foods uf ON u.user_id = uf.user_id
+        INNER JOIN
+    foods f ON uf.food_id = f.food_id
+GROUP BY f.food_id;
+
+
+
+
+
+
