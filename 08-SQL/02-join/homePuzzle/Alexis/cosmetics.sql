@@ -9,7 +9,8 @@ CREATE table cosmetics(
 product_id int auto_increment,
 primary key (product_id),
 product_name varchar(50),
-product_brand varchar(50)
+brand_id varchar(50),
+FOREIGN KEY (brand_id) REFERENCES brands(brand_id) ON DELETE SET NULL
 );
 
 INSERT INTO cosmetics (product_name, product_brand) VALUES
