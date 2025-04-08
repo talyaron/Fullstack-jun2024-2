@@ -5,11 +5,15 @@ import mysql from 'mysql2/promise';
 import dotenv from "dotenv"
 export const secret = 'xxx';
 dotenv.config();
-
+import cors from "cors"
 // Create the Express application
 const app = express();
 const PORT = process.env.PORT ?? 3000;
-
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  }));
 // Configure middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
