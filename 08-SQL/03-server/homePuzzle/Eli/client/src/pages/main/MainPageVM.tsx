@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Product } from "../../model/productModel";
+import { ProductModel } from "../../model/productModel";
 
 const MainPageVM = () => {
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<ProductModel[]>([]);
         async function getProducts() {
         const response = await fetch(
             "http://localhost:3000/api/products/get-products",

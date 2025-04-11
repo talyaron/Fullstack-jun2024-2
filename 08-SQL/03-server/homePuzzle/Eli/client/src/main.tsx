@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import Login from "./components/login/Login.tsx";
 import Register from "./components/register/Register.tsx";
 import AddProduct from "./pages/addProduct/AddProduct.tsx";
+import Checkout from "./pages/checkout/Checkout.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -15,6 +16,8 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/add-product" element={<AddProduct />}></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
+
       </Routes>
     </BrowserRouter>
   </StrictMode>

@@ -65,10 +65,10 @@ const addData = async () => {
   try {
     await pool.execute(`
         CREATE TABLE IF NOT EXISTS products (
-        products_id INT AUTO_INCREMENT PRIMARY KEY,
-        products_name VARCHAR(50) NOT NULL UNIQUE,
-        products_description VARCHAR(100) NOT NULL ,
-        products_price DECIMAL(10, 2) NOT NULL,
+        product_id INT AUTO_INCREMENT PRIMARY KEY,
+        product_name VARCHAR(50) NOT NULL UNIQUE,
+        product_description VARCHAR(100) NOT NULL ,
+        product_price DECIMAL(10, 2) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
@@ -78,12 +78,30 @@ const addData = async () => {
     process.exit(1);
   }
 };
-
-// Start the server
+const addDataJoinTable = async () => {
+  try {
+    await pool.execute(`
+        CREATE TABLE IF NOT EXISTS order_join_table (
+        order_id INT AUTO_INCREMENT PRIMARY KEY unique,
+        product_id int NOT NULL ,
+        user_id int NOT NULL ,
+        products_place ENUM("cart","bought") not null DEFAULT 'cart',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (product_id) REFERENCES products(product_id),
+        FOREIGN KEY (user_id) REFERENCES users(user_id)
+      )
+    `);
+    console.log("Database initialized successfully");
+  } catch (error) {
+    console.error("Database initialization failed:", error);
+    process.exit(1);
+  }
+};
+// Start th server
 const startServer = async () => {
   try {
     await initializeDatabase();
-    await addData();
+    await addDataJoinTable();
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
     });
