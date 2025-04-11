@@ -115,7 +115,6 @@ console.log(password)
 
         res.cookie('token', token, { httpOnly: true, secure: false });
 
-
         res.status(200).json({
             success: true,
             message: 'Login successful',
@@ -169,10 +168,35 @@ const AddProduct: RequestHandler = async (req, res) => {
     }
 }
 
+const ShowAllProducts: RequestHandler = async (req, res) => {
+    try{
+         const [result] = await pool.execute(
+            'select * from products',
+        );
+
+        console.log("results", result);
+        res.status(200).json({
+            success: true,
+            message: 'show all products',
+            result
+        });
+
+    }
+    catch (error) {
+        console.error('insert new products error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error add products',
+            error: (error as Error).message
+        });
+    }
+}
+
 // Register routes
 app.post('/api/users/register', registerUser);
 app.post('/api/users/login', loginUser);
 app.post('/api/products/addProduct', AddProduct);
+app.get('/api/products/showAllProducts', ShowAllProducts)
 
 // Create the users table if it doesn't exist
 const initializeDatabase = async () => {

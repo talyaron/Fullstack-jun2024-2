@@ -1,14 +1,45 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log('Login submitted:', { email, password });
-        // Add your login logic here
+    
+        fetch('http://localhost:3000/api/users/login', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+            body: JSON.stringify({ email, password }),
+        })
+        .then(async (response) => {
+            const data = await response.json();
+    
+            if (response.status === 200) {
+                console.log('Login successful:', data);
+                alert('Login successful');
+                navigate('/store');
+           
+            } else {
+                console.error('Login failed:', data);
+                alert(data.message || 'Login failed');
+            }
+        })
+        .catch((error) => {
+            console.error('Error during login:', error);
+            alert('Network error during login');
+        });
     };
+    
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>

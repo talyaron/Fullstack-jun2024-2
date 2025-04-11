@@ -18,10 +18,11 @@ const Register: React.FC = () => {
         // Add your registration logic here (e.g., API call)
         fetch('http://localhost:3000/api/users/register', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'credential': 'include',
             },
+            
             body: JSON.stringify(formData),
         })
             .then((response) => response.json())
