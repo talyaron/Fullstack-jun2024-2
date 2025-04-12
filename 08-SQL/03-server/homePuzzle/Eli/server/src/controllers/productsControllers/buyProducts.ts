@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { pool, secret } from "../../server";
 const jwt = require("jwt-simple");
-async function getCheckoutProducts(req: Request, res: Response) {
+
+async function buyProducts(req: Request, res: Response) {
   try {
     const token = req.cookies.token;
 
@@ -14,23 +15,16 @@ async function getCheckoutProducts(req: Request, res: Response) {
     const decoded: any = jwt.decode(token, secret);
 
     const userId = decoded.user_id;
-    const [productsCart] = await pool.execute(
-        `SELECT p.*
-         FROM order_join_table o
-         JOIN products p ON o.product_id = p.product_id
-         WHERE o.user_id = ? AND o.products_place = 'cart'`,
+    const [productsBought] =await pool.execute(
+        `UPDATE order_join_table
+         SET products_place = 'bought'
+         WHERE user_id = ? AND products_place = 'cart'`,
         [userId]
       );
-      const [productsBought] = await pool.execute(
-        `SELECT p.*
-         FROM order_join_table o
-         JOIN products p ON o.product_id = p.product_id
-         WHERE o.user_id = ? AND o.products_place = 'bought'`,
-        [userId]
-      );
+
     res.status(200).json({
       success: true,
-      productsCart,productsBought
+      productsBought
     });
   } catch (error) {
     console.error("get products error:", error);
@@ -41,4 +35,4 @@ async function getCheckoutProducts(req: Request, res: Response) {
     });
   }
 }
-export default getCheckoutProducts;
+export default buyProducts;

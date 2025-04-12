@@ -9,6 +9,7 @@ interface ProductProps {
   imgUrl: string;
   canBuy: boolean;
   setItemAdded?: (itemAdded: boolean) => void;
+  removeFromCart?: (productId: number) => void;
 }
 const Product: FC<ProductProps> = ({
   id,
@@ -18,14 +19,16 @@ const Product: FC<ProductProps> = ({
   price,
   canBuy,
   setItemAdded,
+  removeFromCart
 }) => {
   const { addToCart, itemAdded } = ProductVM();
   useEffect(() => {
     if(setItemAdded)
     setItemAdded(itemAdded);
   }, [itemAdded, setItemAdded]);
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} >
       <div className={styles.card}>
         <h2>{name}</h2>
         <p>{description}</p>
@@ -33,6 +36,8 @@ const Product: FC<ProductProps> = ({
         <p className={styles.price}>$ {price}</p>
       </div>
       {canBuy ? <button onClick={() => addToCart(id)}>add to cart</button> : ""}
+      {removeFromCart ? <div className={styles.removeBtn}><button  onClick={() => removeFromCart(id)}>remove from cart</button></div> : ""}
+
     </div>
   );
 };

@@ -1,7 +1,12 @@
 import React from "react";
 
 const AddProductVM = () => {
-  async function addProduct(name: string, description: string, price: number,imgUrl:string) {
+  async function addProduct(
+    name: string,
+    description: string,
+    price: number,
+    imgUrl: string
+  ) {
     const response = await fetch(
       "http://localhost:3000/api/products/add-product",
       {
@@ -10,7 +15,7 @@ const AddProductVM = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, description, price,imgUrl }),
+        body: JSON.stringify({ name, description, price, imgUrl }),
       }
     );
 
@@ -31,12 +36,15 @@ const AddProductVM = () => {
     const description = form.get("description") as string;
     const price = form.get("price") as unknown as number;
     const imgUrl = form.get("imgUrl") as string;
-
-    if(!name||!description||!price||!imgUrl)
-    {
-        return alert("all fields must be full")
+    const secretPassword = form.get("description") as string;
+    if (secretPassword !== "12345") {
+      alert("WRONG PASSWORD!");
+      return;
     }
-    addProduct(name, description,price,imgUrl )
+    if (!name || !description || !price || !imgUrl) {
+      return alert("all fields must be full");
+    }
+    addProduct(name, description, price, imgUrl);
   }
   return {
     addProduct,

@@ -7,15 +7,20 @@
 
   border-radius: 20px;
   align-items: center;
-   img {
+  img {
     width: 10rem;
     height: 10rem;
   }
   h2 {
     margin-bottom: 0;
   }
+  .removeBtn {
+    margin-bottom: 240px;
+    background-color: red;
+  }
   p {
     display: -webkit-box;
+    line-clamp: 1;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -24,15 +29,15 @@
     text-overflow: ellipsis;
   }
 }
-.container{
+.container {
   display: flex;
   flex-direction: column;
-  button{
+  button {
     color: white;
     margin: 0;
-     &:hover{
-        scale: 1.1;
-        background-color: rgba(15, 31, 206, 0.878);
+    &:hover {
+      scale: 1.1;
+      background-color: rgba(15, 31, 206, 0.878);
     }
   }
 }
@@ -40,7 +45,7 @@
   background-color: rgb(110, 204, 63);
   width: fit-content;
   margin: 0 auto;
- top: 2rem;
+  top: 2rem;
   position: relative;
   font-weight: bold;
 }

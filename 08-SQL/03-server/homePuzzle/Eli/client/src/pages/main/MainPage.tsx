@@ -25,6 +25,8 @@ const MainPage = () => {
       )}
       {canBuy && (
         <Link to={"/checkout"}>
+          <p>to checkout click here or on cart</p>
+
           <button className={`${styles.cartBtn} ${itemAdded && styles.shake}`}>
             🛒
           </button>

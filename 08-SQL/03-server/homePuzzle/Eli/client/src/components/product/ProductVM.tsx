@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 const ProductVM = () => {
-      const [itemAdded, setItemAdded] = useState(false);
-    
+  const [itemAdded, setItemAdded] = useState(false);
+
   async function addToCart(productId: number) {
     const response = await fetch(
       "http://localhost:3000/api/products/add-to-cart-product",
@@ -18,7 +18,7 @@ const ProductVM = () => {
 
     if (response.ok) {
       console.log("product added in !");
-      setItemAdded(true)
+      setItemAdded(true);
     } else {
       alert("adding product error");
 
@@ -26,12 +26,11 @@ const ProductVM = () => {
     }
   }
   useEffect(() => {
-    if(itemAdded)
-    {
-        setTimeout(()=>setItemAdded(false),400)
+    if (itemAdded) {
+      setTimeout(() => setItemAdded(false), 400);
     }
-  },[itemAdded])
-  return { addToCart,itemAdded };
+  }, [itemAdded]);
+  return { addToCart, itemAdded };
 };
 
 export default ProductVM;
