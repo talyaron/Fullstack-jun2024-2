@@ -24,6 +24,8 @@ const AddProduct = () => {
           inputMode="decimal"
         />{" "}
         <input type="text" name="imgUrl" placeholder="product image url" />
+        <input type="password" name="secretPassword" placeholder="admin password" />
+
         <input type="submit" name="submit" />
       </form>
     </div>
