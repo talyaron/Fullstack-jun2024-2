@@ -1,0 +1,44 @@
+.checkoutCard {
+  background-color: rgb(48, 168, 232);
+  position: fixed;
+  top: 20%;
+  transform: translateX(35vw);
+  width: 250px;
+  height: 50%;
+  color: white;
+
+  h3 {
+    margin-top: 200px;
+  }
+  button {
+    background-color: rgb(59, 130, 228);
+    color: white;
+    width: 150px;
+    border: double rgba(0, 0, 0, 0.674) 2px;
+    &:hover {
+      background-color: rgb(87, 150, 239);
+      scale: 1.1;
+    }
+  }
+}
+.thanks {
+  margin-top: 250px;
+  margin-bottom: 250px;
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5, #4ade80, #ff6ec4);
+  background-size: 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 300% center;
+  }
+}

@@ -66,33 +66,27 @@ INSERT INTO foods (food_name, category, quantity, unit, expiration_date, purchas
 ('Dried Basil', 'Spice', 50, 'grams', '2026-12-31', '2024-12-01');
 
 -- -----------------------------------------------------------------------------
--- 3. Update Foods with Storage Locations
+-- 3. Update Foods with Storage Locations (Исправленный вариант)
 -- -----------------------------------------------------------------------------
-SELECT food_id, food_name FROM foods WHERE food_name IN ('Milk', 'Tomatoes', 'Cheddar Cheese');
-SELECT food_id, food_name FROM foods WHERE food_name = 'Ground Beef';
-SELECT food_id, food_name FROM foods WHERE food_name = 'Loaf of Bread';
-SELECT food_id, food_name FROM foods WHERE food_name = 'Frozen Broccoli';
-SELECT food_id, food_name FROM foods WHERE food_name = 'Dried Basil';
-
 UPDATE foods
 SET location_id = (SELECT location_id FROM storage_locations WHERE location_name = 'Refrigerator')
-WHERE food_id IN (1, 3, 5); -- Milk, Tomatoes, Cheddar Cheese
+WHERE food_name IN ('Milk', 'Tomatoes', 'Cheddar Cheese');
 
 UPDATE foods
 SET location_id = (SELECT location_id FROM storage_locations WHERE location_name = 'Freezer')
-WHERE food_id = 2; -- Ground Beef
+WHERE food_name = 'Ground Beef';
 
 UPDATE foods
-SET location_id = (SELECT location_id FROM storage_locations WHERE location_name = 'Kitchen Counter')
-WHERE food_id = 4; -- Loaf of Bread
+SET location_id = (SELECT location_id FROM storage_locations WHERE location_name = 'Pantry')
+WHERE food_name = 'Loaf of Bread';
 
 UPDATE foods
 SET location_id = (SELECT location_id FROM storage_locations WHERE location_name = 'Freezer')
-WHERE food_id = 6; -- Frozen Broccoli
+WHERE food_name = 'Frozen Broccoli';
 
 UPDATE foods
 SET location_id = (SELECT location_id FROM storage_locations WHERE location_name = 'Spice Rack')
-WHERE food_id = 7; -- Dried Basil
+WHERE food_name = 'Dried Basil';
 
 -- -----------------------------------------------------------------------------
 -- ## Query Exercises
@@ -167,3 +161,19 @@ LEFT JOIN
     foods f ON sl.location_id = f.location_id
 WHERE
     f.food_id IS NULL;
+    
+SET SQL_SAFE_UPDATES = 0;
+
+
+
+SELECT f.food_name, f.location_id, sl.location_name
+FROM foods f
+LEFT JOIN storage_locations sl ON f.location_id = sl.location_id;
+
+SELECT food_id, food_name FROM foods WHERE food_name IN ('Ground Beef', 'Loaf of Bread', 'Frozen Broccoli');
+
+SELECT location_id, location_name FROM storage_locations WHERE location_name IN ('Freezer', 'Pantry');
+
+SELECT location_id FROM storage_locations WHERE location_name = 'Freezer';
+SELECT location_id FROM storage_locations WHERE location_name = 'Pantry';
+
