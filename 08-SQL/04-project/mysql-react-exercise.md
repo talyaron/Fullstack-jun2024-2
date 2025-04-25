@@ -42,6 +42,7 @@ Teams may propose an alternative topic, subject to instructor approval.
 - **Deliverable**: SQL scripts for database creation and sample data
 
 ### Stage 4: Backend Development
+- Design routes and controllers. Approve with the instructor.
 - Set up a Node.js/Express server
 - Create essential API endpoints
 - Connect to MySQL database
