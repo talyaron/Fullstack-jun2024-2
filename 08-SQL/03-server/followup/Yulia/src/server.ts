@@ -3,7 +3,7 @@
 import express, { Request, Response } from 'express';
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
-import jwt from 'jwt-simple';
+const jwt = require('jwt-simple');
 const secret = 'xxx';
 
 // Create the Express application
