@@ -5,6 +5,12 @@ import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
 const jwt = require('jwt-simple');
 const secret = 'xxx';
+import productsRouter from './routes/products';
+import ordersRouter from './routes/orders';
+
+app.use('/api/products', productsRouter);
+app.use('/api/orders', ordersRouter);
+
 
 // Create the Express application
 const app = express();
@@ -18,8 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '12345678',
-    database: 'galit',
+    password: '2002Ga',
+    database: 'Galit',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0

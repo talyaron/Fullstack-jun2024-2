@@ -10,7 +10,7 @@
     "start": "node dist/server.js"
   },
   "keywords": [],
-  "author": "Tal Yaron",
+  "author": "Galit",
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
