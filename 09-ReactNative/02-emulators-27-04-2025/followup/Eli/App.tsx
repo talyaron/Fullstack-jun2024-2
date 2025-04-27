@@ -16,20 +16,21 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
+    flexDirection:"row"
   },
   blue: {
     backgroundColor: "blue",
-    width: 500,
-    height: 333,
+    width: 333,
+    height: 10000,
   },
   white: {
     backgroundColor: "white",
-    width: 500,
-    height: 333,
+    width: 211,
+    height: 10000,
   },
   red: {
-    width: 500,
-    height: 333,
+    width: 333,
+    height: 10000,
     backgroundColor: "red",
   },
 });
