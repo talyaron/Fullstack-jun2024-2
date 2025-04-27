@@ -4,12 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Openasda up App.tsx to start workiasdng on your app!</Text>
-      <Text>Changes you make will automatically reload the app.</Text>
-      <Text>Shake your phone toasd open the developer menu.</Text>
-      <Text>Yosef</Text>
-      <View style={{ width: 100, height: 100, backgroundColor: 'blue' }} />
-      <StatusBar style="auto" />
+      <Text style={styles.x}>Yodsxxxx</Text>
+      <Text>Yodssxxxx</Text>
+      <Text>Yodsxxxx</Text>
     </View>
   );
 }
@@ -26,4 +23,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  x: {
+      backgroundColor: 'blue'},
 });
