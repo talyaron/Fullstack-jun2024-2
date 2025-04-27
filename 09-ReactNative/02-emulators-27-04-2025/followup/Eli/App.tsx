@@ -1,49 +1,28 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, FlatList } from "react-native";
+import Message from "./components/message";
+import { messagesModel } from "./model/messages";
 
 export default function App() {
+  const messages = messagesModel;
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>WhatsApp</Text>
       </View>
 
-      <View style={styles.content}>
-        <View style={styles.chatItem}>
-          <View style={styles.avatar}></View>
-          <View style={styles.chatInfo}>
-            <Text style={styles.chatName}>John Doe</Text>
-            <Text style={styles.chatMessage}>Hey, how are you doing?</Text>
-          </View>
-          <Text style={styles.chatTime}>10:30 AM</Text>
-        </View>
-
-        <View style={styles.divider}></View>
-
-        <View style={styles.chatItem}>
-          <View style={styles.avatar}></View>
-          <View style={styles.chatInfo}>
-            <Text style={styles.chatName}>Family Group</Text>
-            <Text style={styles.chatMessage}>
-              Mom: Can someone pick up bread?
-            </Text>
-          </View>
-          <Text style={styles.chatTime}>9:45 AM</Text>
-        </View>
-
-        <View style={styles.divider}></View>
-
-        <View style={styles.chatItem}>
-          <View style={styles.avatar}></View>
-          <View style={styles.chatInfo}>
-            <Text style={styles.chatName}>Sarah Wilson</Text>
-            <Text style={styles.chatMessage}>
-              Let's meet for coffee tomorrow
-            </Text>
-          </View>
-          <Text style={styles.chatTime}>Yesterday</Text>
-        </View>
-      </View>
+      <FlatList
+        style={styles.content}
+        data={messages}
+        keyExtractor={(item) => item.timestamp}
+        renderItem={({ item }) => (
+          <Message
+            name={item.name}
+            message={item.message}
+            timestamp={item.timestamp}
+          />
+        )}
+      />
 
       <StatusBar style="light" />
     </View>
@@ -70,38 +49,5 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     backgroundColor: "#ffffff",
-  },
-  chatItem: {
-    flexDirection: "row",
-    padding: 15,
-    alignItems: "center",
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: "#ddd",
-  },
-  chatInfo: {
-    flex: 1,
-    marginLeft: 15,
-  },
-  chatName: {
-    fontWeight: "bold",
-    fontSize: 16,
-    marginBottom: 3,
-  },
-  chatMessage: {
-    color: "#555",
-    fontSize: 14,
-  },
-  chatTime: {
-    color: "#777",
-    fontSize: 12,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: "#f0f0f0",
-    marginLeft: 80,
   },
 });
