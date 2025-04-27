@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>اعتماد مش احلى بنت</Text>
+      <Text style={styles.text}>اعتماد احلى بنت</Text>
       <Button title="123" onPress={() => Alert.alert("הודעה", "לחצת על הכפתור!")} />
       <StatusBar style="auto" />
     </View>
