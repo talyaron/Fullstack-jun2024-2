@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { textMain } from './assets/colors';
 import WhatsAppMessageCard from './componentes/chatCard/ChatCard';
 
@@ -12,21 +12,17 @@ export default function App() {
         <Text style={{ fontSize: 20, fontWeight: 'bold', color: textMain }}>WhatsApp</Text>
         <Text style={{ fontSize: 16 }}>Menu</Text>
       </View>
-      <View style={styles.content}>
-       <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-        <WhatsAppMessageCard />
-      </View>
-     
+      <FlatList style={styles.content} 
+        data={[{message:"message 1"},
+           {message:"message 2"},{message:"message 3",},{message:"message 4"},{message:"message 5"},{message:"message 6"},
+           {message:"message 7"},{message:"message 8"},{message:"message 9"},{message:"message 10"},{message:"message 11"},{message:"message 12"},{message:"message 13"},
+           {message:"message 14"},{message:"message 15"},{message:"message 16"},{message:"message 17"},{message:"message 18"},
+           {message:"message 19"},{message:"message 20"},{message:"message 21"},{message:"message 22"},{message:"message 23"},{message:"message 24"},
+           {message:"message 25"},{message:"message 26"},{message:"message 27"},{message:"message 28"},{message:"message 29"},]} 
+        renderItem={({ item }) => <WhatsAppMessageCard message={item.message} />}
+      
+        keyExtractor={(item, index) => index.toString()} 
+      /> 
     </View>
   );
 }
@@ -52,8 +48,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    marginTop: 50, // To account for the header height
-    alignItems: 'center',
-    justifyContent: 'center',
+        paddingTop: 200,
+       gap:5
   },
 });
