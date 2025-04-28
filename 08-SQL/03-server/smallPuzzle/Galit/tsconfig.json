@@ -3,13 +3,13 @@
       "target": "es6",
       "module": "commonjs",
       "outDir": "./dist",
-      "rootDir": "server/src",
+      "rootDir": "./src",
       "strict": true,
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "resolveJsonModule": true,
       "sourceMap": true
     },
-    "include": ["server/src/**/*"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules", "**/*.spec.ts"]
   }
