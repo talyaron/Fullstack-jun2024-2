@@ -1,0 +1,1 @@
+export const textMain = "#1da960";
