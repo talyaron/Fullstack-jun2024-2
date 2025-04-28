@@ -1,28 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import ChatRoom from "./components/ChatRoom/ChatRoom";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.x}>Yodsxxxx</Text>
-      <Text>Yodssxxxx</Text>
-      <Text>Yodsxxxx</Text>
+    <View>
+      <View style={styles.navBarUp}>
+        <Text style={{ left: 0, color:'white' }}>Massenager App</Text>
+        <Text style={{ left: 200 }}>🔎</Text>
+        <Text style={{ left: 230, color: "white" }}>:</Text>
+      </View>
+      <View style={styles.navBarDown}>
+        <Icon name="camera-alt" size={24} color="white" />
+        <Text style={styles.textWhite}>Chat</Text>
+        <Text style={styles.textWhite}>Status</Text>
+        <Text style={styles.textWhite}>Calls</Text>
+      </View>
+      <ChatRoom name="Suzy" />
+      <ChatRoom name="Etimad" />
+      <ChatRoom name="yosef" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 20,
+  navBarUp: {
+    flex: 0,
+    marginTop: 50,
+    flexDirection: "row",
     padding: 20,
-    borderRadius: 10,
-    borderColor: 'red',
-    borderWidth: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "green",
   },
-  x: {
-      backgroundColor: 'blue'},
+  navBarDown: {
+    flex: 0,
+    flexDirection: "row",
+    padding: 20,
+    backgroundColor: "green",
+    justifyContent: "space-between",
+    alignItems: "center", // Added to center items vertically
+  },
+  textWhite: {
+    color: "white",
+    fontSize: 16, // Added to make text more visible
+    fontWeight: "bold", // Added for better visibility
+  },
 });
