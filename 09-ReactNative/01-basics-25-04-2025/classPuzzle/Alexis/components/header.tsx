@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View, } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import headerStyles from "../styles/headerStyles";
+import headerStyles from "../styles/Header.styles";
 import { Colors } from "../styles/colors";
 
 export const Header: React.FC = () => {
