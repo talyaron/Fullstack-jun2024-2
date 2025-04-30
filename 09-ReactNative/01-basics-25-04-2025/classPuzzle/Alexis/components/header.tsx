@@ -3,10 +3,10 @@ import { Ionicons } from '@expo/vector-icons';
 import headerStyles from "../styles/headerStyles";
 import { Colors } from "../styles/colors";
 
-const header: React.FC = () => {
+export const Header: React.FC = () => {
   return (
     <View style={headerStyles.container}>
-      <Text style={headerStyles.title}>Header</Text>
+      <Text style={headerStyles.title}>Chats</Text>
       <View style={headerStyles.icons}>
         <TouchableOpacity style={headerStyles.iconButton}>
           <Ionicons name="search-outline" size={24} color={Colors.primary} />
@@ -18,3 +18,5 @@ const header: React.FC = () => {
     </View>
   );
 }
+
+export default Header;
