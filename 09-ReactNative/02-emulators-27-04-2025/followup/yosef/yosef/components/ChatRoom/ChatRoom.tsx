@@ -4,9 +4,10 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 interface ChatRoomProps {
   name: string;
   date?: string;
+  unread?: number;
 }
 
-const ChatRoom: React.FC<ChatRoomProps> = ({ name,date }) => {
+const ChatRoom: React.FC<ChatRoomProps> = ({ name,date,unread }) => {
   return (
     <View style={styles.continer}>
         <View>
@@ -21,7 +22,7 @@ const ChatRoom: React.FC<ChatRoomProps> = ({ name,date }) => {
       </View>
       <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'center',paddingRight: 20 }}>
       <Text>{date}</Text>
-      <Text style={styles.meesageUnread}>7</Text>
+      <Text style={styles.meesageUnread}>{unread || 2}</Text>
       </View>
     </View>
   );
