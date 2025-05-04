@@ -1,9 +1,10 @@
-import { Text, TouchableOpacity, View, } from "react-native";
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import headerStyles from "../styles/Header.styles";
-import { Colors } from "../styles/colors";
+import headerStyles from '../styles/Header.styles';
+import { Colors } from '../styles/colors';
 
-export const Header: React.FC = () => {
+const Header: React.FC = () => {
   return (
     <View style={headerStyles.container}>
       <Text style={headerStyles.title}>Chats</Text>
@@ -17,6 +18,6 @@ export const Header: React.FC = () => {
       </View>
     </View>
   );
-}
+};
 
 export default Header;

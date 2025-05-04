@@ -1,37 +1,23 @@
-import { StyleSheet } from "react-native";
-import { Colors } from "./colors";
+import { StyleSheet } from 'react-native';
+import { Colors } from './colors';
 
-const chatItemStyles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
-    flexDirection: "row",
-    padding: 12,
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 16,
+    borderBottomColor: Colors.lightGray,
     borderBottomWidth: 1,
-    borderBottomColor: Colors.surface,
-    width: "100%",
     backgroundColor: Colors.background,
   },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 12,
-  },
-  textContainer: {
-    flex: 1,
-  },
   name: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 16,
-    color: Colors.textPrimary,
   },
   message: {
-    color: Colors.textPrimary,
+    color: Colors.secondary,
   },
   time: {
-    color: Colors.textPrimary,
-    fontSize: 12,
+    color: Colors.secondary,
   },
 });
-
-export default chatItemStyles;

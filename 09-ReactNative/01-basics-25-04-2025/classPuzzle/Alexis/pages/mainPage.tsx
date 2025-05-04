@@ -1,38 +1,32 @@
-import { ScrollView, View } from "react-native";
-import ChatItem from "../components/chatItem";
-import mainStyles from "../styles/MainPage.styles";
-import Header from "../components/header";
+import React from 'react';
+import { View, FlatList } from 'react-native';
+import ChatItem from '../components/ChatItem';
+import Header from '../components/header';
+import mainPageStyles from '../styles/MainPage.styles';
 
 const dummyChats = [
-  {
-    name: "Alice",
-    message: "Hey there!",
-    time: "10:45",
-    avatar: "https://i.pravatar.cc/150?img=1",
-  },
-  {
-    name: "Bob",
-    message: "How's it going?",
-    time: "9:30",
-    avatar: "https://i.pravatar.cc/150?img=2",
-  },
-  {
-    name: "Charlie",
-    message: "Wanna meet later?",
-    time: "Yesterday",
-    avatar: "https://i.pravatar.cc/150?img=3",
-  },
+  { id: '1', name: 'Alexis', lastMessage: 'Hey there!', time: '12:30' },
+  { id: '2', name: 'George', lastMessage: 'See you soon', time: '14:50' },
 ];
 
-export const MainPage = () => {
+const MainPage = ({ navigation }: any) => {
   return (
-    <View style={mainStyles.container}>
+    <View style={mainPageStyles.container}>
       <Header />
-      <ScrollView style={{ width: "100%" }}>
-        {dummyChats.map((chat, index) => (
-          <ChatItem key={index} {...chat} />
-        ))}
-      </ScrollView>
+      <FlatList
+        data={dummyChats}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <ChatItem
+            name={item.name}
+            lastMessage={item.lastMessage}
+            time={item.time}
+            onPress={() => navigation.navigate('Chat', { chatName: item.name })}
+          />
+        )}
+      />
     </View>
   );
 };
+
+export default MainPage;

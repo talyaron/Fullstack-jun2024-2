@@ -1,28 +1,23 @@
-import { Colors } from "./colors";
-import {StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-const headerStyles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
-    display: 'flex',
+    height: 80,
+    paddingTop: 40,
+    paddingHorizontal: 16,
+    backgroundColor: '#fff',
     flexDirection: 'row',
-    marginTop: 0,
-    padding: '5%',
-    backgroundColor: Colors.background,
     justifyContent: 'space-between',
-    alignItems: 'center',},
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: Colors.textPrimary,
-        },
-    icons: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        },
-    iconButton: {
-        marginLeft: 18,
-        },
-    });
-export default headerStyles;
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+  },
+  icons: {
+    flexDirection: 'row',
+  },
+  iconButton: {
+    marginLeft: 12,
+  },
+});

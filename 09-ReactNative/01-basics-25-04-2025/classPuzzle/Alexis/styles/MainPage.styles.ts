@@ -1,14 +1,8 @@
-import { StyleSheet } from "react-native";
-import { Colors } from "./colors";
+import { StyleSheet } from 'react-native';
 
-const mainPageStyles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
-  },
-  scroll: {
-    width: "100%",
+    backgroundColor: '#FFFFFF',
   },
 });
-
-export default mainPageStyles;
