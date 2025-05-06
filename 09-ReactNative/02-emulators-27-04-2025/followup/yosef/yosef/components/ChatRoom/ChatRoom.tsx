@@ -3,9 +3,11 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
 interface ChatRoomProps {
   name: string;
+  date?: string;
+  unread?: number;
 }
 
-const ChatRoom: React.FC<ChatRoomProps> = ({ name }) => {
+const ChatRoom: React.FC<ChatRoomProps> = ({ name,date,unread }) => {
   return (
     <View style={styles.continer}>
         <View>
@@ -18,9 +20,9 @@ const ChatRoom: React.FC<ChatRoomProps> = ({ name }) => {
       <Text style={styles.title}>{name}</Text>
       <Text style={styles.text}>hey there, how are you?</Text>
       </View>
-      <View>
-      <Text>5.4.2024</Text>
-      <Text>4</Text>
+      <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'center',paddingRight: 20 }}>
+      <Text>{date}</Text>
+      <Text style={styles.meesageUnread}>{unread || 2}</Text>
       </View>
     </View>
   );
@@ -48,6 +50,21 @@ const styles = StyleSheet.create({
         color: 'black',
         fontWeight: 'bold',
         marginLeft: 10, // מרווח בין התמונה לשם
+    },
+    meesageUnread: {
+      right: -160,
+      flex: 1, alignItems: 'flex-end', justifyContent: 'center',
+      backgroundColor: "green",
+      alignSelf: "flex-start",
+      color: "white",
+      fontSize: 14, // Increased font size
+      fontWeight: "bold",
+      textAlign: "center",
+      minWidth: 20, // Set a minimum width for the circle
+      height: 40, // Keep height fixed
+      borderRadius: 20, // Half of height to make it circular
+      lineHeight: 40, // Align text vertically
+      paddingHorizontal: 10, // Add padding to adjust for larger numbers
     },
 });
 
