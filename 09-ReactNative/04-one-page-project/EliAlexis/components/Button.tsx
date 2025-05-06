@@ -8,7 +8,7 @@ interface ButtonProps {
   text: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ iconName, text }) => {
+const InfoButton: React.FC<ButtonProps> = ({ iconName, text }) => {
   return (
     <View style={styles.button}>
       <FontAwesome name={iconName} size={12} color={Colors.black} style={styles.icon} />
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Button;
+export default InfoButton;
