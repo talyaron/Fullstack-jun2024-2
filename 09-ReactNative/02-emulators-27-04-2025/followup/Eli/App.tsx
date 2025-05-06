@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { StyleSheet, View, Text, FlatList } from "react-native";
 import Message from "./components/message";
 import { messagesModel } from "./model/messages";
@@ -19,6 +20,8 @@ export default function App() {
       <View style={styles.red}></View>
       <StatusBar style="auto" />
 =======
+=======
+>>>>>>> origin/main
 import { StyleSheet, View, Text, FlatList } from "react-native";
 import Message from "./components/message";
 import { messagesModel } from "./model/messages";
@@ -27,6 +30,9 @@ export default function App() {
   const messages = messagesModel;
   return (
     <View style={styles.container}>
+<<<<<<< HEAD
+>>>>>>> origin/main
+=======
 >>>>>>> origin/main
       <View style={styles.header}>
         <Text style={styles.headerText}>WhatsApp</Text>
@@ -47,8 +53,11 @@ export default function App() {
 
       <StatusBar style="light" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
 >>>>>>> origin/main
     </View>
   );
@@ -56,6 +65,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+<<<<<<< HEAD
 <<<<<<< HEAD
     flex: 1,
   },
@@ -91,6 +101,8 @@ const styles = StyleSheet.create({
     height: 10000,
     backgroundColor: "red",
 =======
+=======
+>>>>>>> origin/main
     flex: 1,
   },
   header: {
@@ -109,7 +121,10 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     backgroundColor: "#ffffff",
+<<<<<<< HEAD
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
 >>>>>>> origin/main
   },
 });
