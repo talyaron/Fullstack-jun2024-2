@@ -1,13 +1,14 @@
-const primaryColor = "#6200ee";
+const primaryColor = "#F6F3ED";
 const secondaryColor = "#03dac6";
-const backgroundColor = "#f5f5f5";
+const backgroundColor = "#FDF5C4";
 const surfaceColor = "#ffffff";
-const textPrimaryColor = "#000000";
-const textSecondaryColor = "#ffffff";
+const textPrimaryColor = "#F5B000";
+const textSecondaryColor = "#333333";
 const errorColor = "#b00020";
 const warningColor = "#ff9800";
 const infoColor = "#2196f3";
 const successColor = "#4caf50";
+const blackColor = "#1C1C1E";
 
 export const Colors = {
   primary: primaryColor,
@@ -20,4 +21,5 @@ export const Colors = {
   warning: warningColor,
   info: infoColor,
   success: successColor,
+  black: blackColor,
 };

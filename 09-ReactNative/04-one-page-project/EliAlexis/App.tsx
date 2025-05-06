@@ -1,25 +1,39 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, Image, View } from "react-native";
+import TransparentComp from "./components/TransparentComp";
+import { hashTagsModel } from "./model/hashTagModel";
+import HeaderMenu from "./components/HeaderMenu";
+import Button from "./components/Button";
+import BigButton from "./components/BigButton";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.img}
-        source={require("./images/womenStretch.png")}
-        alt="woman stretching"
-      />
+      <View style={styles.imageWrapper}>
+        <Image
+          style={styles.img}
+          source={require("./images/womenStretch.png")}
+          alt="woman stretching"
+        />
+      </View>
+      <HeaderMenu />
+      <Text style={styles.hugeText}>Morning Workout</Text>
+      <View style={styles.row}>
+        <Button icon="✩" text="72" border={true} />
+        <Button icon="⏱" text="8 hours" border={true} />
+      </View>
+      <View style={styles.row}>
+      <TransparentComp word={hashTagsModel[0]} />
+      <TransparentComp word={hashTagsModel[1]} />
+      <TransparentComp word={hashTagsModel[2]} />
+      </View>
 
-      <View style={styles.head}>
-        <View style={styles.backBtn}>←</View>
-        <Text style={styles.headerText}>Time stack</Text>
-        <View style={styles.backBtn}>←</View>
-      </View>
+       <Button icon="🕭" text="morning activity "  />
+       <Button icon="◰" text="4 successful days"  />
+
+       <BigButton></BigButton>
       <StatusBar style="auto" />
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
+      <View style={styles.middleBar}> </View>
     </View>
   );
 }
@@ -27,27 +41,37 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingRight: 20,
+    paddingLeft: 20,
+    width: "100%",
   },
-  img: {
+  imageWrapper: {
     width: "100%",
     height: "100%",
+    overflow: "hidden",
     position: "absolute",
     zIndex: 0,
+    left: 0,
   },
-  head: {
+  row: {
     flexDirection: "row",
   },
-  headerText: {
+  img: {
+    width: "115%",
+    height: "120%",
+    zIndex: 0,
+  },
+  hugeText: {
+    fontSize: 60,
     color: "white",
-    flex: 1,
-    textAlign: "center",
-  },
-  backBtn: {
-    backgroundColor: "white",
-    borderRadius: 50,
-    width: 60,
-    height: 60,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+    marginTop: 30,
+  },middleBar:{
+    width:"30%",
+    backgroundColor:"white",
+    height:6,
+    position:"absolute",
+    borderRadius:20,
+    bottom:3,
+    left:"35%"
+  }
 });

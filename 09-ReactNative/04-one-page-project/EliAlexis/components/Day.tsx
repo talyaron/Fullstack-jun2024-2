@@ -1,14 +1,29 @@
-import { TouchableOpacity } from "react-native";
-import { Text, View } from "react-native";
+// components/WeekCalendar.tsx
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { DayItem } from "../styles/DayItemStyle";
 
-export const DayItem = () => {
+const days = [
+  { label: "S", date: 17 },
+  { label: "M", date: 18 },
+  { label: "T", date: 19 },
+  { label: "W", date: 20 },
+  { label: "T", date: 21 },
+  { label: "F", date: 22 },
+  { label: "S", date: 23 },
+];
+
+const Day = () => {
   return (
-    <TouchableOpacity
-    
-    >
-      <Text style=>{day}</Text>
-    </TouchableOpacity>
+    <View style={DayItem.container}>
+      {days.map((day, index) => (
+        <View key={index} style={DayItem.day}>
+          <Text style={DayItem.date}>{day.date}</Text>
+          <Text style={DayItem.label}>{day.label}</Text>
+        </View>
+      ))}
+    </View>
   );
-}
+};
 
-export default DayItem;
+export default Day;
