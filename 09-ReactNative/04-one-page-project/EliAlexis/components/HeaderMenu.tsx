@@ -8,9 +8,10 @@ const HeaderMenu = () => {
         style={({ pressed }: any) => [
           styles.backBtn,
           pressed && styles.backBtnHovered,
+        
         ]}
       >
-        <Text>←</Text>
+        <Text style={styles.arrow}>←</Text>
       </Pressable>
       <Text style={styles.headerText}>Time stack</Text>
    
@@ -41,6 +42,10 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 10,
     textAlign: "center",
+  },arrow:{
+    marginBottom:7,
+    padding:0,
+   fontSize:35,
   },
 
   backBtn: {

@@ -33,6 +33,7 @@ export default function App() {
 
        <BigButton></BigButton>
       <StatusBar style="auto" />
+      <View style={styles.middleBar}> </View>
     </View>
   );
 }
@@ -64,5 +65,13 @@ const styles = StyleSheet.create({
     fontSize: 60,
     color: "white",
     marginTop: 30,
-  },
+  },middleBar:{
+    width:"30%",
+    backgroundColor:"white",
+    height:6,
+    position:"absolute",
+    borderRadius:20,
+    bottom:3,
+    left:"35%"
+  }
 });

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
-    top: 160,
+    top: 150,
     position: "relative",
   },
   text: {
