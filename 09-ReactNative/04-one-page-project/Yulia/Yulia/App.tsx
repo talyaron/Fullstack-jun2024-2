@@ -23,7 +23,7 @@ export default function App() {
     { id: 1, name: "Asia", selected: false },
     { id: 2, name: "Europe", selected: true },
     { id: 3, name: "America", selected: false },
-    { id: 4, name: "Australia", selected: false },
+    { id: 4, name: "Africa", selected: false },
   ];
 
   // Popular destination data 
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     overflow: "hidden",
     marginBottom: 20,
-    height: 250, // Увеличенная высота карточки
+    height: 250, 
   },
   destinationImage: {
     width: "100%",
