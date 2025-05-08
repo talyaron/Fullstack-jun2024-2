@@ -5,22 +5,24 @@ export const DayItem = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-   marginTop: 20,
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: Colors.background,
+    height:"25%",
   },
 
   day: {
     display: "flex",
     flexDirection: "column",
-    padding: 10,
-    margin: 5,
+    padding: 7,
+    margin: 2,
     color: "white",
     borderRadius: 20,
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor:"white",
+    width: "10%",
+  
 
 },
 

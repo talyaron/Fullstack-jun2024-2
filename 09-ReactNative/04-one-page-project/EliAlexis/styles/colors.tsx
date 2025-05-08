@@ -1,6 +1,6 @@
 const primaryColor = "#F6F3ED";
 const secondaryColor = "#03dac6";
-const backgroundColor = "#FDF5C4";
+const backgroundColor = "#E4E0D9";
 const surfaceColor = "#ffffff";
 const textPrimaryColor = "#F5B000";
 const textSecondaryColor = "#333333";

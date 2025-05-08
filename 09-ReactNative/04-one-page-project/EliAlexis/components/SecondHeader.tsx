@@ -1,18 +1,11 @@
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
-const HeaderMenu = () => {
+const SecondHeader = () => {
   return (
     <View style={styles.head}>
-      <Pressable
-        style={({ pressed }: any) => [
-          styles.backBtn,
-          pressed && styles.backBtnHovered,
-        ]}
-      >
-        <Text style={styles.arrow}>←</Text>
-      </Pressable>
-      <Text style={styles.headerText}>Time stack</Text>
+      <Text style={styles.headerText}>Calendar</Text>
 
       <Pressable
         style={({ pressed }: any) => [
@@ -20,31 +13,26 @@ const HeaderMenu = () => {
           pressed && styles.backBtnHovered,
         ]}
       >
-        <Image
-          style={styles.arrow}
-          resizeMode="contain"
-          source={require("../svg/pencil.svg")}
-          alt="pencil"
-        />
+        <Text style={styles.arrow}>X</Text>
       </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  img: {
-    width: "115%",
-    height: "120%",
-    zIndex: 0,
-  },
   head: {
-    marginTop: 20,
     flexDirection: "row",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
+    alignItems:"flex-end",
+    backgroundColor: Colors.background,
+    color: "black",
+    width:"80%",
+    marginTop:30,
+    marginLeft:"15%",
   },
   headerText: {
-    color: "white",
+    color: "black",
     flex: 1,
     marginTop: 10,
     textAlign: "center",
@@ -77,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HeaderMenu;
+export default SecondHeader;
