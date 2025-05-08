@@ -1,11 +1,13 @@
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
-
-const SecondHeader = () => {
+type Props = {
+    onPress: () => void;
+  };
+const SecondHeader = ({ onPress }: Props) => {
   return (
     <View style={styles.head}>
-      <Text style={styles.headerText}>Calendar</Text>
+      <Text onPress={onPress} style={styles.headerText}>Calendar</Text>
 
       <Pressable
         style={({ pressed }: any) => [
