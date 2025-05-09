@@ -1,3 +1,4 @@
+<<<<<<<<< Temporary merge branch 1
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, Image, View } from "react-native";
 import TransparentComp from "./components/TransparentComp";
@@ -83,13 +84,31 @@ export default function App() {
         <BigButton onPress={() => setShowSecondScreen(true)} />
 
         <StatusBar style="auto" />
-        <View style={styles.middleBar}> </View>
       </View>
-    );
-  }
+
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import Day from './components/Day';
+import ActivityCard from './components/Card';
+export default function App() {
+  return (
+    <View >
+      <Day />
+      <ActivityCard
+          title="10 min"
+          subtitle="meditation"
+          stars={13}
+          duration="4 h"
+          timerValue="10"
+          backgroundColor="#C89B6C"
+        />
+
+    </View>
+  );
 }
 
-export const styles = StyleSheet.create({
+<<<<<<<<< Temporary merge branch 1
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 25,
@@ -156,34 +175,8 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "90%",
     alignItems: "center",
-    marginLeft: 15,
-    marginRight: 15,
-    color: "black",
-    borderBottomColor: Colors.surface,
-    borderBottomWidth: 1,
-    paddingBottom:5,
+    justifyContent: "center",
   },
-  info: {
-    color: "black",
-  },
-  section: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent:"space-around",
-    padding: 5,
-    margin: 5,
-    marginTop:10,
-  },
-  lastline:{
-    color:"white",
-    padding:15,
-    borderRadius:20,
-    width: "95%",
-    height:"5%",
-    borderColor:"black",
-    borderWidth:1,
-    display:"flex",
-    textAlign:"center",
-    margin:10,
-  }
 });
+=========
+>>>>>>>>> Temporary merge branch 2

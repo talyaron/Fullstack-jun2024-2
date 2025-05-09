@@ -79,6 +79,7 @@
         <PersistentDeviceSelectionData>
           <option name="api" value="34" />
           <option name="brand" value="samsung" />
+
           <option name="codename" value="a16x" />
           <option name="id" value="a16x" />
           <option name="labId" value="google" />
@@ -91,6 +92,7 @@
         <PersistentDeviceSelectionData>
           <option name="api" value="34" />
           <option name="brand" value="samsung" />
+
           <option name="codename" value="a35x" />
           <option name="id" value="a35x" />
           <option name="labId" value="google" />
