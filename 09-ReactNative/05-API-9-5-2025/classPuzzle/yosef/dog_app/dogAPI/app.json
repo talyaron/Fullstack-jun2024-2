@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Yulia",
-    "slug": "Yulia",
+    "name": "dogAPI",
+    "slug": "dogAPI",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
