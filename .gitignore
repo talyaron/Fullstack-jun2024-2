@@ -86,3 +86,7 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+.expo/
+# Expo cache files
+**/.expo/web/cache/
