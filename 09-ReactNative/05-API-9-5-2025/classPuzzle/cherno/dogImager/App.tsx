@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 
 export default function App() {
   const [dogImageUrl, setDogImageUrl] = useState(null);
+  const [jokeSetup, setJokeSetup] = useState(null);
+  const [jokePunchline, setJokePunchline] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -21,7 +23,7 @@ export default function App() {
         setError('Failed to fetch dog image');
       }
     } catch (err) {
-      setError('Network error: ' + err.message);
+      setError('dog Network error: ' + err.message);
     } finally {
       setIsLoading(false);
     }
@@ -29,6 +31,33 @@ export default function App() {
 
   useEffect(() => {
     fetchRandomDogImage();
+  }, []);
+
+const fetchRandomJoke = async () => {
+  setIsLoading(true);
+  setError(null);
+
+  try {
+    const response = await fetch('http://10.0.0.11:3000/api/jokes/random');
+    const data = await response.json();
+    console.log(data)
+
+    if (data.id) {
+      setJokeSetup(data.setup);
+      setJokePunchline(data.punchline);
+    } else {
+      setError('Failed to fetch joke');
+    }
+  } catch (err) {
+    setError('Joke Network error: ' + err.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+
+  useEffect(() => {
+    fetchRandomJoke();
   }, []);
 
   return (
@@ -58,6 +87,19 @@ export default function App() {
           <Text>No image loaded</Text>
         </View>
       )}
+
+        <TouchableOpacity
+            style={styles.button}
+            onPress={fetchRandomJoke}
+            disabled={isLoading}
+        >
+            <Text style={styles.buttonText}>
+                {isLoading ? 'Loading...' : 'Get A Joke!'}
+            </Text>
+        </TouchableOpacity>
+
+        <Text>{jokeSetup}</Text>
+        <Text>{jokePunchline}</Text>
 
       <StatusBar style="auto" />
     </View>
