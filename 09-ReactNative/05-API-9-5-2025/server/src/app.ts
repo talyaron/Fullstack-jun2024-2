@@ -1,6 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import { developerJokes } from './data/jokes';
 
 const app: Application = express();
 
@@ -18,6 +19,29 @@ app.get('/', (req: Request, res: Response) => {
 // Sample API route
 app.get('/api/hello', (req: Request, res: Response) => {
   res.json({ message: 'Hello from the API!' });
+});
+
+// Developer jokes routes
+app.get('/api/jokes', (req: Request, res: Response) => {
+  res.json(developerJokes);
+});
+
+// Get a random joke
+app.get('/api/jokes/random', (req: Request, res: Response) => {
+  const randomIndex = Math.floor(Math.random() * developerJokes.length);
+  res.json(developerJokes[randomIndex]);
+});
+
+// Get a specific joke by ID
+app.get('/api/jokes/:id', (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+  const joke = developerJokes.find(joke => joke.id === id);
+  
+  if (joke) {
+    res.json(joke);
+  } else {
+    res.status(404).json({ message: 'Joke not found' });
+  }
 });
 
 // Error handling middleware
