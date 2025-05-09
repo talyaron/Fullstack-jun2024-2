@@ -1,4 +1,27 @@
 import { StatusBar } from "expo-status-bar";
+<<<<<<< HEAD
+<<<<<<< HEAD
+import { StyleSheet, View, Text, FlatList } from "react-native";
+import Message from "./components/message";
+import { messagesModel } from "./model/messages";
+=======
+<<<<<<< HEAD
+import { StyleSheet, Text, View } from "react-native";
+>>>>>>> origin/main
+
+export default function App() {
+  const messages = messagesModel;
+  return (
+    <View style={styles.container}>
+<<<<<<< HEAD
+=======
+      <View style={styles.blue}></View>
+      <View style={styles.white}></View>
+      <View style={styles.red}></View>
+      <StatusBar style="auto" />
+=======
+=======
+>>>>>>> origin/main
 import { StyleSheet, View, Text, FlatList } from "react-native";
 import Message from "./components/message";
 import { messagesModel } from "./model/messages";
@@ -7,6 +30,10 @@ export default function App() {
   const messages = messagesModel;
   return (
     <View style={styles.container}>
+<<<<<<< HEAD
+>>>>>>> origin/main
+=======
+>>>>>>> origin/main
       <View style={styles.header}>
         <Text style={styles.headerText}>WhatsApp</Text>
       </View>
@@ -25,12 +52,57 @@ export default function App() {
       />
 
       <StatusBar style="light" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
+>>>>>>> origin/main
+=======
+>>>>>>> origin/main
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    flex: 1,
+  },
+  header: {
+    backgroundColor: "#075E54",
+    height: 60,
+    width: "100%",
+    paddingTop: 10,
+    paddingLeft: 15,
+=======
+<<<<<<< HEAD
+    alignItems: "center",
+>>>>>>> origin/main
+    justifyContent: "center",
+  },
+  headerText: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+<<<<<<< HEAD
+  content: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+=======
+  white: {
+    backgroundColor: "white",
+    width: 211,
+    height: 10000,
+  },
+  red: {
+    width: 333,
+    height: 10000,
+    backgroundColor: "red",
+=======
+=======
+>>>>>>> origin/main
     flex: 1,
   },
   header: {
@@ -49,5 +121,10 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     backgroundColor: "#ffffff",
+<<<<<<< HEAD
+>>>>>>> origin/main
+>>>>>>> origin/main
+=======
+>>>>>>> origin/main
   },
 });
