@@ -5,14 +5,34 @@ import React, { useEffect, useState } from 'react';
 export default function App() {
  
   const [dog, setNewDog] = useState();
+  const [jokeQuestion, setJokeQuestion] = useState();
+  const [jokeAnswer, setJokeAnswer] = useState();
 
   const getDog = async () => {
     const response = await fetch('https://dog.ceo/api/breeds/image/random');
     const data = await response.json();
     setNewDog(data.message);
   };
+
+  // const getJoke = async () => {
+  //   const response = await fetch('https://api.chucknorris.io/jokes/random');
+  //   const data = await response.json();
+  //   console.log(data)
+  //   setJoke(data.value);
+  // };
+
+  const getJoke = async () => {
+    const response = await fetch('http://10.0.0.15:3000/api/jokes/random');
+    const data = await response.json();
+    console.log(data)
+    setJokeQuestion(data.setup);
+    setJokeAnswer(data.punchline);
+  };
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>the joke:</Text>
+      <Text style={{}}>{jokeQuestion}</Text>
+      <Text>{jokeAnswer}</Text>
       <Text style={styles.title}>YosefIB* - dog app</Text>
       <Image
         source= {{ uri: dog }}
@@ -22,7 +42,11 @@ export default function App() {
         onPress={getDog}
         style={styles.button}
         ><Text style={styles.buttonText}>Get a dog!</Text></TouchableOpacity>  
-      <StatusBar style="auto" />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={getJoke}>
+          <Text style={styles.buttonText}>Get a Joke!</Text>
+          </TouchableOpacity>
     </View>
   );
 }
