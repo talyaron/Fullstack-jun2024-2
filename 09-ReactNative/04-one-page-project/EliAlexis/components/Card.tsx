@@ -41,7 +41,8 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
 
 const styles = StyleSheet.create({
   card: {
-    width: 160,
+    width: 200,
+    height:220,
     borderRadius: 18,
     padding: 16,
     marginRight: 12,
