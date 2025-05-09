@@ -24,12 +24,12 @@ export default function App() {
         <Day />
         <View style={styles.viewline}>
           <InfoButton icon="✩" text="20th" border={true} />
-          <Text style={styles.info}>Ratings</Text>{" "}
+          <Text style={styles.info}>Ratings</Text>
         </View>
         <View style={styles.viewline}>
           <InfoButton icon="⏱" text="11 months" border={true} />
           <Text style={styles.info}>Views</Text>
-        </View>{" "}
+        </View>
         <View style={styles.viewline}>
           <InfoButton icon="✩" text="111 people rated" border={true} />
 
