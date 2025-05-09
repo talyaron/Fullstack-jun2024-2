@@ -14,16 +14,19 @@ export default function App() {
   const [dogImage, setDogImage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [joke, setJoke] = useState<{ setup: string; punchline: string } | null>(null);
+  const [joke, setJoke] = useState<{ setup: string; punchline: string } | null>(
+    null
+  );
   const [jokeLoading, setJokeLoading] = useState<boolean>(false);
   const [jokeError, setJokeError] = useState<string | null>(null);
 
   // For iOS simulators, use localhost
   // For Android emulators, use 10.0.2.2 instead of localhost
   // The server should be running on port 3000
-  const SERVER_URL = Platform.OS === 'android' 
-    ? 'http://10.0.2.2:3000' 
-    : 'http://localhost:3000';
+  const SERVER_URL =
+    Platform.OS === "android"
+      ? "http://10.0.2.2:3000"
+      : "http://localhost:3000";
 
   const fetchRandomDog = async () => {
     try {
@@ -53,11 +56,11 @@ export default function App() {
       console.log(`Fetching joke from: ${SERVER_URL}/api/jokes/random`);
 
       const response = await fetch(`${SERVER_URL}/api/jokes/random`);
-      
+
       if (!response.ok) {
         throw new Error(`Server responded with status: ${response.status}`);
       }
-      
+
       const data = await response.json();
       console.log("Joke data received:", data);
 
@@ -95,11 +98,7 @@ export default function App() {
         )}
       </View>
 
-      <Button
-        title="New Dog"
-        onPress={fetchRandomDog}
-        disabled={loading}
-      />
+      <Button title="New Dog" onPress={fetchRandomDog} disabled={loading} />
 
       <View style={styles.jokeContainer}>
         {jokeLoading ? (
@@ -109,7 +108,9 @@ export default function App() {
         ) : joke ? (
           <View>
             <Text style={styles.jokeText}>{joke.setup}</Text>
-            <Text style={[styles.jokeText, styles.punchline]}>{joke.punchline}</Text>
+            <Text style={[styles.jokeText, styles.punchline]}>
+              {joke.punchline}
+            </Text>
           </View>
         ) : (
           <Text style={styles.hintText}>Click the button to get a joke</Text>
