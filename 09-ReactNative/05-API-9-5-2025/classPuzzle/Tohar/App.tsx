@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 export default function App() {
   const [dogImageUrl, setDogImageUrl] = useState(null);
+  const [joke, setJoke] = useState(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
@@ -26,10 +27,18 @@ export default function App() {
     }
   };
 
-  const fetchJoke = () => {
+  const fetchJoke = async () => {
     setIsLoading(true);
 
     try {
+      const response = await fetch('http://192.168.1.225:3000/api/jokes/random');
+      const data = await response.json();
+
+      if (data.status === 'success') {
+        setDogImageUrl(data.message);
+      } else {
+        setError('Failed to fetch dog image');
+      }
 
     } catch {
       setError('Failed to fetch a joke');
@@ -39,6 +48,7 @@ export default function App() {
 
   useEffect(() => {
     fetchDogImage();
+    fetchJoke();
   }, []);
 
   return (
@@ -67,6 +77,13 @@ export default function App() {
             </View>
           )
         }</TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={fetchJoke}
+        disabled={isLoading}
+      >
+        <Text style={styles.buttonText}>Get a new joke</Text>
+      </TouchableOpacity>
 
       <StatusBar style="auto" />
 
