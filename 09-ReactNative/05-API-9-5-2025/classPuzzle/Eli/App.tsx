@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Button, StyleSheet, Image, View, Animated } from "react-native";
 export default function App() {
   const [dogImg, setDogImg] = useState<string | null>(null);
-  const [fadeAnim] = useState(new Animated.Value(0));
-  const [scaleAnim] = useState(new Animated.Value(0.5));
+  const fadeAnim = new Animated.Value(0);
+  const scaleAnim = new Animated.Value(0.5);
 
   async function fetchDog() {
     try {
