@@ -4,7 +4,6 @@ import { View, Text, StyleSheet } from "react-native";
 import { DayItem } from "../styles/DayItemStyle";
 
 const days = [
-  { label: "S", date: 17 },
   { label: "M", date: 18 },
   { label: "T", date: 19 },
   { label: "W", date: 20 },
@@ -16,9 +15,13 @@ const days = [
 const Day = () => {
   return (
     <View style={DayItem.container}>
+      <View style={DayItem.day}>
+        <Text style={DayItem.date}>17</Text>
+        <Text style={DayItem.label}>S</Text>
+      </View>
       {days.map((day, index) => (
-        <View key={index} style={DayItem.day}>
-          <Text style={DayItem.date}>{day.date}</Text>
+        <View key={index} style={DayItem.overall}>
+          <Text>{day.date}</Text>
           <Text style={DayItem.label}>{day.label}</Text>
         </View>
       ))}
