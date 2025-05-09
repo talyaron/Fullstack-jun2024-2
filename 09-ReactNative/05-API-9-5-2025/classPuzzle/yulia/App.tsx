@@ -1,102 +1,71 @@
-import React, { useState } from "react";
+import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
+  Text,
   View,
   Image,
-  TouchableOpacity,
-  Text,
+  Button,
   ActivityIndicator,
 } from "react-native";
+import { useState, useEffect } from "react";
 
-/**
- * Main App component
- * Displays a random dog image from the Dog API
- * @returns {JSX.Element} The rendered App component
- */
 export default function App() {
-  const [dogImageUrl, setDogImageUrl] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [dogImage, setDogImage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  /**
-   * Fetches a random dog image from the Dog API
-   * @returns {Promise<string>} The URL of the dog image
-   */
-  const fetchRandomDogImage = async (): Promise<string> => {
+  const fetchRandomDog = async () => {
     try {
-      // Make API request to get random dog image
+      setLoading(true);
+      setError(null);
+
       const response = await fetch("https://dog.ceo/api/breeds/image/random");
-
-      // Check if response is successful
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-
-      // Parse JSON response
       const data = await response.json();
 
-      // Return image URL
-      return data.message;
-    } catch (error) {
-      console.error("Error fetching dog image:", error);
-      // Return placeholder image URL in case of error
-      throw error;
-    }
-  };
-
-  /**
-   * Handles button press to get a new dog image
-   */
-  const handleShowDogImage = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      // Get new dog image URL
-      const imageUrl = await fetchRandomDogImage();
-      setDogImageUrl(imageUrl);
-    } catch (error) {
-      setError("Failed to load dog image. Please try again.");
-      console.error(error);
+      if (data.status === "success") {
+        setDogImage(data.message);
+      } else {
+        setError("Failed to fetch dog image");
+      }
+    } catch (err) {
+      setError("Error fetching dog image");
+      console.error(err);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchRandomDog();
+  }, []);
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        {isLoading ? (
-          <ActivityIndicator size="large" color="#0000ff" />
-        ) : dogImageUrl ? (
-          <Image
-            source={{ uri: dogImageUrl }}
-            style={styles.dogImage}
-            resizeMode="contain"
-          />
-        ) : (
-          <Text style={styles.placeholderText}>
-            Press the button to see a dog!
-          </Text>
-        )}
+      <Text style={styles.title}>Dogs</Text>
 
-        {error && <Text style={styles.errorText}>{error}</Text>}
+      {error && <Text style={styles.errorText}>{error}</Text>}
+
+      <View style={styles.imageContainer}>
+        {loading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          dogImage && (
+            <Image source={{ uri: dogImage }} style={styles.dogImage} />
+          )
+        )}
       </View>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handleShowDogImage}
-        disabled={isLoading}
-      >
-        <Text style={styles.buttonText}>
-          {isLoading ? "Loading..." : "Show me a dog!"}
-        </Text>
-      </TouchableOpacity>
+      <Button
+        title="New Dog"
+        onPress={fetchRandomDog}
+        disabled={loading}
+      />
+
+      <StatusBar style="auto" />
     </View>
   );
 }
 
-// Styles for the components
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -105,39 +74,28 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
   },
-  imageContainer: {
-    width: "100%",
-    height: 300,
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
     marginBottom: 20,
+  },
+  imageContainer: {
+    width: 300,
+    height: 300,
+    borderRadius: 10,
+    overflow: "hidden",
+    marginVertical: 20,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f0f0f0",
-    borderRadius: 10,
-    overflow: "hidden",
   },
   dogImage: {
     width: "100%",
     height: "100%",
-  },
-  placeholderText: {
-    fontSize: 18,
-    color: "#888",
+    resizeMode: "cover",
   },
   errorText: {
     color: "red",
-    marginTop: 10,
-    textAlign: "center",
-  },
-  button: {
-    backgroundColor: "#4CAF50",
-    padding: 15,
-    borderRadius: 8,
-    width: "80%",
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
+    marginBottom: 10,
   },
 });
